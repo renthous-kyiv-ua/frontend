@@ -1,88 +1,84 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const UserForm = ({ user, setUser, isNewUser }) => {
-  const [formData, setFormData] = useState({
-    email: '',
-    passwordHash: '',
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    isEmailConfirmed: true,
-    role: 'User',
-    dateCreated: new Date().toISOString()
-  });
-
-  useEffect(() => {
-    if (user) {
-      setFormData({
-        ...user,
-        dateCreated: user.dateCreated ? new Date(user.dateCreated).toISOString() : new Date().toISOString()
-      });
-    } else {
-      setFormData({
+const UserForm = ({ user, onClose }) => {
+    const [formData, setFormData] = useState({
         email: '',
         passwordHash: '',
         firstName: '',
         lastName: '',
         phoneNumber: '',
-        isEmailConfirmed: true,
-        role: 'User',
-        dateCreated: new Date().toISOString()
-      });
-    }
-  }, [user]);
+        isEmailConfirmed: false,
+        role: 'User'
+    });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+    useEffect(() => {
+        if (user) {
+            setFormData(user);
+        }
+    }, [user]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = isNewUser
-        ? await axios.post('https://localhost:7074/api/Users', formData)
-        : await axios.put(`https://localhost:7074/api/Users/${formData.userId}`, formData);
-      console.log(response.data);
-      setUser(null);  // Очистка выбранного пользователя после операции
-    } catch (error) {
-      console.error('Error adding/updating user:', error);
-    }
-  };
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData({
+            ...formData,
+            [name]: type === 'checkbox' ? checked : value
+        });
+    };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Email:</label>
-        <input type="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
-      </div>
-      <div className="form-group">
-        <label>Password:</label>
-        <input type="password" className="form-control" name="passwordHash" value={formData.passwordHash} onChange={handleChange} required />
-      </div>
-      <div className="form-group">
-        <label>First Name:</label>
-        <input type="text" className="form-control" name="firstName" value={formData.firstName} onChange={handleChange} required />
-      </div>
-      <div className="form-group">
-        <label>Last Name:</label>
-        <input type="text" className="form-control" name="lastName" value={formData.lastName} onChange={handleChange} required />
-      </div>
-      <div className="form-group">
-        <label>Phone Number:</label>
-        <input type="text" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
-      </div>
-      <div className="form-group">
-        <label>Role:</label>
-        <select name="role" className="form-control" value={formData.role} onChange={handleChange}>
-          <option value="User">User</option>
-          <option value="Admin">Admin</option>
-        </select>
-      </div>
-      <button type="submit" className="btn btn-primary">{isNewUser ? 'Add User' : 'Update User'}</button>
-    </form>
-  );
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (user) {
+                await axios.put(`https://localhost:7074/api/Users/${user.userId}`, formData);
+            } else {
+                await axios.post('https://localhost:7074/api/Users', formData);
+            }
+            onClose();
+        } catch (error) {
+            console.error('Error adding/updating user:', error.response?.data || error.message);
+        }
+    };
+
+    return (
+        <div className="form-container">
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Email</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" name="passwordHash" value={formData.passwordHash} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>First Name</label>
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Phone Number</label>
+                    <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label>Email Confirmed</label>
+                    <input type="checkbox" name="isEmailConfirmed" checked={formData.isEmailConfirmed} onChange={handleChange} />
+                </div>
+                <div>
+                    <label>Role</label>
+                    <select name="role" value={formData.role} onChange={handleChange}>
+                        <option value="User">User</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" className="btn btn-primary">Save</button>
+                <button type="button" className="btn btn-secondary" onClick={onClose}>Cancel</button>
+            </form>
+        </div>
+    );
 };
 
 export default UserForm;
