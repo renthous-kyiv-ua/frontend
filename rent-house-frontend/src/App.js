@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import UsersAdmin from './components/UsersAdmin';
 import PropertiesAdmin from './components/PropertiesAdmin';
-import './App.css'; // Путь к вашему CSS файлу
+import './App.css'; 
 
 function App() {
   return (
