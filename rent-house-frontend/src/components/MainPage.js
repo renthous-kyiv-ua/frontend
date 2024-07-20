@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/MainPage.css';
 import mapImage from '../images/world-map.png';
 import photo1Image from '../images/photo1.jpg';
@@ -11,7 +11,60 @@ import photo7Image from '../images/photo7.jpg';
 import photo8Image from '../images/photo8.jpg';
 import photo9Image from '../images/photo9.jpg';
 
+const translations = {
+  en: {
+    home: "Home",
+    about: "About Us",
+    agents: "Agents",
+    tenant: "Tenant",
+    landlord: "Landlord",
+    regLog: "Registration / Login",
+    lookingFor: "Are you looking\nfor your dream\nhome?",
+    findHouse: "Find a House",
+    welcome: "Welcome to our housing search site! We offer thousands of vetted\nlistings, easy searching, and full support every step of the way to\nhelp you find your ideal home quickly and easily.",
+    where: "Where",
+    checkIn: "Check in",
+    checkOut: "Check out",
+    numberOfPeople: "Number of people",
+    search: "Search",
+    adults: "Adults",
+    children: "Children",
+    ageNeeded: "Age needed",
+    rooms: "Rooms",
+    pets: "Traveling with pets?",
+    done: "Done",
+  },
+  ua: {
+    home: "Головна",
+    about: "Про нас",
+    agents: "Агенти",
+    tenant: "Орендар",
+    landlord: "Орендодавець",
+    regLog: "Реєстрація / Авторизація",
+    lookingFor: "Ви шукаєте\nбудинок своєї мрії?",
+    findHouse: "Знайти будинок",
+    welcome: "Ласкаво просимо на наш сайт пошуку житла! Ми пропонуємо тисячі перевірених\nоголошень, легкий пошук та повну підтримку на кожному кроці, щоб допомогти вам\nшвидко та легко знайти ідеальне житло.",
+    where: "Де",
+    checkIn: "Заїзд",
+    checkOut: "Виїзд",
+    numberOfPeople: "Кількість людей",
+    search: "Пошук",
+    adults: "Дорослі",
+    children: "Діти",
+    ageNeeded: "Вік необхідний",
+    rooms: "Кімнати",
+    pets: "Подорожуєте з домашніми тваринами?",
+    done: "Готово",
+  }
+};
+
 const MainPage = () => {
+
+  const [language, setLanguage] = useState('en');
+
+  const handleLanguageChange = (event) => {
+    setLanguage(event.target.value);
+  };
 
   useEffect(() => {
     let currentIndex = 0;
@@ -67,11 +120,11 @@ const MainPage = () => {
       <header className="home-header">
         <nav className="navigation">
           <ul className="nav-list">
-            <li className="active" href="/">Home</li>
-            <li href="/about">About Us</li>
-            <li href="/agents">Agents</li>
-            <li href="/tenant">Tenant</li>
-            <li href="/landlord">Landlord</li>
+            <li className="active" href="/">{translations[language].home}</li>
+            <li href="/about">{translations[language].about}</li>
+            <li href="/agents">{translations[language].agents}</li>
+            <li href="/tenant">{translations[language].tenant}</li>
+            <li href="/landlord">{translations[language].landlord}</li>
           </ul>
           <div className="logo">
             <svg width="81" height="51" viewBox="0 0 81 51" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,12 +141,12 @@ const MainPage = () => {
                 <option value="eur">EUR</option>
                 <option value="eur">UAH</option>
               </select>
-              <select className="select-dropdown">
+              <select className="select-dropdown" value={language} onChange={handleLanguageChange}>
                 <option value="en">EN</option>
-                <option value="es">UA</option>
+                <option value="ua">UA</option>
               </select>
             </div>
-            <button onClick={() => window.location.href='/signin'} className="login">Registration / Login</button>
+            <button onClick={() => window.location.href='/signin'} className="login">{translations[language].regLog}</button>
           </div>
         </nav>
         <div className="white-strip"></div>
