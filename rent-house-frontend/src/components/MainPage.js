@@ -62,53 +62,53 @@ const MainPage = () => {
     };
   }, []);
 
-  document.getElementById('number-of-people').addEventListener('click', function() {
-    document.getElementById('people-popup').style.display = 'block';
-  });
+//   document.getElementById('number-of-people').addEventListener('click', function() {
+//     document.getElementById('people-popup').style.display = 'block';
+//   });
   
-  document.getElementById('done-btn').addEventListener('click', function() {
-    document.getElementById('people-popup').style.display = 'none';
-    updateNumberOfPeople();
-  });
+//   document.getElementById('done-btn').addEventListener('click', function() {
+//     document.getElementById('people-popup').style.display = 'none';
+//     updateNumberOfPeople();
+//   });
   
-  function updateNumberOfPeople() {
-    const adults = document.getElementById('adult-count').value;
-    const children = document.getElementById('children-count').value;
-    const rooms = document.getElementById('room-count').value;
-    document.getElementById('number-of-people').value = `${adults} adults, ${children} children, ${rooms} rooms`;
-  }
+//   function updateNumberOfPeople() {
+//     const adults = document.getElementById('adult-count').value;
+//     const children = document.getElementById('children-count').value;
+//     const rooms = document.getElementById('room-count').value;
+//     document.getElementById('number-of-people').value = `${adults} adults, ${children} children, ${rooms} rooms`;
+//   }
   
-  document.getElementById('adult-increase').addEventListener('click', function() {
-    document.getElementById('adult-count').value++;
-  });
-  document.getElementById('adult-decrease').addEventListener('click', function() {
-    const count = document.getElementById('adult-count');
-    if (count.value > 1) count.value--;
-  });
+//   document.getElementById('adult-increase').addEventListener('click', function() {
+//     document.getElementById('adult-count').value++;
+//   });
+//   document.getElementById('adult-decrease').addEventListener('click', function() {
+//     const count = document.getElementById('adult-count');
+//     if (count.value > 1) count.value--;
+//   });
   
-  document.getElementById('children-increase').addEventListener('click', function() {
-    document.getElementById('children-count').value++;
-  });
-  document.getElementById('children-decrease').addEventListener('click', function() {
-    const count = document.getElementById('children-count');
-    if (count.value > 0) count.value--;
-  });
+//   document.getElementById('children-increase').addEventListener('click', function() {
+//     document.getElementById('children-count').value++;
+//   });
+//   document.getElementById('children-decrease').addEventListener('click', function() {
+//     const count = document.getElementById('children-count');
+//     if (count.value > 0) count.value--;
+//   });
   
-  document.getElementById('age-increase').addEventListener('click', function() {
-    document.getElementById('age-count').value++;
-  });
-  document.getElementById('age-decrease').addEventListener('click', function() {
-    const count = document.getElementById('age-count');
-    if (count.value > 0) count.value--;
-  });
+//   document.getElementById('age-increase').addEventListener('click', function() {
+//     document.getElementById('age-count').value++;
+//   });
+//   document.getElementById('age-decrease').addEventListener('click', function() {
+//     const count = document.getElementById('age-count');
+//     if (count.value > 0) count.value--;
+//   });
   
-  document.getElementById('room-increase').addEventListener('click', function() {
-    document.getElementById('room-count').value++;
-  });
-  document.getElementById('room-decrease').addEventListener('click', function() {
-    const count = document.getElementById('room-count');
-    if (count.value > 1) count.value--;
-  });  
+//   document.getElementById('room-increase').addEventListener('click', function() {
+//     document.getElementById('room-count').value++;
+//   });
+//   document.getElementById('room-decrease').addEventListener('click', function() {
+//     const count = document.getElementById('room-count');
+//     if (count.value > 1) count.value--;
+//   });  
 
   return (
     <div className="home">
