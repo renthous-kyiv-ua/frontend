@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/AdminMainPanel.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AdminMainPanel = () => {
 
@@ -12,10 +13,10 @@ const AdminMainPanel = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link className="nav-link" to="/admin/users">Manage Users</Link>
+            <a className="nav-link" href="/admin/users">Manage Users</a>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/admin/properties">Manage Properties</Link>
+            <a className="nav-link" href="/admin/properties">Manage Properties</a>
           </li>
         </ul>
       </div>
