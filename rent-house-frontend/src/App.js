@@ -1,8 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import UsersAdmin from './components/UsersAdmin';
-import PropertiesAdmin from './components/PropertiesAdmin';
-import './App.css'; 
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './components/MainPage';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+// import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+// import UsersAdmin from './components/UsersAdmin';
+// import PropertiesAdmin from './components/PropertiesAdmin';
+// import './App.css'; 
 
 function App() {
   return (
@@ -32,6 +36,17 @@ function App() {
         </div>
       </div>
     </Router>
+  );
+}
+
+export default App;
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/register" element={<SignUp />} />
+    </Routes>
   );
 }
 
