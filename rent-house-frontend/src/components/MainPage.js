@@ -326,7 +326,7 @@ const MainPage = () => {
       </section>
       <section className='popular-houses'>
         <h1>Popular houses in your area</h1>
-        <div className='house-example'>
+        <div className="house-example">
           <img src={exampleHome} alt="Offer" />
           <div className='rating-example'>
             <p>8.3 ☆</p>
@@ -343,36 +343,41 @@ const MainPage = () => {
             <img src={house1Image} alt="House 1" />
             <div className="house-info">
               <div>
-                <p className="rating">6.8</p>
+                <p className="rating">6.8 ☆</p>
               </div>
               <div className='details'>
-                <p className="details">11104, New York</p>
-                <p className="discount">9% off until November 21</p>
-                <p className="description">This downtown New York hotel is 400 meters from Radio City Music Hall. It features a fitness centre, restaurant and bar.</p>
+                <p className="details"><strong>11104, New York</strong></p>
+                <p className="discount"><strong>9% off</strong> until November 21</p>
+                <p className="description">This downtown New York hotel is 400 meters from Radio City Music Hall. It features a fitness centre, restaurant and bar.</p><br />
+                <p className='price'>$619/night</p>
               </div>
             </div>
           </div>
           <div className="house-card">
             <img src={house2Image} alt="House 2" />
             <div className="house-info">
-              <p className="rating">8.7</p>
-              <p className="details">11101, New York</p>
-              <p className="discount">19% off until October 10</p>
+              <p className="rating">8.7 ☆</p>
+              <p className="details"><strong>11101, New York</strong></p>
+              <p className="discount"><strong>19% off</strong> until October 10</p>
               <p className="description">The hotel was created for those who like to spend time at work. For those who value a place to see, explore and relax and recuperate. The hotel is located in Hudson Yards, New York's newest neighborhood</p>
+              <p className='price'>$425/night</p>
             </div>
           </div>
           <div className="house-card">
             <img src={house3Image} alt="House 3" />
             <div className="house-info">
-              <p className="rating">7.4</p>
-              <p className="details">11127, New York</p>
-              <p className="discount">47% off until October 08</p>
-              <p className="description">Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows. </p>
+              <p className="rating">7.4 ☆</p>
+              <p className="details"><strong>11127, New York</strong></p>
+              <p className="discount"><strong>47% off</strong> until October 08</p>
+              <p className="description">Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows. </p><br />
+              <p className='price'>$371/night</p>
             </div>
           </div>
-          <button className="prev-photo">Prev</button>
-          <button className="next-photo">Next</button>
-          <button className="more-button">More</button>
+          <div className='buttons'>
+            <button className="prev-photo">🠔</button>
+            <button className="next-photo">🠖</button>
+            <button className="more-button">More</button>
+          </div>
         </div>
         <div className="company-info">
           <p><strong>Rent House</strong> is deservedly considered one of the most reliable in the industry. We provide our clients with the highest level of service and security at every stage of interaction. Our numerous positive reviews and high ratings on independent platforms confirm the trust and satisfaction of our customers. We are proud of our reputation and strive for continuous improvement. By choosing our company, you can be sure of the reliability and quality of the services provided. Book accommodation with us and enjoy a comfortable holiday without unnecessary worries.</p>

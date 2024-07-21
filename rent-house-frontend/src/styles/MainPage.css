@@ -424,6 +424,7 @@ body, html {
 
 .popular-houses {
   padding: 20px;
+  font-family: Helvetica Neue, arial;
 }
 
 .popular-houses h1 {
@@ -450,7 +451,7 @@ body, html {
 .rating-example {
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 40px;
   background-color: #A94802;
   color: #F4F4F4;
   border-radius: 15px;
@@ -472,33 +473,34 @@ body, html {
   color: #F4F4F4;
   margin-top: 310px;
   margin-left: 10px;
-}
-
-.discount-example {
   position: absolute;
   top: 40px;
-  left: 10px;
+  left: 40px;
 }
 
 .details-example {
   position: absolute;
   bottom: 10px;
-  left: 15px;
+  left: 45px;
   color: #F4F4F4;
 }
 
 .houses-list {
+  position: relative;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-left: 450px;
+  margin-top: -400px;
 }
 
 .house-card {
   background-color: #1F2C13;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
-  width: 22%;
+  width: 27.5%;
+  height: 485px;
   margin-bottom: 20px;
   margin-left: 10px;
   text-align: left;
@@ -508,6 +510,7 @@ body, html {
 .house-card img {
   width: 100%;
   height: auto;
+  padding: 10px;
 }
 
 .house-info {
@@ -520,22 +523,61 @@ body, html {
   color: #F4F4F4;
   border-radius: 15px;
   width: 60px;
-  height: 25px;
+  height: 27px;
   padding: 1px;
   text-align: center;
   font-family: Helvetica Neue, arial;
+  margin-left: 280px;
+  margin-top: -70px;
 }
 
 .house-info .discount, .house-info .details, .house-info .price, .house-info .description {
   margin: 5px 0;
+  text-align: left;
+  color: #F4F4F4;
+}
+
+.buttons {
+  margin-top: 550px;
+}
+
+.prev-photo {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 20px;
+  border: 1px solid #040606;
+  border-radius: 50%;
+  text-align: center;
+  font-family: Helvetica Neue, arial;
+}
+
+.next-photo {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 20px;
+  border: 1px solid #040606;
+  border-radius: 50%;
+  text-align: center;
+  font-family: Helvetica Neue, arial;
+  margin-left: 10px;
 }
 
 .more-button {
   display: block;
   margin: 20px auto;
   padding: 10px 20px;
-  background-color: #f04e23;
-  color: #fff;
+  background-color: #A94802;
+  color: #F4F4F4;
   border: none;
   border-radius: 5px;
   cursor: pointer;
