@@ -36,6 +36,11 @@ body, html {
   cursor: pointer;
 }
 
+.nav-list a {
+  color: #F4F4F4;
+  text-decoration: none;
+}
+
 .active {
   text-decoration: underline;
 }

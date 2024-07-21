@@ -120,11 +120,11 @@ const MainPage = () => {
       <header className="home-header">
         <nav className="navigation">
           <ul className="nav-list">
-            <li className="active" href="/">{translations[language].home}</li>
-            <li href="/about">{translations[language].about}</li>
-            <li href="/agents">{translations[language].agents}</li>
-            <li href="/tenant">{translations[language].tenant}</li>
-            <li href="/landlord">{translations[language].landlord}</li>
+            <li className="active"><a href='/'>{translations[language].home}</a></li>
+            <li><a href='/about'>{translations[language].about}</a></li>
+            <li><a href='/agents'>{translations[language].agents}</a></li>
+            <li><a href='/tenant'>{translations[language].tenant}</a></li>
+            <li><a href='/landlord'>{translations[language].landlord}</a></li>
           </ul>
           <div className="logo">
             <svg width="81" height="51" viewBox="0 0 81 51" fill="none" xmlns="http://www.w3.org/2000/svg">
