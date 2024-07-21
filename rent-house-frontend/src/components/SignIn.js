@@ -14,11 +14,11 @@ const SignIn = () => {
       <header className="home-header">
         <nav className="navigation">
           <ul className="nav-list">
-            <li className="active" href="/">Home</li>
-            <li href="/about">About Us</li>
-            <li href="/agents">Agents</li>
-            <li href="/tenant">Tenant</li>
-            <li href="/landlord">Landlord</li>
+          <li className="active"><a href='/'>{translations[language].home}</a></li>
+            <li><a href='/about'>{translations[language].about}</a></li>
+            <li><a href='/agents'>{translations[language].agents}</a></li>
+            <li><a href='/tenant'>{translations[language].tenant}</a></li>
+            <li><a href='/landlord'>{translations[language].landlord}</a></li>
           </ul>
           <div className="logo">
             <svg width="81" height="51" viewBox="0 0 81 51" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +55,7 @@ const SignIn = () => {
             </button>
           </div>
           <a className='forgot' href='/forgot_pass'>Forgot your password?</a>
-          <button class="email-button">Continue with email</button>
+          <button class="email-button">Sign In</button>
           <p>or use one of these options</p>
           <div class="other-options">
             <button class="social-button">

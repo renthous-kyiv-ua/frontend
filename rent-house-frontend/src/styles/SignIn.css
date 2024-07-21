@@ -150,6 +150,7 @@ body, html {
 }
 
 .sign-in-content a {
+  color: #A94802;
   text-align: center;
   cursor: pointer;
 }
@@ -176,6 +177,7 @@ body, html {
   right: 10px;
   border: none;
   background: none;
+  margin-right: 20px;
   cursor: pointer;
 }
 
@@ -238,6 +240,12 @@ input[type="password"] {
   cursor: pointer;
   font-size: 16px;
   margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.email-button:hover {
+  background-color: #F4F4F4;
+  color: #A94802;
 }
 
 .other-options {
@@ -296,7 +304,7 @@ a {
   background-color: #1F2C13;
   color: #F4F4F4;
   padding: 20px 0;
-  height: 452px;
+  height: 500px;
 }
 
 .footer-content {
@@ -386,7 +394,7 @@ a {
   align-items: center;
   padding: 20px 0;
   margin-left: -80px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .footer-payments, .footer-apps {
