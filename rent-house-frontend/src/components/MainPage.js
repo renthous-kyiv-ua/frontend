@@ -12,6 +12,9 @@ import photo8Image from '../images/photo8.jpg';
 import photo9Image from '../images/photo9.jpg';
 import exampleHome from '../images/example.jpg';
 import logo from '../images/logo2.jpg';
+import house1Image from '../images/house1.jpg';
+import house2Image from '../images/house2.jpg';
+import house3Image from '../images/house3.jpg';
 
 const translations = {
   en: {
@@ -337,16 +340,20 @@ const MainPage = () => {
         </div>
         <div className="houses-list">
           <div className="house-card">
-            <img src="house1.jpg" alt="House 1" />
+            <img src={house1Image} alt="House 1" />
             <div className="house-info">
-              <p className="rating">6.8</p>
-              <p className="details">11104, New York</p>
-              <p className="discount">9% off until November 21</p>
-              <p className="description">This downtown New York hotel is 400 meters from Radio City Music Hall. It features a fitness centre, restaurant and bar.</p>
+              <div>
+                <p className="rating">6.8</p>
+              </div>
+              <div className='details'>
+                <p className="details">11104, New York</p>
+                <p className="discount">9% off until November 21</p>
+                <p className="description">This downtown New York hotel is 400 meters from Radio City Music Hall. It features a fitness centre, restaurant and bar.</p>
+              </div>
             </div>
           </div>
           <div className="house-card">
-            <img src="house2.jpg" alt="House 2" />
+            <img src={house2Image} alt="House 2" />
             <div className="house-info">
               <p className="rating">8.7</p>
               <p className="details">11101, New York</p>
@@ -355,7 +362,7 @@ const MainPage = () => {
             </div>
           </div>
           <div className="house-card">
-            <img src="house3.jpg" alt="House 3" />
+            <img src={house3Image} alt="House 3" />
             <div className="house-info">
               <p className="rating">7.4</p>
               <p className="details">11127, New York</p>

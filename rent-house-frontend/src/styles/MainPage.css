@@ -494,11 +494,13 @@ body, html {
 }
 
 .house-card {
+  background-color: #1F2C13;
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
   width: 22%;
   margin-bottom: 20px;
+  margin-left: 10px;
   text-align: left;
   padding: 10px;
 }
@@ -512,9 +514,16 @@ body, html {
   padding: 10px;
 }
 
-.house-info .rating {
-  font-size: 1.5em;
-  font-weight: bold;
+.rating {
+  position: absolute;
+  background-color: #A94802;
+  color: #F4F4F4;
+  border-radius: 15px;
+  width: 60px;
+  height: 25px;
+  padding: 1px;
+  text-align: center;
+  font-family: Helvetica Neue, arial;
 }
 
 .house-info .discount, .house-info .details, .house-info .price, .house-info .description {
