@@ -326,12 +326,12 @@ const MainPage = () => {
         <div className='house-example'>
           <img src={exampleHome} alt="Offer" />
           <div className='rating-example'>
-            <p>8.3 ٭</p>
+            <p>8.3 ☆</p>
           </div>
-          <div className='discount'>
+          <div className='discount-example'>
             <p>27% off until September 10</p>
           </div>
-          <div className='details'>
+          <div className='details-example'>
             <p>11101, New York</p>
           </div>
         </div>
