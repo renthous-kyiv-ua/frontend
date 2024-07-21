@@ -10,6 +10,8 @@ import photo6Image from '../images/photo6.jpg';
 import photo7Image from '../images/photo7.jpg';
 import photo8Image from '../images/photo8.jpg';
 import photo9Image from '../images/photo9.jpg';
+import exampleHome from '../images/example.jpg';
+import logo from '../images/logo2.jpg';
 
 const translations = {
   en: {
@@ -191,7 +193,7 @@ const MainPage = () => {
                 <p>Andriivskyi Union (Podilskyj, Kyiv region)<br/>08135 Ukraine</p>
               </div>
             </div>
-            <button class="carousel-btn next" onclick="nextSlide()">❯</button>
+            <button class="carousel-btn next" onclick="nextSlide()">🠒</button>
             <div class="carousel-dots">
               <span class="dot" onclick="currentSlide(0)"></span>
               <span class="dot" onclick="currentSlide(1)"></span>
@@ -319,7 +321,73 @@ const MainPage = () => {
           </div>
         </div>
       </section>
-      {/* Leave space for the rest of the information to scroll */}
+      <section className='popular-houses'>
+        <h1>Popular houses in your area</h1>
+        <div className='house-example'>
+          <img src={exampleHome} alt="Offer" />
+          <div className='rating-example'>
+            <p>8.3 ٭</p>
+          </div>
+          <div className='discount'>
+            <p>27% off until September 10</p>
+          </div>
+          <div className='details'>
+            <p>11101, New York</p>
+          </div>
+        </div>
+        <div className="houses-list">
+          <div className="house-card">
+            <img src="house1.jpg" alt="House 1" />
+            <div className="house-info">
+              <p className="rating">6.8</p>
+              <p className="details">11104, New York</p>
+              <p className="discount">9% off until November 21</p>
+              <p className="description">This downtown New York hotel is 400 meters from Radio City Music Hall. It features a fitness centre, restaurant and bar.</p>
+            </div>
+          </div>
+          <div className="house-card">
+            <img src="house2.jpg" alt="House 2" />
+            <div className="house-info">
+              <p className="rating">8.7</p>
+              <p className="details">11101, New York</p>
+              <p className="discount">19% off until October 10</p>
+              <p className="description">The hotel was created for those who like to spend time at work. For those who value a place to see, explore and relax and recuperate. The hotel is located in Hudson Yards, New York's newest neighborhood</p>
+            </div>
+          </div>
+          <div className="house-card">
+            <img src="house3.jpg" alt="House 3" />
+            <div className="house-info">
+              <p className="rating">7.4</p>
+              <p className="details">11127, New York</p>
+              <p className="discount">47% off until October 08</p>
+              <p className="description">Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows. </p>
+            </div>
+          </div>
+          <button className="prev-photo">Prev</button>
+          <button className="next-photo">Next</button>
+          <button className="more-button">More</button>
+        </div>
+        <div className="company-info">
+          <p><strong>Rent House</strong> is deservedly considered one of the most reliable in the industry. We provide our clients with the highest level of service and security at every stage of interaction. Our numerous positive reviews and high ratings on independent platforms confirm the trust and satisfaction of our customers. We are proud of our reputation and strive for continuous improvement. By choosing our company, you can be sure of the reliability and quality of the services provided. Book accommodation with us and enjoy a comfortable holiday without unnecessary worries.</p>
+          <div className="features">
+            <div className="feature">
+              <p>Our website for booking accommodation has a system for automatic suggestions. For every query you make, we recommend housing options that are tailored to your desires from future bookings. The more bookings you make, the more precise our system of recommendations will be. This will become part of our new service. This loyalty program allows each user to use and receive additional benefits and get the most of your trips more profitable and comfortable.</p>
+            </div>
+            <div className="feature">
+              <p>On our website you can book accommodation anywhere in the world and look for housing options. If your plans change, you can cancel your reservation without any penalty. We also extend to what we have bookings for sales. We will try to provide the possibility for our customers, providing the ability to easily manage their bookings.</p>
+            </div>
+            <div className="feature">
+              <p>On our website you can book accommodation anytime in the world. We offer a wide range of accommodation options, from cozy apartments to luxurious villas, in different countries and cities. Whether you are planning a beach holiday, a city break or a business trip, you'll find the perfect place to stay. Our service is available 24/7 so you can book your accommodation quickly and easily, no matter where you are.</p>
+            </div>
+            <div className="feature">
+              <p>Rent House has 24/7 support, ready to help you in any situation. Our team promptly responds to your requests and treats tasks with high responsibility. You can count on our assistance at any time of the day to ensure that your booking experience is comfortable and hassle-free as possible.</p>
+            </div>
+            <div className="feature">
+              <img src={logo} alt="Logotype" />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

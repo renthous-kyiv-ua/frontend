@@ -421,3 +421,83 @@ body, html {
 .satisfied-clients h3, .active-offers h3 {
   margin: 0;
 }
+
+.popular-houses {
+  padding: 20px;
+}
+
+.popular-houses h1 {
+  font-family: Chonburi, arial;
+  font-size: 40pt;
+  margin-top: 10px;
+}
+
+.houses-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.house-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 22%;
+  margin-bottom: 20px;
+  text-align: left;
+  padding: 10px;
+}
+
+.house-card img {
+  width: 100%;
+  height: auto;
+}
+
+.house-info {
+  padding: 10px;
+}
+
+.house-info .rating {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.house-info .discount, .house-info .details, .house-info .price, .house-info .description {
+  margin: 5px 0;
+}
+
+.more-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #f04e23;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.company-info {
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.company-info h3 {
+  margin-bottom: 20px;
+}
+
+.company-info p {
+  margin-bottom: 20px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.feature {
+  width: 48%;
+  margin-bottom: 20px;
+}
