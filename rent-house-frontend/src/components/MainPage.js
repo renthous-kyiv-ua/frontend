@@ -99,19 +99,19 @@ const MainPage = () => {
     },
     {
       image: house4Image,
-      rating: "7.4 ☆",
-      details: "11127, New York",
+      rating: "8.9 ☆",
+      details: "11128, New York",
       discount: "47% off until October 08",
-      description: "Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows.",
-      price: "$371/night"
+      description: "A seasonal 7th floor outdoor pool overlooks the city and features a connected bar. A fitness center and business services are also available. Complimentary WiFi is offered to all guests.",
+      price: "$535/night"
     },
     {
       image: house5Image,
       rating: "7.4 ☆",
-      details: "11127, New York",
-      discount: "47% off until October 08",
+      details: "11121, New York",
+      discount: "18% off until December 08",
       description: "Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows.",
-      price: "$371/night"
+      price: "$499/night"
     }
   ];
 
@@ -132,6 +132,15 @@ const MainPage = () => {
       clearInterval(intervalId);
     };
   }, []);
+
+  const getVisibleHouses = () => {
+    const visibleHouses = [];
+    for (let i = 0; i < 3; i++) {
+      const index = (currentIndex + i) % housesData.length;
+      visibleHouses.push(housesData[index]);
+    }
+    return visibleHouses;
+  };
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -416,18 +425,20 @@ const MainPage = () => {
             </div>
           </div>
           <div className="houses-list">
-            <div className="house-card">
-              <img src={housesData[currentIndex].image} alt="House" />
-              <div className="house-info">
-                <p className="rating">{housesData[currentIndex].rating}</p>
-                <div className='details'>
-                  <p><strong>{housesData[currentIndex].details}</strong></p>
-                  <p><strong>{housesData[currentIndex].discount}</strong></p>
-                  <p>{housesData[currentIndex].description}</p>
-                  <p className='price'>{housesData[currentIndex].price}</p>
+            {getVisibleHouses().map((house, index) => (
+              <div className="house-card" key={index}>
+                <img src={house.image} alt="House" />
+                <div className="house-info">
+                  <p className="rating">{house.rating}</p>
+                  <div className='details'>
+                    <p><strong>{house.details}</strong></p>
+                    <p><strong>{house.discount}</strong></p>
+                    <p>{house.description}</p>
+                    <p className='price'>{house.price}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
           <div className="buttons">
             <button className="prev-photo" onClick={handlePrev}>←</button>
