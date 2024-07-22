@@ -429,7 +429,9 @@ const MainPage = () => {
               <div className="house-card" key={index}>
                 <img src={house.image} alt="House" />
                 <div className="house-info">
-                  <p className="rating">{house.rating}</p>
+                  <div className="rating">
+                    <p>{house.rating}</p>
+                  </div>
                   <div className='details'>
                     <p><strong>{house.details}</strong></p>
                     <p><strong>{house.discount}</strong></p>
@@ -447,7 +449,9 @@ const MainPage = () => {
           <button className="more-button">More</button>
         </div>
         <div className="company-info">
-          <p><strong>Rent House</strong> is deservedly considered one of the most reliable in the industry. We provide our clients with the highest level of service and security at every stage of interaction. Our numerous positive reviews and high ratings on independent platforms confirm the trust and satisfaction of our customers. We are proud of our reputation and strive for continuous improvement. By choosing our company, you can be sure of the reliability and quality of the services provided. Book accommodation with us and enjoy a comfortable holiday without unnecessary worries.</p>
+          <div className="basic">
+            <p><strong>Rent House</strong> is deservedly considered one of the most reliable in the industry.<br/><strong>&nbsp;We provide</strong> our clients with the highest level of service and security at every<br/>stage of interaction. Our numerous positive reviews and <strong>high ratings</strong> on<br/>independent platforms confirm the trust and satisfaction of our customers. We<br/>are proud of our reputation and strive for continuous improvement. By choosing<br/>our company, you can be <strong>sure of the reliability and quality of the services<br/>provided.</strong> Book accommodation with us and enjoy a comfortable holiday<br/>without unnecessary worries.</p>
+          </div>
           <div className="features">
             <div className="feature">
               <p>Our website for booking accommodation has a system for automatic suggestions. For every query you make, we recommend housing options that are tailored to your desires from future bookings. The more bookings you make, the more precise our system of recommendations will be. This will become part of our new service. This loyalty program allows each user to use and receive additional benefits and get the most of your trips more profitable and comfortable.</p>
