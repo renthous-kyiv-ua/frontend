@@ -435,25 +435,31 @@ body, html {
   text-align: left;
 }
 
+.house-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
 .house-example {
   position: relative;
   width: 300px;
   margin-bottom: 20px;
   text-align: left;
+  margin-left: -1080px;
 }
 
 .house-example img {
   width: 100%;
   height: auto;
   display: block;
-  margin-top: 60px;
-  margin-left: 30px;
 }
 
 .rating-example {
   position: absolute;
   top: 10px;
-  left: 40px;
+  right: 10px;
   background-color: #A94802;
   color: #F4F4F4;
   border-radius: 15px;
@@ -461,8 +467,7 @@ body, html {
   height: 25px;
   padding: 1px;
   text-align: center;
-  margin-left: 220px;
-  font-family: Helvetica Neue, arial;
+  font-family: 'Helvetica Neue', arial;
 }
 
 .discount-example {
@@ -473,40 +478,39 @@ body, html {
   padding: 3px 10px;
   height: 30px;
   color: #F4F4F4;
-  margin-top: 310px;
-  margin-left: 10px;
   position: absolute;
-  top: 40px;
-  left: 40px;
+  bottom: 50px;
+  left: 10px;
 }
 
 .details-example {
   position: absolute;
   bottom: 10px;
-  left: 45px;
+  left: 10px;
   color: #F4F4F4;
 }
 
 .houses-list {
-  position: relative;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-left: 450px;
-  margin-top: -400px;
+  gap: 20px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-left: 350px;
+  margin-top: -452px;
 }
 
 .house-card {
   background-color: #1F2C13;
-  border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
-  width: 27.5%;
-  height: 485px;
-  margin-bottom: 20px;
-  margin-left: 10px;
+  width: 300px;
+  height: 480px;
   text-align: left;
   padding: 10px;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 .house-card img {
@@ -517,10 +521,14 @@ body, html {
 
 .house-info {
   padding: 10px;
+  color: #F4F4F4;
+  text-align: left;
 }
 
 .rating {
   position: absolute;
+  top: 10px;
+  right: 50px;
   background-color: #A94802;
   color: #F4F4F4;
   border-radius: 15px;
@@ -528,61 +536,53 @@ body, html {
   height: 27px;
   padding: 1px;
   text-align: center;
-  font-family: Helvetica Neue, arial;
-  margin-left: 280px;
-  margin-top: -70px;
+  font-family: 'Helvetica Neue', arial;
 }
 
-.house-info .discount, .house-info .details, .house-info .price, .house-info .description {
+.house-info .details, .house-info .discount, .house-info .description, .house-info .price {
   margin: 5px 0;
   text-align: left;
-  color: #F4F4F4;
 }
 
 .buttons {
-  margin-top: 550px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-left: -480px;
 }
 
-.prev-photo {
+.prev-photo, .next-photo {
   width: 50px;
   height: 50px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  padding: 20px;
   border: 1px solid #040606;
   border-radius: 50%;
-  text-align: center;
-  font-family: Helvetica Neue, arial;
+  cursor: pointer;
+  font-family: 'Helvetica Neue', arial;
+  transition: background-color 0.3s ease;
 }
 
-.next-photo {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  padding: 20px;
-  border: 1px solid #040606;
-  border-radius: 50%;
-  text-align: center;
-  font-family: Helvetica Neue, arial;
-  margin-left: 10px;
+.prev-photo, .next-photo:hover {
+  background-color: #A94802;
+  color: #F4F4F4;
 }
 
 .more-button {
   display: block;
-  margin: 20px auto;
   padding: 10px 20px;
   background-color: #A94802;
   color: #F4F4F4;
+  width: 100px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
+  margin-top: -65px;
+  margin-left: 1180px;
 }
 
 .company-info {
@@ -657,7 +657,7 @@ body, html {
   background-color: #1F2C13;
   color: #F4F4F4;
   padding: 20px 0;
-  height: 500px;
+  height: 492px;
 }
 
 .footer-content {
@@ -711,7 +711,7 @@ body, html {
 }
 
 .register-property {
-  width: 380px;
+  width: 400px;
   text-align: center;
   border: 1px solid #F4F4F4;
   border-radius: 5px;
@@ -775,7 +775,7 @@ body, html {
   width: 99vw;
   position: absolute;
   margin-left: -141px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .white-strip-footer-2 {
   background-color: #F4F4F4;

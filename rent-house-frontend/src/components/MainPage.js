@@ -16,6 +16,8 @@ import logo from '../images/logo2.jpg';
 import house1Image from '../images/house1.jpg';
 import house2Image from '../images/house2.jpg';
 import house3Image from '../images/house3.jpg';
+import house4Image from '../images/house4.jpg';
+import house5Image from '../images/house5.jpg';
 
 const translations = {
   en: {
@@ -67,7 +69,69 @@ const translations = {
 const MainPage = () => {
 
   const [language, setLanguage] = useState('en');
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [reviews, setReviews] = useState([]);
+
+  const housesData = [
+    {
+      image: house1Image,
+      rating: "6.8 ☆",
+      details: "11104, New York",
+      discount: "9% off until November 21",
+      description: "This downtown New York hotel is 400 meters from Radio City Music Hall. It features a fitness centre, restaurant and bar.",
+      price: "$619/night"
+    },
+    {
+      image: house2Image,
+      rating: "8.7 ☆",
+      details: "11101, New York",
+      discount: "19% off until October 10",
+      description: "The hotel was created for those who like to spend time at work. For those who value a place to see, explore and relax and recuperate. The hotel is located in Hudson Yards, New York's newest neighborhood",
+      price: "$425/night"
+    },
+    {
+      image: house3Image,
+      rating: "7.4 ☆",
+      details: "11127, New York",
+      discount: "47% off until October 08",
+      description: "Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows.",
+      price: "$371/night"
+    },
+    {
+      image: house4Image,
+      rating: "7.4 ☆",
+      details: "11127, New York",
+      discount: "47% off until October 08",
+      description: "Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows.",
+      price: "$371/night"
+    },
+    {
+      image: house5Image,
+      rating: "7.4 ☆",
+      details: "11127, New York",
+      discount: "47% off until October 08",
+      description: "Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows.",
+      price: "$371/night"
+    }
+  ];
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? housesData.length - 1 : prevIndex - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === housesData.length - 1 ? 0 : prevIndex + 1));
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      handleNext();
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -338,58 +402,38 @@ const MainPage = () => {
       </section>
       <section className='popular-houses'>
         <h1>Popular houses in your area</h1>
-        <div className="house-example">
-          <img src={exampleHome} alt="Offer" />
-          <div className='rating-example'>
-            <p>8.3 ☆</p>
+        <div className="house-list-container">
+          <div className="house-example">
+            <img src={exampleHome} alt="Offer" />
+            <div className='rating-example'>
+              <p>8.3 ☆</p>
+            </div>
+            <div className='discount-example'>
+              <p>27% off until September 16</p>
+            </div>
+            <div className='details-example'>
+              <p>11101, New York</p>
+            </div>
           </div>
-          <div className='discount-example'>
-            <p>27% off until September 10</p>
-          </div>
-          <div className='details-example'>
-            <p>11101, New York</p>
-          </div>
-        </div>
-        <div className="houses-list">
-          <div className="house-card">
-            <img src={house1Image} alt="House 1" />
-            <div className="house-info">
-              <div>
-                <p className="rating">6.8 ☆</p>
+          <div className="houses-list">
+            <div className="house-card">
+              <img src={housesData[currentIndex].image} alt="House" />
+              <div className="house-info">
+                <p className="rating">{housesData[currentIndex].rating}</p>
+                <div className='details'>
+                  <p><strong>{housesData[currentIndex].details}</strong></p>
+                  <p><strong>{housesData[currentIndex].discount}</strong></p>
+                  <p>{housesData[currentIndex].description}</p>
+                  <p className='price'>{housesData[currentIndex].price}</p>
+                </div>
               </div>
-              <div className='details'>
-                <p className="details"><strong>11104, New York</strong></p>
-                <p className="discount"><strong>9% off</strong> until November 21</p>
-                <p className="description">This downtown New York hotel is 400 meters from Radio City Music Hall. It features a fitness centre, restaurant and bar.</p><br />
-                <p className='price'>$619/night</p>
-              </div>
             </div>
           </div>
-          <div className="house-card">
-            <img src={house2Image} alt="House 2" />
-            <div className="house-info">
-              <p className="rating">8.7 ☆</p>
-              <p className="details"><strong>11101, New York</strong></p>
-              <p className="discount"><strong>19% off</strong> until October 10</p>
-              <p className="description">The hotel was created for those who like to spend time at work. For those who value a place to see, explore and relax and recuperate. The hotel is located in Hudson Yards, New York's newest neighborhood</p>
-              <p className='price'>$425/night</p>
-            </div>
+          <div className="buttons">
+            <button className="prev-photo" onClick={handlePrev}>←</button>
+            <button className="next-photo" onClick={handleNext}>→</button>
           </div>
-          <div className="house-card">
-            <img src={house3Image} alt="House 3" />
-            <div className="house-info">
-              <p className="rating">7.4 ☆</p>
-              <p className="details"><strong>11127, New York</strong></p>
-              <p className="discount"><strong>47% off</strong> until October 08</p>
-              <p className="description">Featuring a full-service spa and 4 restaurants, this 46-story Manhattan hotel has rooms that offer a minibar and floor-to-ceiling windows. </p><br />
-              <p className='price'>$371/night</p>
-            </div>
-          </div>
-          <div className='buttons'>
-            <button className="prev-photo">🠔</button>
-            <button className="next-photo">🠖</button>
-            <button className="more-button">More</button>
-          </div>
+          <button className="more-button">More</button>
         </div>
         <div className="company-info">
           <p><strong>Rent House</strong> is deservedly considered one of the most reliable in the industry. We provide our clients with the highest level of service and security at every stage of interaction. Our numerous positive reviews and high ratings on independent platforms confirm the trust and satisfaction of our customers. We are proud of our reputation and strive for continuous improvement. By choosing our company, you can be sure of the reliability and quality of the services provided. Book accommodation with us and enjoy a comfortable holiday without unnecessary worries.</p>
