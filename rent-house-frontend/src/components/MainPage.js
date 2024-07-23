@@ -18,6 +18,10 @@ import house2Image from '../images/house2.jpg';
 import house3Image from '../images/house3.jpg';
 import house4Image from '../images/house4.jpg';
 import house5Image from '../images/house5.jpg';
+import procentImage from '../images/procent.jpg';
+import vereinbarungImage from '../images/vereinbarung.jpg';
+import planetImage from '../images/planet.jpg';
+import messageImage from '../images/message.jpg';
 
 const translations = {
   en: {
@@ -362,7 +366,7 @@ const MainPage = () => {
             <img src={mapImage} alt="Map of locations" className="map-image" />
           </div>
           <div className="about-info">
-            <p>&nbsp;&nbsp;&nbsp;The Rent House company has been<br/>providing housing rental services in different<br/>segments of the real estate market for more<br/>than 20 years. Our company is famous for its<br/>reliability, professionalism, and individual<br/>approach to each client. We offer a wide range<br/>of properties - from economical apartments to<br/>luxury apartments and country houses.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;The Rent House company has been<br/>providing housing rental services in different<br/>segments of the real estate market for more<br/>than 20 years. Our company is famous for its<br/>reliability, professionalism, and individual<br/>approach to each client. We offer a wide range<br/>of properties - from economical apartments to<br/>luxury apartments and country houses.</p>
             <p>Advantages of the Rent House company:</p>
             <ol>
               <li>Experience and reliability. More than two decades of successful work in the rental housing market.</li><br/>
@@ -372,7 +376,7 @@ const MainPage = () => {
               <li>Legal support. We provide full legal support for transactions, guaranteeing the safety and transparency of the lease.</li><br/>
               <li>Convenience and comfort. We offer additional services for the arrangement and maintenance of housing.</li>
             </ol>
-            <p>&nbsp;&nbsp;&nbsp;By contacting Rent House, you receive a guarantee of quality service and confidence in your choice. We do everything we can to make your rental experience as comfortable and enjoyable as possible.</p>
+            <p>&nbsp;&nbsp;&nbsp;By contacting Rent House, you receive a<br/>guarantee of quality service and confidence in<br/>your choice. We do everything we can to make<br/>your rental experience as comfortable and<br/>enjoyable as possible.</p>
           </div>
         </div>
         <div className="statistics">
@@ -431,20 +435,24 @@ const MainPage = () => {
           </div>
           <div className="features">
             <div className="feature">
+              <img src={procentImage} alt="Procent"/>
               <p>Our website for booking accommodation has a system for automatic suggestions. For every query you make, we recommend housing options that are tailored to your desires from future bookings. The more bookings you make, the more precise our system of recommendations will be. This will become part of our new service. This loyalty program allows each user to use and receive additional benefits and get the most of your trips more profitable and comfortable.</p>
             </div>
             <div className="feature">
+              <img src={vereinbarungImage} alt="Vereinbarung"/>
               <p>On our website you can book accommodation anywhere in the world and look for housing options. If your plans change, you can cancel your reservation without any penalty. We also extend to what we have bookings for sales. We will try to provide the possibility for our customers, providing the ability to easily manage their bookings.</p>
             </div>
             <div className="feature">
+              <img src={planetImage} alt="Planet"/>
               <p>On our website you can book accommodation anytime in the world. We offer a wide range of accommodation options, from cozy apartments to luxurious villas, in different countries and cities. Whether you are planning a beach holiday, a city break or a business trip, you'll find the perfect place to stay. Our service is available 24/7 so you can book your accommodation quickly and easily, no matter where you are.</p>
             </div>
             <div className="feature">
+              <img src={messageImage} alt="Message"/>
               <p>Rent House has 24/7 support, ready to help you in any situation. Our team promptly responds to your requests and treats tasks with high responsibility. You can count on our assistance at any time of the day to ensure that your booking experience is comfortable and hassle-free as possible.</p>
             </div>
-            <div className="feature">
-              <img src={logo} alt="Logotype" />
-            </div>
+          </div>
+          <div class="logo-container">
+            <img src={logo} alt="Logotype" />
           </div>
         </div>
       </section>
