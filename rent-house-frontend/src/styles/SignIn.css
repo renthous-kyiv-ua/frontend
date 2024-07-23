@@ -180,6 +180,10 @@ body, html {
   cursor: pointer;
 }
 
+.password-wrapper input.password-visible {
+  color: #F4F4F4;
+}
+
 h2 {
   font-size: 24px;
   font-family: Helvetica Neue, arial;

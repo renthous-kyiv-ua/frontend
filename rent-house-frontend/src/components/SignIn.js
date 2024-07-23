@@ -56,6 +56,7 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const history = useNavigate();
 
@@ -87,6 +88,10 @@ const SignIn = () => {
     } catch (error) {
       setError('User does not exist.');
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
   
   return (
@@ -126,17 +131,32 @@ const SignIn = () => {
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email address" /><br/>
           <label>Password</label>
           <div className="password-wrapper">
-            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" />
-            <button type="button" id="togglePassword" className="toggle-password">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8364" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M13.9209 13.9134C12.5965 14.7431 11.0629 15.1779 9.5 15.1667C6.1 15.1667 3.26667 13.2778 1 9.5C2.20133 7.49778 3.56133 6.02633 5.08 5.08567M7.78111 4.00333C8.34682 3.88845 8.92275 3.83149 9.5 3.83333C12.9 3.83333 15.7333 5.72222 18 9.5C17.3704 10.5483 16.6973 11.4519 15.9808 12.2106M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <input 
+              type={showPassword ? "text" : "password"} 
+              id="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
+              className={showPassword ? "password-visible" : ""}
+            />
+            <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8364" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13.9209 13.9134C12.5965 14.7431 11.0629 15.1779 9.5 15.1667C6.1 15.1667 3.26667 13.2778 1 9.5C2.20133 7.49778 3.56133 6.02633 5.08 5.08567M7.78111 4.00333C8.34682 3.88845 8.92275 3.83149 9.5 3.83333C12.9 3.83333 15.7333 5.72222 18 9.5C17.3704 10.5483 16.6973 11.4519 15.9808 12.2106M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8364" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13.9209 13.9134C12.5965 14.7431 11.0629 15.1779 9.5 15.1667C6.1 15.1667 3.26667 13.2778 1 9.5C2.20133 7.49778 3.56133 6.02633 5.08 5.08567M7.78111 4.00333C8.34682 3.88845 8.92275 3.83149 9.5 3.83333C12.9 3.83333 15.7333 5.72222 18 9.5C17.3704 10.5483 16.6973 11.4519 15.9808 12.2106" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
             </button>
           </div>
           {error && <p className="error-message">{error}</p>}
           <a className='forgot' href='/forgot_pass'>Forgot your password?</a>
-          <button class="email-button" onClick={handleSignIn}>Sign In</button>
+          <button className="email-button" onClick={handleSignIn}>Sign In</button>
           <p>or use one of these options</p>
           <div class="other-options">
             <button class="social-button">
