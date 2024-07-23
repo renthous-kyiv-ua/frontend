@@ -115,6 +115,18 @@ const MainPage = () => {
     }
   ];
 
+  const images = [
+    { src: photo1Image, description: "Lesi Ukrainki Street (Chaiki, Kyiv region)<br/>08135 Ukraine" },
+    { src: photo2Image, description: "Saksagansky Street (Holosiivskyj, Kyiv region)<br/>08135 Ukraine" },
+    { src: photo3Image, description: "Sicheslavska Street (Solomjanskyj, Kyiv region)<br/>08135 Ukraine" },
+    { src: photo4Image, description: "Zolotoustivska Street (Shevchenko, Kyiv region)<br/>08135 Ukraine" },
+    { src: photo5Image, description: "Kharkovskoe Shosse (Darnyckyj, Kyiv region)<br/>08135 Ukraine" },
+    { src: photo6Image, description: "Zhilyanskaya Street (Holosiivskyj, Kyiv region)<br/>08135 Ukraine" },
+    { src: photo7Image, description: "Leskova Street (Pecherskyj, Kyiv region)<br/>08135 Ukraine" },
+    { src: photo8Image, description: "Shchorsa Street (Pecherskyj, Kyiv region)<br/>08135 Ukraine" },
+    { src: photo9Image, description: "Andriivskyi Union (Podilskyj, Kyiv region)<br/>08135 Ukraine" },
+  ];
+
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? housesData.length - 1 : prevIndex - 1));
   };
@@ -149,7 +161,7 @@ const MainPage = () => {
   useEffect(() => {
     let currentIndex = 0;
 
-    function showSlide(index) {
+    const showSlide = (index) => {
       const slides = document.querySelectorAll('.carousel-item');
       const dots = document.querySelectorAll('.dot');
       const totalSlides = slides.length;
@@ -167,30 +179,31 @@ const MainPage = () => {
 
       dots.forEach(dot => dot.classList.remove('active'));
       dots[currentIndex].classList.add('active');
-    }
+    };
 
-    function nextSlide() {
+    const nextSlide = () => {
       showSlide(currentIndex + 1);
-    }
+    };
 
-    function currentSlide(index) {
+    const currentSlide = (index) => {
       showSlide(index);
-    }
+    };
 
-    document.querySelector('.next').addEventListener('click', nextSlide);
-    document.querySelectorAll('.dot').forEach((dot, index) => {
+    const nextButton = document.querySelector('.next');
+    nextButton.addEventListener('click', nextSlide);
+
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
       dot.addEventListener('click', () => currentSlide(index));
     });
 
-    const intervalId = setInterval(() => {
-      nextSlide();
-    }, 3000);
+    const intervalId = setInterval(nextSlide, 3000);
 
     return () => {
       clearInterval(intervalId);
-      document.querySelector('.next').removeEventListener('click', nextSlide);
-      document.querySelectorAll('.dot').forEach((dot) => {
-        dot.removeEventListener('click', currentSlide);
+      nextButton.removeEventListener('click', nextSlide);
+      dots.forEach((dot, index) => {
+        dot.removeEventListener('click', () => currentSlide(index));
       });
     };
   }, []);
@@ -242,56 +255,20 @@ const MainPage = () => {
         <div className="white-strip"></div>
         <div className="hero-section">
           <h1>Are you looking<br/>for your dream<br/>home?</h1>
-          <div class="carousel">
-            <div class="carousel-images">
-              <div class="carousel-item">
-                <img src={photo1Image} alt="Description 1" />
-                <p>Lesi Ukrainki Street (Chaiki, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
-              <div class="carousel-item">
-                <img src={photo2Image} alt="Description 2" />
-                <p>Saksagansky Street (Holosiivskyj, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
-              <div class="carousel-item">
-                <img src={photo3Image} alt="Description 3" />
-                <p>Sicheslavska Street (Solomjanskyj, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
-              <div class="carousel-item">
-                <img src={photo4Image} alt="Description 4" />
-                <p>Zolotoustivska Street (Shevchenko, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
-              <div class="carousel-item">
-                <img src={photo5Image} alt="Description 5" />
-                <p>Kharkovskoe Shosse (Darnyckyj, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
-              <div class="carousel-item">
-                <img src={photo6Image} alt="Description 6" />
-                <p>Zhilyanskaya Street (Holosiivskyj, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
-              <div class="carousel-item">
-                <img src={photo7Image} alt="Description 7" />
-                <p>Leskova Street (Pecherskyj, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
-              <div class="carousel-item">
-                <img src={photo8Image} alt="Description 8" />
-                <p>Shchorsa Street (Pecherskyj, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
-              <div class="carousel-item">
-                <img src={photo9Image} alt="Description 9" />
-                <p>Andriivskyi Union (Podilskyj, Kyiv region)<br/>08135 Ukraine</p>
-              </div>
+          <div className="carousel">
+            <div className="carousel-images">
+              {images.map((image, index) => (
+                <div className="carousel-item" key={index}>
+                  <img src={image.src} alt={`Description ${index + 1}`} />
+                  <p dangerouslySetInnerHTML={{ __html: image.description }}></p>
+                </div>
+              ))}
             </div>
-            <button class="carousel-btn next" onclick="nextSlide()">🠒</button>
-            <div class="carousel-dots">
-              <span class="dot" onclick="currentSlide(0)"></span>
-              <span class="dot" onclick="currentSlide(1)"></span>
-              <span class="dot" onclick="currentSlide(2)"></span>
-              <span class="dot" onclick="currentSlide(3)"></span>
-              <span class="dot" onclick="currentSlide(4)"></span>
-              <span class="dot" onclick="currentSlide(5)"></span>
-              <span class="dot" onclick="currentSlide(6)"></span>
-              <span class="dot" onclick="currentSlide(7)"></span>
-              <span class="dot" onclick="currentSlide(8)"></span>
+            <button className="carousel-btn next">🠒</button>
+            <div className="carousel-dots">
+              {images.map((_, index) => (
+                <span key={index} className={`dot ${index === 0 ? 'active' : ''}`}></span>
+              ))}
             </div>
           </div>
           <button className="find-house-btn">Find a House</button>
