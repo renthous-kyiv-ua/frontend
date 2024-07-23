@@ -23,9 +23,9 @@ const translations = {
   en: {
     home: "Home",
     about: "About Us",
-    agents: "Agents",
     tenant: "Tenant",
     landlord: "Landlord",
+    forLandlord: "For the Landlord",
     regLog: "Registration / Login",
     lookingFor: "Are you looking\nfor your dream\nhome?",
     findHouse: "Find a House",
@@ -45,9 +45,9 @@ const translations = {
   ua: {
     home: "Головна",
     about: "Про нас",
-    agents: "Агенти",
     tenant: "Орендар",
     landlord: "Орендодавець",
+    forLandlord: "Для орендодавця",
     regLog: "Реєстрація / Авторизація",
     lookingFor: "Ви шукаєте\nбудинок своєї мрії?",
     findHouse: "Знайти будинок",
@@ -212,9 +212,9 @@ const MainPage = () => {
           <ul className="nav-list">
             <li className="active"><a href='/'>{translations[language].home}</a></li>
             <li><a href='/about'>{translations[language].about}</a></li>
-            <li><a href='/agents'>{translations[language].agents}</a></li>
             <li><a href='/tenant'>{translations[language].tenant}</a></li>
             <li><a href='/landlord'>{translations[language].landlord}</a></li>
+            <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
           </ul>
           <div className="logo">
             <svg width="81" height="51" viewBox="0 0 81 51" fill="none" xmlns="http://www.w3.org/2000/svg">

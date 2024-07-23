@@ -5,46 +5,46 @@ const translations = {
   en: {
     home: "Home",
     about: "About Us",
-    agents: "Agents",
     tenant: "Tenant",
     landlord: "Landlord",
+    forLandlord: "For the Landlord",
     regLog: "Registration / Login",
-    // lookingFor: "Are you looking\nfor your dream\nhome?",
-    // findHouse: "Find a House",
-    // welcome: "Welcome to our housing search site! We offer thousands of vetted\nlistings, easy searching, and full support every step of the way to\nhelp you find your ideal home quickly and easily.",
-    // where: "Where",
-    // checkIn: "Check in",
-    // checkOut: "Check out",
-    // numberOfPeople: "Number of people",
-    // search: "Search",
-    // adults: "Adults",
-    // children: "Children",
-    // ageNeeded: "Age needed",
-    // rooms: "Rooms",
-    // pets: "Traveling with pets?",
-    // done: "Done",
+    lookingFor: "Are you looking\nfor your dream\nhome?",
+    findHouse: "Find a House",
+    welcome: "Welcome to our housing search site! We offer thousands of vetted\nlistings, easy searching, and full support every step of the way to\nhelp you find your ideal home quickly and easily.",
+    where: "Where",
+    checkIn: "Check in",
+    checkOut: "Check out",
+    numberOfPeople: "Number of people",
+    search: "Search",
+    adults: "Adults",
+    children: "Children",
+    ageNeeded: "Age needed",
+    rooms: "Rooms",
+    pets: "Traveling with pets?",
+    done: "Done",
   },
   ua: {
     home: "Головна",
     about: "Про нас",
-    agents: "Агенти",
     tenant: "Орендар",
     landlord: "Орендодавець",
+    forLandlord: "Для орендодавця",
     regLog: "Реєстрація / Авторизація",
-    // lookingFor: "Ви шукаєте\nбудинок своєї мрії?",
-    // findHouse: "Знайти будинок",
-    // welcome: "Ласкаво просимо на наш сайт пошуку житла! Ми пропонуємо тисячі перевірених\nоголошень, легкий пошук та повну підтримку на кожному кроці, щоб допомогти вам\nшвидко та легко знайти ідеальне житло.",
-    // where: "Де",
-    // checkIn: "Заїзд",
-    // checkOut: "Виїзд",
-    // numberOfPeople: "Кількість людей",
-    // search: "Пошук",
-    // adults: "Дорослі",
-    // children: "Діти",
-    // ageNeeded: "Вік необхідний",
-    // rooms: "Кімнати",
-    // pets: "Подорожуєте з домашніми тваринами?",
-    // done: "Готово",
+    lookingFor: "Ви шукаєте\nбудинок своєї мрії?",
+    findHouse: "Знайти будинок",
+    welcome: "Ласкаво просимо на наш сайт пошуку житла! Ми пропонуємо тисячі перевірених\nоголошень, легкий пошук та повну підтримку на кожному кроці, щоб допомогти вам\nшвидко та легко знайти ідеальне житло.",
+    where: "Де",
+    checkIn: "Заїзд",
+    checkOut: "Виїзд",
+    numberOfPeople: "Кількість людей",
+    search: "Пошук",
+    adults: "Дорослі",
+    children: "Діти",
+    ageNeeded: "Вік необхідний",
+    rooms: "Кімнати",
+    pets: "Подорожуєте з домашніми тваринами?",
+    done: "Готово",
   }
 };
 
@@ -63,9 +63,9 @@ const SignIn = () => {
           <ul className="nav-list">
           <li className="active"><a href='/'>{translations[language].home}</a></li>
             <li><a href='/about'>{translations[language].about}</a></li>
-            <li><a href='/agents'>{translations[language].agents}</a></li>
             <li><a href='/tenant'>{translations[language].tenant}</a></li>
             <li><a href='/landlord'>{translations[language].landlord}</a></li>
+            <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
           </ul>
           <div className="logo">
             <svg width="81" height="51" viewBox="0 0 81 51" fill="none" xmlns="http://www.w3.org/2000/svg">
