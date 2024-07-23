@@ -145,6 +145,7 @@ body, html {
 }
 
 .sign-up-content a {
+  color: #A94802;
   text-align: center;
   cursor: pointer;
 }
