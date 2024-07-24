@@ -156,6 +156,12 @@ body, html {
   align-items: center;
 }
 
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 #password {
   width: calc(100% - 20px);
   padding: 10px;

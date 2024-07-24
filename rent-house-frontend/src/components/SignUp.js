@@ -62,6 +62,10 @@ const SignUp = () => {
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
   };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   
   return (
     <div className="sign-up-page">
@@ -105,13 +109,57 @@ const SignUp = () => {
           <label>Email address</label>
           <input type="email" placeholder="Enter your email address" /><br/>
           <label>Password</label>
-          <div class="password-wrapper">
-            <input type="password" id="password" placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" />
-            <button type="button" id="togglePassword" class="toggle-password">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8364" stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M13.9209 13.9134C12.5965 14.7431 11.0629 15.1779 9.5 15.1667C6.1 15.1667 3.26667 13.2778 1 9.5C2.20133 7.49778 3.56133 6.02633 5.08 5.08567M7.78111 4.00333C8.34682 3.88845 8.92275 3.83149 9.5 3.83333C12.9 3.83333 15.7333 5.72222 18 9.5C17.3704 10.5483 16.6973 11.4519 15.9808 12.2106M1 1L18 18" stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+          <div className="password-wrapper">
+            <input 
+              type={showPassword ? "text" : "password"} 
+              id="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
+              className={showPassword ? "password-visible" : ""}
+            />
+            <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </button>
+          </div>
+          <label>Repeat Password</label>
+          <div className="repeat-password-wrapper">
+            <input 
+              type={showPassword ? "text" : "password"} 
+              id="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
+              className={showPassword ? "password-visible" : ""}
+            />
+            <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
             </button>
           </div>
           <a className='forgot' href='/forgot_pass'>Forgot your password?</a>
