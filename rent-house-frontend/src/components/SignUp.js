@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../styles/SignUp.css';
 
 const translations = {
@@ -48,15 +50,14 @@ const translations = {
   }
 };
 
-const SignUp = () => {
-  // document.getElementById('togglePassword').addEventListener('click', function () {
-  //   const passwordInput = document.getElementById('password');
-  //   const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-  //   passwordInput.setAttribute('type', type);
-  //   this.textContent = type === 'password' ? '👁' : '🙈'; // Change the icon
-  // });  
+const SignUp = () => { 
 
   const [language, setLanguage] = useState('en');
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
