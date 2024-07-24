@@ -56,12 +56,8 @@ const SignUp = () => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [role, setRole] = useState('tenant');  // Added state for role selection
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -69,43 +65,6 @@ const SignUp = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-  };
-
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
-
-  const handleRoleChange = (role) => {
-    setRole(role);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!validateEmail(email)) {
-      setError('Invalid email address');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    try {
-      const response = await axios.post('/api/signup', {
-        firstName,
-        email,
-        password,
-        role,
-      });
-      console.log(response.data);
-      navigate('/signin');
-    } catch (err) {
-      console.error(err);
-      setError('An error occurred during registration');
-    }
   };
   
   return (
@@ -140,92 +99,71 @@ const SignUp = () => {
         <div className="white-strip"></div>
         <div class="sign-up-content">
           <h2>Create New account</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="person">
-              <button 
-                type="button" 
-                className={`tenant ${role === 'tenant' ? 'active' : ''}`} 
-                onClick={() => handleRoleChange('tenant')}
-              >
-                Tenant
-              </button>
-              <button 
-                type="button" 
-                className={`agent ${role === 'agent' ? 'active' : ''}`} 
-                onClick={() => handleRoleChange('agent')}
-              >
-                Agent
-              </button>
-            </div><br/><br/>
-            <label>First Name, Last Name</label>
+          <p class="create-acc">Or, <span class="highlight"><a href="/signin">Sign in</a></span></p>
+          <div className='person'>
+            <button className='tenant'>Tenant</button>
+            <button className='agent'>Agent</button>
+          </div><br/><br/>
+          <label>First Name, Last Name</label>
+          <input type="name" placeholder="Enter your passport First Name, Last Name" /><br/>
+          <label>Email address</label>
+          <input type="email" placeholder="Enter your email address" /><br/>
+          <label>Password</label>
+          <div className="password-wrapper">
             <input 
-              type="text" 
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              placeholder="Enter your passport First Name, Last Name" 
-              required 
-            /><br/>
-            <label>Email address</label>
+              type={showPassword ? "text" : "password"} 
+              id="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
+              className={showPassword ? "password-visible" : ""}
+            />
+            <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </button>
+          </div>
+          <label>Repeat Password</label>
+          <div className="repeat-password-wrapper">
             <input 
-              type="email" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email address" 
-              required 
-            /><br/>
-            <label>Password</label>
-            <div className="password-wrapper">
-              <input 
-                type={showPassword ? "text" : "password"} 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
-                required 
-              />
-              <button type="button" className="toggle-password" onClick={togglePasswordVisibility}>
-                {showPassword ? (
-                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M8.125 1.34545C8.7404 1.2402 9.36588 1.1875 10 1.1875C13.4428 1.1875 16.4435 3.26562 17.6622 6.30196M15.191 13.0436C13.7947 14.0644 11.957 14.8125 10 14.8125C6.55724 14.8125 3.5565 12.7344 2.3378 9.69804C2.05644 9.01623 2.05644 8.23438 2.3378 7.55257C2.82377 6.31725 3.61748 5.26189 4.60282 4.47857" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12.1622 10.5C11.8471 11.3311 11.0043 11.9062 10 11.9062C8.71928 11.9062 7.6875 10.8744 7.6875 9.59375C7.6875 8.58968 8.26259 7.7469 9.09375 7.43183" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                ) : (
-                  <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.02893 7.02893C0.972158 6.70741 0.972158 6.37878 1.02893 6.05727C1.97367 1.02893 8.2096 1.02893 10 1.02893C11.7904 1.02893 18.0263 1.02893 18.9711 6.05727C19.0278 6.37878 19.0278 6.70741 18.9711 7.02893C18.0263 12.0573 11.7904 12.0573 10 12.0573C8.2096 12.0573 1.97367 12.0573 1.02893 7.02893Z" stroke="#F4F4F4" strokeWidth="1.5"/>
-                    <circle cx="10" cy="6.54262" r="2.0573" stroke="#F4F4F4" strokeWidth="1.5"/>
-                  </svg>
-                )}
-              </button>
-            </div><br/>
-            <label>Confirm Password</label>
-            <div className="password-wrapper">
-              <input 
-                type={showPassword ? "text" : "password"} 
-                value={confirmPassword} 
-                onChange={(e) => setConfirmPassword(e.target.value)} 
-                placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
-                required 
-              />
-              <button type="button" className="toggle-password" onClick={togglePasswordVisibility}>
-                {showPassword ? (
-                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M8.125 1.34545C8.7404 1.2402 9.36588 1.1875 10 1.1875C13.4428 1.1875 16.4435 3.26562 17.6622 6.30196M15.191 13.0436C13.7947 14.0644 11.957 14.8125 10 14.8125C6.55724 14.8125 3.5565 12.7344 2.3378 9.69804C2.05644 9.01623 2.05644 8.23438 2.3378 7.55257C2.82377 6.31725 3.61748 5.26189 4.60282 4.47857" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12.1622 10.5C11.8471 11.3311 11.0043 11.9062 10 11.9062C8.71928 11.9062 7.6875 10.8744 7.6875 9.59375C7.6875 8.58968 8.26259 7.7469 9.09375 7.43183" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                ) : (
-                  <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.02893 7.02893C0.972158 6.70741 0.972158 6.37878 1.02893 6.05727C1.97367 1.02893 8.2096 1.02893 10 1.02893C11.7904 1.02893 18.0263 1.02893 18.9711 6.05727C19.0278 6.37878 19.0278 6.70741 18.9711 7.02893C18.0263 12.0573 11.7904 12.0573 10 12.0573C8.2096 12.0573 1.97367 12.0573 1.02893 7.02893Z" stroke="#F4F4F4" strokeWidth="1.5"/>
-                    <circle cx="10" cy="6.54262" r="2.0573" stroke="#F4F4F4" strokeWidth="1.5"/>
-                  </svg>
-                )}
-              </button>
-            </div><br/>
-            {error && <p className="error">{error}</p>}
-            <button type="submit" className="submit-btn">Create Account</button>
-          </form>
+              type={showPassword ? "text" : "password"} 
+              id="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
+              className={showPassword ? "password-visible" : ""}
+            />
+            <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </button>
+          </div>
           <a className='forgot' href='/forgot_pass'>Forgot your password?</a>
-          <button class="email-button">Continue with email</button>
+          <button class="email-button">Create an account</button>
           <p>or use one of these options</p>
           <div class="other-options">
             <button class="social-button">
