@@ -275,7 +275,7 @@ const MainPage = () => {
               ))}
             </div>
           </div>
-          <button className="find-house-btn">Find a House</button>
+          <button className="find-house-btn">{translations[language].findHouse}</button>
           <p>Welcome to our housing search site! We offer thousands of vetted<br/>listings, easy searching, and full support every step of the way to<br/>help you find your ideal home quickly and easily.</p>
           <div class="search-bar">
             <div class="search-field">
