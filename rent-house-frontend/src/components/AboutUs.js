@@ -60,7 +60,10 @@ const AboutUs = () => {
             <div className="white-strip"></div>
           </header>
           <section className='about-description'>
-            <h1>About US</h1>
+            <div className='description'>
+              <h1>About US</h1>
+              <p>Welcome to our housing search site! We offer<br/>thousands of vetted listings, easy searching, and full<br/>support every step of the way to help you find your<br/>ideal home quickly and easily.</p>
+            </div>
             
           </section>
         </div>

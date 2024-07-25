@@ -99,3 +99,25 @@ body, html {
   margin-left: -20px;
   margin-top: 17px;
 }
+
+.about-description {
+  background-image: url('../images/about_back.jpg');
+  padding: 60px 0;
+}
+
+.description h1 {
+    font-family: Chonburi, arial;
+    font-size: 60pt;
+}
+
+.description p {
+    font-size: 12pt;
+    margin-left: 75px;
+}
+
+.description h1, p  {
+  text-align: left;
+  color: #F4F4F4;
+  padding: 10px;
+  margin-left: 60px;
+}
