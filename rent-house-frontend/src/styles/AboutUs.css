@@ -1,0 +1,101 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica Neue, arial;
+}
+
+.about {
+  text-align: center;
+}
+
+.about-header {
+  background-color: #1F2C13;
+  background-size: cover;
+  color: #F4F4F4;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 24px;
+  justify-content: center;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.nav-list a {
+  color: #F4F4F4;
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.nav-list li:hover {
+  background-color: #A94802;
+}
+
+.currency-lang {
+  display: flex;
+  gap: 10px;
+}
+
+.login {
+  background-color: #F4F4F4;
+  color: #040606;
+  font-family: Helvetica Neue, arial;
+  width: 197px;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-right: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login:hover {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.select-dropdown {
+  background-color: #444;
+  border: 2px solid #F4F4F4;
+  font-family: Helvetica Neue, arial;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  color: #F4F4F4;
+  height: 45px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.white-strip {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 100vw;
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 17px;
+}
