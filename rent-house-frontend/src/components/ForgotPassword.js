@@ -59,12 +59,13 @@ const ForgotPassword = () => {
         </nav>
         <div className="white-strip"></div>
         <div class="forgot-password-content">
-          <h2>-------Forgot Password?----------</h2>
-          <p>create an account</p>
-          
+          <h2>Forgot Password?</h2>
+          <p>Enter your e-mail address and we`ll send you a<br/>link to reset password.</p>
+          <input type="email" placeholder="Enter your email address" /><br/><br/>
+          <button class="change-password">Submit</button>
         </div>
       </header>
-      {/* <footer className="sign-in-footer">
+      <footer className="forgot-password-footer">
         <div className="footer-content">
           <div className="logo-footer">
             <svg width="81" height="51" viewBox="0 0 81 51" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -248,7 +249,7 @@ const ForgotPassword = () => {
             </div>
           </div>
         </div>
-      </footer> */}
+      </footer>
     </div>
   );
 }
