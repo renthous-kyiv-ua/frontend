@@ -121,3 +121,56 @@ body, html {
   padding: 10px;
   margin-left: 60px;
 }
+
+.long-description {
+    margin-top: 50px;
+    color: #040606;
+}
+
+.long-description h1 {
+    font-family: Chonburi, arial;
+    font-size: 50pt;
+    text-align: left;
+    margin-left: 120px;
+}
+
+.width-first {
+    width: 600px;
+}
+
+.width-second {
+    width: 620px;
+}
+
+.width-third {
+    width: 80%;
+}
+
+.long-description .content-part {
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    margin: 5px 120px;
+    background-color: #f9f9f9;
+    text-align: left;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    font-family: Helvetica Neue, arial;
+}
+
+.long-description .content-part p {
+    font-size: 11pt;
+    color: #040606;
+    margin-left: 20px;
+}
+
+.long-description .content-part ol {
+    padding-left: 20px;
+    margin-top: -20px;
+}
+
+.long-description .content-part ol li {
+    margin: 10px 0;
+    font-size: 11pt;
+    color: #040606;
+    margin-left: 20px;
+}
