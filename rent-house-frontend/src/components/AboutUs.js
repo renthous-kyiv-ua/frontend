@@ -68,26 +68,26 @@ const AboutUs = () => {
           </section>
           <section class="long-description">
             <h1>Welcome to Rent House!</h1>
-            <div className='content-part width-first'>
-              <p>&nbsp;At <strong>Rent House,</strong> we understand that finding the perfect accommodation for<br/>your travels can be a daunting task. That's why we've made it our mission<br/>to simplify the booking process and provide a wide range of options to suit<br/>every need and budget. Our platform offers a diverse selection of<br/>properties worldwide, from cozy apartments and luxurious villas to<br/>charming cottages and modern urban residences.</p>
-              <p><strong>The Problem:</strong><br/>Travelers often face challenges such as limited accommodation options,<br/>complicated booking processes, and concerns about security and<br/>reliability.</p>
-              <p><strong>Our Solution:</strong><br/>Rent House addresses these issues by offering a user-friendly website with<br/>secure booking features, a vast inventory of properties, and a dedicated<br/>customer support team available 24/7. We carefully vet each listing to<br/>ensure quality and reliability, giving you peace of mind when you book with<br/>us. Discover a world of possibilities and enjoy a seamless, stress-free<br/>booking experience with Rent House!</p>
+            <div className='content-part content-part-1'>
+              <p>At <strong>Rent House,</strong> we understand that finding the perfect accommodation for your travels can be a daunting task. That's why we've made it our mission to simplify the booking process and provide a wide range of options to suit every need and budget. Our platform offers a diverse selection of properties worldwide, from cozy apartments and luxurious villas to charming cottages and modern urban residences.</p>
+              <p>The Problem:<br />Travelers often face challenges such as limited accommodation options, complicated booking processes, and concerns about security and reliability.</p>
+              <p>Our Solution:<br />Rent House addresses these issues by offering a user-friendly website with secure booking features, a vast inventory of properties, and a dedicated customer support team available 24/7. We carefully vet each listing to ensure quality and reliability, giving you peace of mind when you book with us. Discover a world of possibilities and enjoy a seamless, stress-free booking experience with Rent House!</p>
             </div>
-            <div className='content-part width-second'>
-              <p>At Rent House, we specialize in providing top-notch accommodation booking<br/>services worldwide. Whether you're planning a vacation, a business trip, or a<br/>long-term stay, our platform offers a diverse range of properties to suit your<br/>needs. From cozy apartments and luxurious villas to charming cottages and<br/>modern urban residences, we ensure a seamless booking experience with<br/>secure and user-friendly features. Our dedicated team is committed to helping<br/>you find the perfect home away from home, wherever your travels take you.<br/>Explore our website and discover a world of possibilities with Rent House!</p>
+            <div className='content-part content-part-2'>
+              <p>At Rent House, we specialize in providing top-notch accommodation booking services worldwide. Whether you're planning a vacation, a business trip, or a long-term stay, our platform offers a diverse range of properties to suit your needs. From cozy apartments and luxurious villas to charming cottages and modern urban residences, we ensure a seamless booking experience with secure and user-friendly features. Our dedicated team is committed to helping you find the perfect home away from home, wherever your travels take you. Explore our website and discover a world of possibilities with Rent House!</p>
             </div>
-            <div className='content-part'>
-              <p><strong>Advantages of the Rent House company:</strong></p>
+            <div className='content-part content-part-3'>
+              <p>Advantages of the Rent House company:</p>
               <ol>
-                <li>Experience and reliability: More than two decades<br/>of successful work in the rental housing market.</li>
-                <li>Wide selection of properties: Large catalog of real<br/>estate, including various options for all needs and<br/>budgets.</li>
-                <li>Professionalism: Qualified specialists ready to help<br/>you at all stages of the rental.</li>
-                <li>Individual approach: We take into account all the<br/>wishes and requirements of clients in order to find<br/>the ideal housing.</li>
-                <li>Legal support: We provide full legal support for<br/>transactions, guaranteeing the safety and<br/>transparency of the lease.</li>
-                <li>Convenience and comfort: We offer additional<br/>services for the arrangement and maintenance of<br/>housing.</li>
+                <li>Experience and reliability: More than two decades of successful work in the rental housing market.</li>
+                <li>Wide selection of properties: Large catalog of real estate, including various options for all needs and budgets.</li>
+                <li>Professionalism: Qualified specialists ready to help you at all stages of the rental.</li>
+                <li>Individual approach: We take into account all the wishes and requirements of clients in order to find the ideal housing.</li>
+                <li>Legal support: We provide full legal support for transactions, guaranteeing the safety and transparency of the lease.</li>
+                <li>Convenience and comfort: We offer additional services for the arrangement and maintenance of housing.</li>
               </ol>
             </div>
-            <div className='content-part'>
+            <div className='content-part content-part-4'>
               <p>Our agents focus on the customer experience and strive to connect hearts and homes. Rent House agents are truly committed to their communities and often show their community spirit by contributing to local events and causes. You probably already know one of us!</p>
             </div>
             <img src={globeImage} alt="Globe with plane" class="globe-map"/>

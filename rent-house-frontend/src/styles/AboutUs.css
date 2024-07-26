@@ -134,27 +134,37 @@ body, html {
     margin-left: 120px;
 }
 
-.width-first {
-    width: 600px;
+.content-part {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #040606;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+  font-family: Helvetica Neue, arial;
 }
 
-.width-second {
-    width: 620px;
+/* Стили для каждого отдельного контейнера */
+.content-part-1 {
+  width: 600px;
+  margin-left: 60px;
+  margin-top: 40px;
 }
 
-.width-third {
-    width: 80%;
+.content-part-2 {
+  width: 680px;
+  margin-left: 680px;
+  margin-top: -510px;
 }
 
-.long-description .content-part {
-    padding: 10px;
-    border: 1px solid #555;
-    border-radius: 10px;
-    margin: 5px 120px;
-    background-color: #f9f9f9;
-    text-align: left;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-    font-family: Helvetica Neue, arial;
+.content-part-3 {
+  width: 550px;
+  margin-left: 20%;
+  margin-top: 150px;
+}
+
+.content-part-4 {
+  width: 70%;
+  margin-left: 15%;
 }
 
 .long-description .content-part p {
@@ -165,12 +175,11 @@ body, html {
 
 .long-description .content-part ol {
     padding-left: 20px;
-    margin-top: -20px;
+    text-align: left;
 }
 
-.long-description .content-part ol li {
+.long-description .content-partol li {
     margin: 10px 0;
-    font-size: 11pt;
+    font-size: 14pt;
     color: #040606;
-    margin-left: 20px;
 }
