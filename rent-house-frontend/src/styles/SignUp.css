@@ -150,6 +150,34 @@ body, html {
   cursor: pointer;
 }
 
+.person {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.tenant {
+  width: 155px;
+  height: 45px;
+  border: 1px solid #A94802;
+  border-radius: 5px;
+  font-size: 12pt;
+  color: #A94802;
+  cursor: pointer;
+}
+
+.agent {
+  background-color: #A94802;
+  width: 155px;
+  height: 45px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12pt;
+  color: #F4F4F4;
+  cursor: pointer;
+}
+
 .password-wrapper {
   position: relative;
   display: flex;
@@ -190,6 +218,7 @@ h2 {
 
 .create-acc {
   font-size: 13pt;
+  margin-left: 175px;
 }
 
 .highlight {
