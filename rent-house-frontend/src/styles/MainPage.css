@@ -614,6 +614,7 @@ body, html {
   font-size: 20px;
   line-height: 1.6;
   font-family: 'Helvetica Neue', arial;
+  color: #040606;
 }
 
 .features {
@@ -639,6 +640,7 @@ body, html {
 
 .feature p {
   text-align: left;
+  color: #040606;
 }
 
 .feature img {
