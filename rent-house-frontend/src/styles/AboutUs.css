@@ -90,30 +90,24 @@ body, html {
 
 .settings {
   display: flex;
-  justify-content: space-between;
-  text-align: left;
+  align-items: center;
+  padding: 10px 15px;
 }
 
 .settings svg {
-  width: 10%;
-  height: 10%;
-  margin-left: 20px;
-  margin-top: 15px;
+  width: 30px;
+  height: 30px;
 }
 
-.white-line {
+.white-line, .white-line-2 {
   background-color: #F4F4F4;
   height: 2px;
-  width: 300px;
-  position: absolute;
-  margin-top: 5px;
+  width: 100%;
+  margin: 5px 0;
 }
 
 .white-line-2 {
-  background-color: #F4F4F4;
-  height: 2px;
-  width: 300px;
-  position: absolute;
+  margin-top: 15px;
 }
 
 .select-dropdown {
