@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import globeImage from '../images/globe_map.png';
+import phililsImage from '../images/philials.png';
 import '../styles/AboutUs.css';
 
 const translations = {
@@ -172,6 +173,29 @@ const AboutUs = () => {
               <p>Our agents focus on the customer experience and strive to connect hearts and homes. Rent House agents are truly committed to their communities and often show their community spirit by contributing to local events and causes. You probably already know one of us!</p>
             </div>
             <img src={globeImage} alt="Globe with plane" className="globe-map"/>
+          </section>
+          <section className='experience'>
+            <h1>We create new experiences</h1>
+            <img src={phililsImage} alt="Philials" className="philials"/>
+            <div className='new-experience'>
+              <h2>Trusted by 25,000+ happy<br/>customers.</h2>
+              <p>Experience the difference with <strong>Rent House</strong> and let us take care of you,<br/>making your journey memorable and hassle-free.</p>
+            </div>
+            <div className='statistica'>
+              <div className='users'>
+                <h3>15k</h3>
+                <p>Active users visiting us<br/>every month!</p>
+              </div>
+              <div className='partners'>
+                <h3>+3k</h3>
+                <p>Active partners<br/>visiting us!</p>
+              </div>
+              <div className='rate'>
+                <h3>4.9</h3>
+                <p className='rate-star'>★★★★★</p>
+                <p className='describe'>Active users visiting us every month!</p>
+              </div>
+            </div>
           </section>
         </div>
     );

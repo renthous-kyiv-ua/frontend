@@ -147,13 +147,13 @@ body, html {
 }
 
 .description h1 {
-    font-family: Chonburi, arial;
-    font-size: 60pt;
+  font-family: Chonburi, arial;
+  font-size: 60pt;
 }
 
 .description p {
-    font-size: 12pt;
-    margin-left: 75px;
+  font-size: 12pt;
+  margin-left: 75px;
 }
 
 .description h1, p  {
@@ -164,15 +164,15 @@ body, html {
 }
 
 .long-description {
-    margin-top: 50px;
-    color: #040606;
+  margin-top: 50px;
+  color: #040606;
 }
 
 .long-description h1 {
-    font-family: Chonburi, arial;
-    font-size: 50pt;
-    text-align: left;
-    margin-left: 120px;
+  font-family: Chonburi, arial;
+  font-size: 50pt;
+  text-align: left;
+  margin-left: 120px;
 }
 
 .content-part {
@@ -210,20 +210,20 @@ body, html {
 }
 
 .long-description .content-part p {
-    font-size: 11pt;
-    color: #040606;
-    margin-left: 20px;
+  font-size: 11pt;
+  color: #040606;
+  margin-left: 20px;
 }
 
 .long-description .content-part ol {
-    padding-left: 20px;
-    text-align: left;
+  padding-left: 20px;
+  text-align: left;
 }
 
 .long-description .content-partol li {
-    margin: 10px 0;
-    font-size: 14pt;
-    color: #040606;
+  margin: 10px 0;
+  font-size: 14pt;
+  color: #040606;
 }
 
 .globe-map {
@@ -231,4 +231,91 @@ body, html {
   height: 600px;
   margin-top: -475px;
   margin-left: -50px;
+}
+
+.experience {
+  margin-top: 50px;
+  color: #040606;
+}
+
+.experience h1 {
+  font-family: Chonburi, arial;
+  font-size: 50pt;
+  text-align: left;
+  margin-left: 120px;
+}
+
+.philials {
+  width: 60%;
+  margin-top: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-experience {
+  margin-top: 15px;
+  padding: 15px 20px;
+  text-align: left;
+  margin-left: 150px;
+}
+
+.new-experience h2 {
+  font-family: Chonburi, arial;
+  font-size: 35pt;
+}
+
+.new-experience p {
+  font-family: Helvetica Neue, arial;
+  color: #444;
+  margin-left: -10px;
+  margin-top: 20px;
+}
+
+.statistica {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  margin-top: -180px;
+  margin-left: 920px;
+  margin-top: -50px;
+}
+
+.statistica div {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 20px;
+  border: 1px solid #040606;
+  border-radius: 50%;
+  text-align: left;
+  font-family: Helvetica Neue, arial;
+  margin-top: -250px;
+}
+
+.statistica h3 {
+  text-align: left;
+  margin-top: 90px;
+}
+
+.statistica p {
+  text-align: left;
+  margin-left: -5px;
+  font-size: 10pt;
+  color: #444;
+}
+
+.users {
+  margin-left: -15px;
+}
+
+.partners {
+  margin-left: -15px;
+}
+
+.rate-star {
+  color: #A94802;
 }
