@@ -64,9 +64,10 @@ body, html {
 
 .account-combobox {
   position: absolute;
-  top: 90px;
+  top: 88px;
   right: 55px;
   width: 400px;
+  height: 350px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid #F4F4F4;
@@ -92,6 +93,7 @@ body, html {
   display: flex;
   align-items: center;
   padding: 10px 15px;
+  height: 45px;
 }
 
 .settings svg {
