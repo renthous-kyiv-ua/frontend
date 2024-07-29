@@ -184,9 +184,9 @@ body, html {
   font-family: Helvetica Neue, arial;
 }
 
-/* Стили для каждого отдельного контейнера */
 .content-part-1 {
   width: 600px;
+  height: 470px;
   margin-left: 60px;
   margin-top: 40px;
 }
@@ -194,18 +194,19 @@ body, html {
 .content-part-2 {
   width: 680px;
   margin-left: 680px;
-  margin-top: -510px;
+  margin-top: -490px;
 }
 
 .content-part-3 {
-  width: 550px;
-  margin-left: 20%;
-  margin-top: 150px;
+  width: 460px;
+  margin-left: 900px;
+  margin-top: 60px;
 }
 
 .content-part-4 {
-  width: 70%;
-  margin-left: 15%;
+  width: 415px;
+  margin-left: 60px;
+  margin-top: -220px;
 }
 
 .long-description .content-part p {
@@ -223,4 +224,11 @@ body, html {
     margin: 10px 0;
     font-size: 14pt;
     color: #040606;
+}
+
+.globe-map {
+  width: 460px;
+  height: 600px;
+  margin-top: -475px;
+  margin-left: -50px;
 }

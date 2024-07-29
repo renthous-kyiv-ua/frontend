@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import globeImage from '../images/globe_map.jpg';
+import globeImage from '../images/globe_map.png';
 import '../styles/AboutUs.css';
 
 const translations = {
@@ -171,7 +171,7 @@ const AboutUs = () => {
             <div className='content-part content-part-4'>
               <p>Our agents focus on the customer experience and strive to connect hearts and homes. Rent House agents are truly committed to their communities and often show their community spirit by contributing to local events and causes. You probably already know one of us!</p>
             </div>
-            <img src={globeImage} alt="Globe with plane" class="globe-map"/>
+            <img src={globeImage} alt="Globe with plane" className="globe-map"/>
           </section>
         </div>
     );
