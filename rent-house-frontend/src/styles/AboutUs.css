@@ -54,22 +54,36 @@ body, html {
   gap: 10px;
 }
 
-.login {
-  background-color: #F4F4F4;
-  color: #040606;
-  font-family: Helvetica Neue, arial;
-  width: 197px;
+.account {
+  background: transparent;
   border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
   margin-right: 50px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  position: relative;
 }
 
-.login:hover {
-  background-color: #A94802;
+.account-combobox {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.account-combobox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.account-combobox li {
   color: #F4F4F4;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .select-dropdown {
