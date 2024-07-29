@@ -63,12 +63,13 @@ body, html {
 }
 
 .account-combobox {
-  display: none;
   position: absolute;
-  top: 50px;
-  right: 0;
-  background-color: #FFFFFF;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  top: 90px;
+  right: 55px;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid #F4F4F4;
   border-radius: 8px;
   overflow: hidden;
   z-index: 10;
@@ -81,9 +82,38 @@ body, html {
 }
 
 .account-combobox li {
-  color: #F4F4F4;
-  padding: 10px 20px;
+  padding: 15px 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.settings {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.settings svg {
+  width: 10%;
+  height: 10%;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.white-line {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 300px;
+  position: absolute;
+  margin-top: 5px;
+}
+
+.white-line-2 {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 300px;
+  position: absolute;
 }
 
 .select-dropdown {
