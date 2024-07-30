@@ -4,11 +4,11 @@ body, html {
   font-family: Helvetica Neue, arial;
 }
 
-.about {
+.account-settings {
   text-align: center;
 }
 
-.about-header {
+.account-header {
   background-color: #1F2C13;
   background-size: cover;
   color: #F4F4F4;
@@ -110,4 +110,26 @@ body, html {
 
 .white-line-2 {
   margin-top: 15px;
+}
+
+.panel {
+  background-image: url('../images/acc_background.png');
+  background-size: cover;
+  height: auto;
+}
+
+.panel h1 {
+  font-family: Chonburi, arial;
+  font-size: 50pt;
+  text-align: left;
+  color: #F4F4F4;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border: none;
+  border-radius: 100px;
+  background-color: #8A9084;
+  left: 50px;
 }
