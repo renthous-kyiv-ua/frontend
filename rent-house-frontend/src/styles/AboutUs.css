@@ -273,16 +273,15 @@ body, html {
 
 .statistica {
   display: flex;
-  text-align: left;
+  justify-content: space-around;
   align-items: center;
-  margin-top: -180px;
-  margin-left: 920px;
-  margin-top: -50px;
+  margin-top: -220px;
+  margin-left: 800px;
 }
 
 .statistica div {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -291,31 +290,117 @@ body, html {
   padding: 20px;
   border: 1px solid #040606;
   border-radius: 50%;
-  text-align: left;
   font-family: Helvetica Neue, arial;
-  margin-top: -250px;
+  text-align: left;
 }
 
 .statistica h3 {
-  text-align: left;
-  margin-top: 90px;
+  margin: 0;
+  font-size: 24pt;
 }
 
 .statistica p {
-  text-align: left;
-  margin-left: -5px;
+  margin: 0;
   font-size: 10pt;
   color: #444;
+  text-align: left;
 }
 
 .users {
-  margin-left: -15px;
+  z-index: 3;
 }
 
 .partners {
-  margin-left: -15px;
+  margin-left: -130px;
+  z-index: 2;
+}
+
+.rate {
+  margin-left: -130px;
+  z-index: 1;
 }
 
 .rate-star {
+  color: #A94802;
+  font-size: 14pt;
+}
+
+.describe {
+  margin-top: 5px;
+}
+
+.job {
+  margin-top: 70px;
+  color: #040606;
+}
+
+.job h1 {
+  font-family: Chonburi, arial;
+  font-size: 50pt;
+  text-align: left;
+  margin-left: 120px;
+}
+
+.job h2 {
+  margin-top: 50px;
+}
+
+.forma {
+  max-width: 500px;
+  margin: 50px auto;
+  margin-top: 85px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+input[type="name"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #F4F4F4;
+}
+input[type="email"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #F4F4F4;
+}
+input[type="password"] {
+  width: calc(120% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #F4F4F4;
+}
+
+.contact-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #A94802;
+  color: #F4F4F4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #F4F4F4;
   color: #A94802;
 }

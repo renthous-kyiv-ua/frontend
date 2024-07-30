@@ -197,6 +197,17 @@ const AboutUs = () => {
               </div>
             </div>
           </section>
+          <section className='job'>
+            <h1>You can become our partner</h1>
+            <h2>Contact us</h2>
+            <div className='forma'>
+              <input type='name' placeholder='Your name'></input>
+              <input type='email' placeholder='Email'></input>
+              <input type='message' placeholder='Your message'></input>
+              <button type='submit' className='contact-button'>Contact us</button>
+              <p>By clicking this button you agree to the<br/><strong>Terms & Conditions</strong></p>
+            </div>
+          </section>
         </div>
     );
 }
