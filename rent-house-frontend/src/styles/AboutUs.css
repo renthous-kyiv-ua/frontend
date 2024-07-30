@@ -345,53 +345,50 @@ body, html {
   margin-top: 50px;
 }
 
-.forma {
-  max-width: 500px;
-  margin: 50px auto;
-  margin-top: 85px;
-  padding: 20px;
-  border-radius: 10px;
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-input[type="name"] {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  color: #F4F4F4;
+.forma {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+  z-index: 10;
 }
-input[type="email"] {
+
+.forma input[type="name"],
+.forma input[type="email"],
+.forma input[type="message"] {
   width: calc(100% - 20px);
-  padding: 10px;
+  padding: 15px;
   margin: 10px 0;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  color: #F4F4F4;
+  background: #fff;
+  color: #333;
 }
-input[type="password"] {
-  width: calc(120% - 20px);
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  color: #F4F4F4;
+
+.forma input[type="message"] {
+  height: 100px;
+  resize: none;
 }
 
 .contact-button {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   background-color: #A94802;
-  color: #F4F4F4;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -401,6 +398,23 @@ input[type="password"] {
 }
 
 .contact-button:hover {
-  background-color: #F4F4F4;
-  color: #A94802;
+  background-color: #8a3e02;
+}
+
+.forma p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.forma p strong {
+  cursor: pointer;
+}
+
+.place {
+  width: 110%;
+  height: auto;
+  margin-left: -102px;
+  margin-top: 50px;
+  max-width: 6000px;
 }
