@@ -54,10 +54,14 @@ const SignUp = () => {
 
   const [language, setLanguage] = useState('en');
   const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [role, setRole] = useState('tenant');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -65,6 +69,29 @@ const SignUp = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleSignUp = async () => {
+    if (!email.includes('@')) {
+      alert('Invalid email address');
+      return;
+    }
+
+    if (password !== repeatPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    try {
+      const response = await axios.post('https://localhost:7074/api/Users', { firstName, email, password });
+      if (response.data.success) {
+        navigate('/signin');
+      } else {
+        alert('Error signing up');
+      }
+    } catch (error) {
+      alert('Error signing up');
+    }
   };
   
   return (
