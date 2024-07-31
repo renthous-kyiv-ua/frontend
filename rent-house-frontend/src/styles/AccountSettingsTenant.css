@@ -131,5 +131,24 @@ body, html {
   border: none;
   border-radius: 100px;
   background-color: #8A9084;
-  left: 50px;
+}
+
+.panel-settings {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  margin-left: 50px;
+}
+
+.panel-settings button {
+  background-color: none;
+  border: 1px solid #F4F4F4;
+  width: 200px;
+  height: 50px;
+  margin-left: 15px;
+  padding: 15px 20px;
 }
