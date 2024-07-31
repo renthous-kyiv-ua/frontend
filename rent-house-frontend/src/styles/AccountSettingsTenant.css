@@ -115,7 +115,10 @@ body, html {
 .panel {
   background-image: url('../images/acc_background.png');
   background-size: cover;
-  height: auto;
+  height: 500px;
+  text-align: left;
+  padding: 20px;
+  color: #F4F4F4;
 }
 
 .panel h1 {
@@ -123,14 +126,36 @@ body, html {
   font-size: 50pt;
   text-align: left;
   color: #F4F4F4;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.panel p {
+  margin-left: 30px;
+  margin-top: -20px;
 }
 
 .avatar {
   width: 200px;
   height: 200px;
   border: none;
-  border-radius: 100px;
+  border-radius: 50%;
   background-color: #8A9084;
+  margin: 20px auto;
+  margin-left: 1000px;
+  margin-top: -150px;
+}
+
+.edit-account {
+  display: flex;
+  text-align: right;
+  justify-content: end;
+  margin-right: 20px;
+}
+
+.edit-account p {
+  margin-left: 10px;
+  margin-top: -15px;
 }
 
 .panel-settings {
@@ -142,13 +167,36 @@ body, html {
   justify-content: center;
   padding: 15px 20px;
   margin-left: 50px;
+  margin-top: -20px;
 }
 
 .panel-settings button {
   background-color: none;
   border: 1px solid #F4F4F4;
+  border-radius: 5px;
   width: 200px;
-  height: 50px;
+  height: 55px;
   margin-left: 15px;
   padding: 15px 20px;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.panel-settings button:hover {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.panel-settings svg {
+  width: 30px;
+}
+
+.active-button {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.necessarily {
+  color: #E4080A;
 }
