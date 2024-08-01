@@ -199,14 +199,45 @@ const AccountSettingsTenant = () => {
               </button>
             </div>
           </section>
-          <section className='edit-data'>
-            <div className='user-fullname'>
-              <p>Name</p>
-              <div className='fullname'>
-                <label>First name(s)<span class="necessarily">*</span></label>
+          <section className='edit-info'>
+            <div className='edit-person'>
+              <div className='user-fullname'>
+                <p>Name</p>
+                <div className='fullname'>
+                  <label>First name(s)<span class="necessarily">*</span></label>
+                  <input placeholder='Enter First Name'/><br/>
+                  <label>Last name(s)<span class="necessarily">*</span></label>
+                  <input placeholder='Enter Last Name'/>
+                </div>
+              </div>
+              <div className='display-name'>
+                <p>Display name</p>
+                <input placeholder='Choose a display name'/>
+              </div>
+              <div className='birth-date'>
+                <p>Birth date</p>
+                <input type='date' placeholder='YYYY/DD/MM'/>
+                <p>We will congratulate you with your birthday and give you a gift certificate</p>
+              </div>
+              <div className='phone-number'>
+                <p>Phone number</p>
+                <input type='number' placeholder='+38(0__)___ __ __'/>
+                <p>Phone not displayed on this site</p>
+              </div>
+              <div className='about-me'>
+                <p>About me</p>
+                <input type='textarea' placeholder='Leave a few words about yourself'/>
+              </div>
+              <input type='checkbox'/>
+              <p>I consent to Renthouse.com storing my passport information in accordance with the privacy statement</p>
+            </div>
+            <div className='edit-data'>
+              <div className='email-address'>
+                <p>Email address</p>
+                <input type='email' placeholder='anna.romanova@gmail.com'/>
+                <p>Email (not displayed on the site)</p>
               </div>
             </div>
-            
           </section>
         </div>
     );
