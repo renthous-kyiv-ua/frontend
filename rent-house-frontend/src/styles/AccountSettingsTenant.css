@@ -201,3 +201,95 @@ body, html {
 .necessarily {
   color: #E4080A;
 }
+
+.edit-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.edit-info input {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.edit-info p {
+  color: #040606;
+  font-family: Helvetica Neue, arial;
+}
+
+.edit-person, .edit-data {
+  width: 500px;
+}
+
+.edit-person p, .edit-data p {
+  font-size: 12pt;
+}
+
+.user-fullname p {
+  margin-left: -5px;
+}
+
+.fullname {
+  margin-top: -80px;
+}
+
+.fullname label {
+  margin-left: -210px;
+  font-size: 10pt;
+  font-family: Helvetica Neue, arial;
+}
+
+.fullname input {
+  width: 370px;
+  margin-left: 70px;
+}
+
+.dispaly-name p {
+  margin-left: -55px;
+}
+
+.dispaly-name input {
+  width: 370px;
+  margin-left: 70px;
+  margin-top: -20px;
+}
+
+
+.birth-date input {
+  width: 200px;
+  margin-top: -50px;
+}
+
+.passport-country {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.passport-country select, .passport-country input {
+  width: 48%;
+  margin-top: 5px;
+}
+.update-info {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  margin-top: 850px;
+  margin-left: -950px;
+}
+.update-info button {
+  width: 200px;
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #A94802;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.update-info button:last-child {
+  background-color: #ccc;
+  color: black;
+}

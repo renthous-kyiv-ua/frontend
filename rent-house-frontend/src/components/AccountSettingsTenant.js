@@ -205,11 +205,14 @@ const AccountSettingsTenant = () => {
                 <p>Name</p>
                 <div className='fullname'>
                   <label>First name(s)<span class="necessarily">*</span></label>
+                  <br/>
                   <input placeholder='Enter First Name'/><br/>
                   <label>Last name(s)<span class="necessarily">*</span></label>
+                  <br/>
                   <input placeholder='Enter Last Name'/>
                 </div>
               </div>
+              <br/>
               <div className='display-name'>
                 <p>Display name</p>
                 <input placeholder='Choose a display name'/>
@@ -228,8 +231,14 @@ const AccountSettingsTenant = () => {
                 <p>About me</p>
                 <input type='textarea' placeholder='Leave a few words about yourself'/>
               </div>
-              <input type='checkbox'/>
-              <p>I consent to Renthouse.com storing my passport information in accordance with the privacy statement</p>
+              <div className='confirm-data'>
+                <input type='checkbox'/>
+                <p>I consent to Renthouse.com storing my passport information in accordance with the privacy statement</p>
+              </div>
+            </div>
+            <div className='update-info'>
+              <button>Save</button>
+              <button>Cancel</button>
             </div>
             <div className='edit-data'>
               <div className='email-address'>
