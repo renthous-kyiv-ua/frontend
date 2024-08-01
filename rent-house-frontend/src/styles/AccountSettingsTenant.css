@@ -115,7 +115,7 @@ body, html {
 .panel {
   background-image: url('../images/acc_background.png');
   background-size: cover;
-  height: 500px;
+  height: 480px;
   text-align: left;
   padding: 20px;
   color: #F4F4F4;
@@ -167,17 +167,23 @@ body, html {
   justify-content: center;
   padding: 15px 20px;
   margin-left: 50px;
-  margin-top: -20px;
+  margin-top: 5px;
+  border-radius: 5px;
+  height: 150px;
+}
+
+.panel-settings .active-button {
+  background-color: #A94802;
+  color: #F4F4F4;
 }
 
 .panel-settings button {
-  background-color: none;
+  background: none;
   border: 1px solid #F4F4F4;
   border-radius: 5px;
   width: 200px;
   height: 55px;
   margin-left: 15px;
-  padding: 15px 20px;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
@@ -190,11 +196,6 @@ body, html {
 
 .panel-settings svg {
   width: 30px;
-}
-
-.active-button {
-  background-color: #A94802;
-  color: #F4F4F4;
 }
 
 .necessarily {

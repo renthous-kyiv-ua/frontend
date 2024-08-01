@@ -119,24 +119,12 @@ const MainPage = () => {
     }
   ];
 
-  const images = [
-    { src: photo1Image, description: "Lesi Ukrainki Street (Chaiki, Kyiv region)<br/>08135 Ukraine" },
-    { src: photo2Image, description: "Saksagansky Street (Holosiivskyj, Kyiv region)<br/>08135 Ukraine" },
-    { src: photo3Image, description: "Sicheslavska Street (Solomjanskyj, Kyiv region)<br/>08135 Ukraine" },
-    { src: photo4Image, description: "Zolotoustivska Street (Shevchenko, Kyiv region)<br/>08135 Ukraine" },
-    { src: photo5Image, description: "Kharkovskoe Shosse (Darnyckyj, Kyiv region)<br/>08135 Ukraine" },
-    { src: photo6Image, description: "Zhilyanskaya Street (Holosiivskyj, Kyiv region)<br/>08135 Ukraine" },
-    { src: photo7Image, description: "Leskova Street (Pecherskyj, Kyiv region)<br/>08135 Ukraine" },
-    { src: photo8Image, description: "Shchorsa Street (Pecherskyj, Kyiv region)<br/>08135 Ukraine" },
-    { src: photo9Image, description: "Andriivskyi Union (Podilskyj, Kyiv region)<br/>08135 Ukraine" },
-  ];
-
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? housesData.length - 1 : prevIndex - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === housesData.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % 9);
   };
 
   useEffect(() => {
@@ -148,6 +136,7 @@ const MainPage = () => {
       clearInterval(intervalId);
     };
   }, []);
+
 
   const getVisibleHouses = () => {
     const visibleHouses = [];
@@ -165,51 +154,41 @@ const MainPage = () => {
   useEffect(() => {
     let currentIndex = 0;
 
-    const showSlide = (index) => {
-      const slides = document.querySelectorAll('.carousel-item');
-      const dots = document.querySelectorAll('.dot');
-      const totalSlides = slides.length;
-
-      if (index >= totalSlides) {
-        currentIndex = 0;
-      } else if (index < 0) {
-        currentIndex = totalSlides - 1;
-      } else {
-        currentIndex = index;
-      }
-
-      const carouselImages = document.querySelector('.carousel-images');
-      carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[currentIndex].classList.add('active');
-    };
-
-    const nextSlide = () => {
-      showSlide(currentIndex + 1);
-    };
-
-    const currentSlide = (index) => {
-      showSlide(index);
-    };
-
-    const nextButton = document.querySelector('.next');
-    nextButton.addEventListener('click', nextSlide);
-
+  function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-item');
     const dots = document.querySelectorAll('.dot');
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => currentSlide(index));
-    });
+    const totalSlides = slides.length;
 
-    const intervalId = setInterval(nextSlide, 3000);
+    if (index >= totalSlides) {
+      currentIndex = 0;
+    } else if (index < 0) {
+      currentIndex = totalSlides - 1;
+    } else {
+      currentIndex = index;
+    }
 
-    return () => {
-      clearInterval(intervalId);
-      nextButton.removeEventListener('click', nextSlide);
-      dots.forEach((dot, index) => {
-        dot.removeEventListener('click', () => currentSlide(index));
-      });
-    };
+    const carouselImages = document.querySelector('.carousel-images');
+    carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentIndex].classList.add('active');
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function currentSlide(index) {
+    showSlide(index);
+  }
+
+  setInterval(() => {
+    nextSlide();
+  }, 3000); // Change image every 3 seconds
+
+  // Initialize the carousel
+  showSlide(currentIndex);
+
   }, []);
 
   useEffect(() => {
@@ -260,19 +239,55 @@ const MainPage = () => {
         <div className="hero-section">
           <h1>Are you looking<br/>for your dream<br/>home?</h1>
           <div className="carousel">
-            <div className="carousel-images">
-              {images.map((image, index) => (
-                <div className="carousel-item" key={index}>
-                  <img src={image.src} alt={`Description ${index + 1}`} />
-                  <p dangerouslySetInnerHTML={{ __html: image.description }}></p>
-                </div>
-              ))}
+            <div class="carousel-images">
+              <div class="carousel-item">
+                <img src={photo1Image} alt="Map of locations" className="map-image" />
+                <p>Lesi Ukrainki Street (Chaiki, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
+              <div class="carousel-item">
+                <img src={photo2Image} alt="Map of locations" className="map-image" />
+                <p>Saksagansky Street (Holosiivskyj, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
+              <div class="carousel-item">
+                <img src={photo3Image} alt="Map of locations" className="map-image" />
+                <p>Sicheslavska Street (Solomjanskyj, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
+              <div class="carousel-item">
+                <img src={photo4Image} alt="Map of locations" className="map-image" />
+                <p>Zolotoustivska Street (Shevchenko, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
+              <div class="carousel-item">
+                <img src={photo5Image} alt="Map of locations" className="map-image" />
+                <p>Kharkovskoe Shosse (Darnyckyj, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
+              <div class="carousel-item">
+                <img src={photo6Image} alt="Map of locations" className="map-image" />
+                <p>Zhilyanskaya Street (Holosiivskyj, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
+              <div class="carousel-item">
+                <img src={photo7Image} alt="Map of locations" className="map-image" />
+                <p>Leskova Street (Pecherskyj, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
+              <div class="carousel-item">
+                <img src={photo8Image} alt="Map of locations" className="map-image" />
+                <p>Shchorsa Street (Pecherskyj, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
+              <div class="carousel-item">
+                <img src={photo9Image} alt="Map of locations" className="map-image" />
+                <p>Andriivskyi Union (Podilskyj, Kyiv region)<br/>08135 Ukraine</p>
+              </div>
             </div>
-            <button className="carousel-btn next">🠒</button>
-            <div className="carousel-dots">
-              {images.map((_, index) => (
-                <span key={index} className={`dot ${index === 0 ? 'active' : ''}`}></span>
-              ))}
+            <button className="carousel-btn next" onclick="nextSlide()">🠒</button>
+            <div class="carousel-dots">
+              <span class="dot" onclick="currentSlide(0)"></span>
+              <span class="dot" onclick="currentSlide(1)"></span>
+              <span class="dot" onclick="currentSlide(2)"></span>
+              <span class="dot" onclick="currentSlide(3)"></span>
+              <span class="dot" onclick="currentSlide(4)"></span>
+              <span class="dot" onclick="currentSlide(5)"></span>
+              <span class="dot" onclick="currentSlide(6)"></span>
+              <span class="dot" onclick="currentSlide(7)"></span>
+              <span class="dot" onclick="currentSlide(8)"></span>
             </div>
           </div>
           <button className="find-house-btn">{translations[language].findHouse}</button>

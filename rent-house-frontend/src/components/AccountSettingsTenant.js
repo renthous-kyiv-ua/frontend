@@ -206,6 +206,7 @@ const AccountSettingsTenant = () => {
                 <label>First name(s)<span class="necessarily">*</span></label>
               </div>
             </div>
+            
           </section>
         </div>
     );
