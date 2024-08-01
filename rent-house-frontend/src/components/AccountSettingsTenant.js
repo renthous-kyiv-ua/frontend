@@ -216,7 +216,7 @@ const AccountSettingsTenant = () => {
               </div>
               <div className='birth-date'>
                 <p>Birth date</p>
-                <input type='date' placeholder='YYYY/DD/MM'/>
+                <input placeholder='YYYY/DD/MM'/>
                 <p>We will congratulate you with your birthday and give you a gift certificate</p>
               </div>
               <div className='phone-number'>
@@ -236,6 +236,46 @@ const AccountSettingsTenant = () => {
                 <p>Email address</p>
                 <input type='email' placeholder='anna.romanova@gmail.com'/>
                 <p>Email (not displayed on the site)</p>
+              </div>
+              <div className='country'>
+                <p>Country</p>
+                <select>
+                  <option>Choose the country</option>
+                  <option>Ukraine</option>
+                  <option>Poland</option>
+                  <option>England</option>
+                  <option>Spain</option>
+                </select>
+              </div>
+              <div className='address'>
+                <p>Address</p>
+                <input type='address' placeholder='Add your town, street name and house/apartment numder, postcode'/>
+              </div>
+              <div className='passport-details'>
+                <p>Passport details</p>
+                <p>Save your passport details to use when reservation your next stay, transfer or attraction.</p>
+                <div className='passport-fullname'>
+                  <label>First name(s)<span class="necessarily">*</span></label>
+                  <input placeholder='Enter First Name'/><br/>
+                  <label>Last name(s)<span class="necessarily">*</span></label>
+                  <input placeholder='Enter Last Name'/>
+                  <p>Please enter the name exactly as written on the passport or other official travel document.</p>
+                </div>
+                <div className='passport-country'>
+                  <label>Issuing country<span class="necessarily">*</span></label>
+                  <select>
+                    <option>Select issuing country</option>
+                    <option>Ukraine</option>
+                    <option>Poland</option>
+                    <option>England</option>
+                    <option>Spain</option>
+                  </select>
+                  <label>Passport number<span class="necessarily">*</span></label>
+                  <input placeholder='Enter document number'/>
+                  <label>Expiry date<span class="necessarily">*</span></label>
+                  <input placeholder='YYYY/DD/MM'/>
+                  <p>We’ll safely store this data and remove it after two years of inactivity.</p>
+                </div>
               </div>
             </div>
           </section>
