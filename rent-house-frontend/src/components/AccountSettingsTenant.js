@@ -220,12 +220,12 @@ const AccountSettingsTenant = () => {
               <div className='birth-date'>
                 <p>Birth date</p>
                 <input placeholder='YYYY/DD/MM'/>
-                <p>We will congratulate you with your birthday and give you a gift certificate</p>
+                <p className='note'>We will congratulate you with your birthday and give you a gift certificate</p>
               </div>
               <div className='phone-number'>
                 <p>Phone number</p>
                 <input type='number' placeholder='+38(0__)___ __ __'/>
-                <p>Phone not displayed on this site</p>
+                <p className='note'>Phone not displayed on this site</p>
               </div>
               <div className='about-me'>
                 <p>About me</p>

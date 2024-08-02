@@ -112,6 +112,10 @@ body, html {
   margin-top: 15px;
 }
 
+.white-strip {
+  width: 1480px;
+}
+
 .panel {
   background-image: url('../images/acc_background.png');
   background-size: cover;
@@ -226,6 +230,7 @@ body, html {
 
 .edit-person p, .edit-data p {
   font-size: 12pt;
+  margin-left: -5px;
 }
 
 .user-fullname p {
@@ -247,20 +252,23 @@ body, html {
   margin-left: 70px;
 }
 
-.dispaly-name p {
-  margin-left: -55px;
+.dispaly-name {
+  display: flex;
+  justify-content: space-between;
 }
-
-.dispaly-name input {
-  width: 370px;
-  margin-left: 70px;
-  margin-top: -20px;
-}
-
 
 .birth-date input {
   width: 200px;
   margin-top: -50px;
+}
+
+.confirm-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-data {
+  margin-right: 40px;
 }
 
 .passport-country {
@@ -268,10 +276,12 @@ body, html {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 .passport-country select, .passport-country input {
   width: 48%;
   margin-top: 5px;
 }
+
 .update-info {
   display: flex;
   justify-content: flex-end;
@@ -279,6 +289,7 @@ body, html {
   margin-top: 850px;
   margin-left: -950px;
 }
+
 .update-info button {
   width: 200px;
   margin-left: 10px;
@@ -290,6 +301,7 @@ body, html {
   cursor: pointer;
 }
 .update-info button:last-child {
-  background-color: #ccc;
+  background-color: #F4F4F4;
+  border: 1px solid #A94802;
   color: black;
 }
