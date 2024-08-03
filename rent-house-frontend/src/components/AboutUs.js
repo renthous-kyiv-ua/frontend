@@ -184,15 +184,15 @@ const AboutUs = () => {
             </div>
             <div className='statistica'>
               <div className='users'>
-                <h3>15k</h3>
+                <h3><strong>15k</strong></h3>
                 <p>Active users visiting us<br/>every month!</p>
               </div>
               <div className='partners'>
-                <h3>+3k</h3>
+                <h3><strong>+3k</strong></h3>
                 <p>Active partners<br/>visiting us!</p>
               </div>
               <div className='rate'>
-                <h3>4.9</h3>
+                <h3><strong>4.9</strong></h3>
                 <p><span className='rate-star'>★★★★★</span></p>
                 <p className='describe'>Active users visiting us every month!</p>
               </div>
