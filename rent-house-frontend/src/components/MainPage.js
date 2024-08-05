@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../styles/MainPage.css';
 import mapImage from '../images/world-map.png';
@@ -75,6 +75,17 @@ const MainPage = () => {
   const [language, setLanguage] = useState('en');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [reviews, setReviews] = useState([]);
+  const [isPeopleComboboxOpen, setIsPeopleComboboxOpen] = useState(false);
+  const peopleButtonRef = useRef(null);
+  const peopleComboboxRef = useRef(null);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [ageNeeded, setAgeNeeded] = useState(0);
+  const [rooms, setRooms] = useState(1);
+  const [isPets, setIsPets] = useState(false);
+
+  const increment = (setter, value) => () => setter(value + 1);
+  const decrement = (setter, value) => () => setter(value > 0 ? value - 1 : 0);
 
   const housesData = [
     {
@@ -184,9 +195,8 @@ const MainPage = () => {
 
   setInterval(() => {
     nextSlide();
-  }, 3000); // Change image every 3 seconds
+  }, 3000);
 
-  // Initialize the carousel
   showSlide(currentIndex);
 
   }, []);
@@ -199,6 +209,25 @@ const MainPage = () => {
       .catch(error => {
         console.error("There was an error fetching the reviews!", error);
       });
+  }, []);
+
+  const handlePeopleButtonClick = () => {
+    setIsPeopleComboboxOpen(!isPeopleComboboxOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    if (peopleComboboxRef.current && !peopleComboboxRef.current.contains(event.target) &&
+      peopleButtonRef.current && !peopleButtonRef.current.contains(event.target)) {
+      setIsPeopleComboboxOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
   }, []);
 
   return (
@@ -308,7 +337,7 @@ const MainPage = () => {
               <input type="date" placeholder="we have already checked" />
             </div>
             <div class="vertical-line"></div>
-            <div class="search-field">
+            <div class="search-field" onClick={handlePeopleButtonClick} ref={peopleButtonRef}>
               <label>Number of people</label>
               <input type="number" id="number-of-people" placeholder="and rooms" readonly />
             </div>
@@ -321,29 +350,52 @@ const MainPage = () => {
               Search
             </button>
           </div>
-          <div id="people-popup" class="popup">
-            <div class="popup-content">
-              <label>Adults</label>
-              <button id="adult-decrease">-</button>
-              <input type="number" id="adult-count" value="1" />
-              <button id="adult-increase">+</button>
-              <label>Children</label>
-              <button id="children-decrease">-</button>
-              <input type="number" id="children-count" value="0" />
-              <button id="children-increase">+</button>
-              <label>Age needed</label>
-              <button id="age-decrease">-</button>
-              <input type="number" id="age-count" value="0" />
-              <button id="age-increase">+</button>
-              <label>Rooms</label>
-              <button id="room-decrease">-</button>
-              <input type="number" id="room-count" value="1" />
-              <button id="room-increase">+</button>
-              <label>Traveling with pets?</label>
-              <input type="checkbox" id="pets-checkbox" />
-              <button id="done-btn">Done</button>
+          {isPeopleComboboxOpen && (
+            <div className="people-combobox" ref={peopleComboboxRef}>
+              <ul>
+                <div className='count-of-adults'>
+                  <label>Adults</label>
+                  <div className='quantity'>
+                    <button className="decrement" onClick={decrement(setAdults, adults)}>-</button>
+                    <input type="number" value={adults} readOnly />
+                    <button className="increment" onClick={increment(setAdults, adults)}>+</button>
+                  </div>
+                </div>
+                <div className='count-of-children'>
+                  <label>Children</label>
+                  <div className='quantity'>
+                    <button className="decrement" onClick={decrement(setChildren, children)}>-</button>
+                    <input type="number" value={children} readOnly />
+                    <button className="increment" onClick={increment(setChildren, children)}>+</button>
+                  </div>
+                </div>
+                <div className='count-of-age-needed'>
+                  <label>Age needed</label>
+                  <div className='quantity'>
+                    <button className="decrement" onClick={decrement(setAgeNeeded, ageNeeded)}>-</button>
+                    <input type="number" value={ageNeeded} readOnly />
+                    <button className="increment" onClick={increment(setAgeNeeded, ageNeeded)}>+</button>
+                  </div>
+                </div>
+                <div className='count-of-rooms'>
+                  <label>Rooms</label>
+                  <div className='quantity'>
+                    <button className="decrement" onClick={decrement(setRooms, rooms)}>-</button>
+                    <input type="number" value={rooms} readOnly />
+                    <button className="increment" onClick={increment(setRooms, rooms)}>+</button>
+                  </div>
+                </div>
+                <div className='isPets'>
+                  <label>Traveling with pets?</label>
+                  <label className="switch">
+                    <input type="checkbox" checked={isPets} onChange={() => setIsPets(!isPets)} />
+                    <span className="slider round"></span>
+                  </label>
+                </div>
+                <button className='done'>Done</button>
+              </ul>
             </div>
-          </div>
+          )}
         </div>
         <div className='socials'>
           <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -396,10 +448,12 @@ const MainPage = () => {
         </div>
         <div className="statistics">
           <div className="satisfied-clients">
+            <br/>
             <h3>+55K</h3>
             <p>satisfied clients</p>
           </div>
           <div className="active-offers">
+            <br/>
             <h3>+7K</h3>
             <p>active offers</p>
           </div>
