@@ -6,6 +6,7 @@ import SignUp from './components/SignUp';
 import ForgotPassword from './components/ForgotPassword';
 import AboutUs from './components/AboutUs';
 import AccountSettingsTenant from './components/AccountSettingsTenant';
+import MyReservationsTenant from './components/MyReservationsTenant';
 import AdminMainPanel from './components/AdminMainPanel';
 import UsersAdmin from './components/UsersAdmin';
 import PropertiesAdmin from './components/PropertiesAdmin';
@@ -19,6 +20,7 @@ function App() {
       <Route path="/forgot_pass" element={<ForgotPassword />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/tenant" element={<AccountSettingsTenant />} />
+      <Route path="/reservations" element={<MyReservationsTenant />} />
       <Route path="/admin" element={<AdminMainPanel />} />
       <Route path="/admin/users" element={<UsersAdmin />} />
       <Route path="/admin/properties" element={<PropertiesAdmin />} />
