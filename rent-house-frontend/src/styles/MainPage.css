@@ -269,6 +269,7 @@ body, html {
 
 .people-combobox {
   margin-top: 10px;
+  margin-left: 895px;
   border: 2px solid #F4F4F4;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -296,23 +297,22 @@ body, html {
 .quantity {
   display: flex;
   align-items: center;
+  border: 1px solid #F4F4F4;
+  border-radius: 5px;
+  width: 100px;
 }
 
 .quantity button {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: none;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.quantity button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  margin-left: 1px;
 }
 
 .quantity input {
@@ -325,6 +325,7 @@ body, html {
   margin: 0 10px;
   border-radius: 10px;
   outline: none;
+  margin-left: 10px;
 }
 
 .switch {
@@ -360,6 +361,7 @@ body, html {
   height: 16px;
   width: 16px;
   left: 2px;
+  top: 1px;
   bottom: 2px;
   background-color: white;
   transition: .4s;
@@ -375,17 +377,24 @@ input:checked + .slider:before {
 }
 
 .done {
-  background-color: orange;
+  background-color: #A94802;
   border: none;
   color: white;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   margin-top: 10px;
   cursor: pointer;
   border-radius: 5px;
+  width: 200px;
+  margin-right: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.done:hover {
+  background-color: #F4F4F4;
+  color: #A94802;
 }
 
 .search-btn {
