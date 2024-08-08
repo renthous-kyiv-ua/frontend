@@ -139,17 +139,6 @@ body, html {
   margin-top: -20px;
 }
 
-.avatar {
-  width: 200px;
-  height: 200px;
-  border: none;
-  border-radius: 50%;
-  background-color: #8A9084;
-  margin: 20px auto;
-  margin-left: 1000px;
-  margin-top: -150px;
-}
-
 .panel-settings-2 {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
