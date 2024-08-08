@@ -58,7 +58,7 @@ const SignIn = () => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
