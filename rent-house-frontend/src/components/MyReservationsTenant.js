@@ -150,7 +150,7 @@ const MyReservationsTenant = () => {
               <path d="M12.0156 16.6495C12.0156 18.0282 12.5561 19.3504 13.5181 20.3252C14.4802 21.3001 15.785 21.8478 17.1455 21.8478C18.5061 21.8478 19.8109 21.3001 20.7729 20.3252C21.735 19.3504 22.2755 18.0282 22.2755 16.6495C22.2755 15.2708 21.735 13.9486 20.7729 12.9737C19.8109 11.9988 18.5061 11.4512 17.1455 11.4512C15.785 11.4512 14.4802 11.9988 13.5181 12.9737C12.5561 13.9486 12.0156 15.2708 12.0156 16.6495Z" fill="#8A9084" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
-            <div className='panel-settings'>
+            <div className='panel-settings-2'>
               <button onClick={() => window.location.href='/tenant'}>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.5 37.8V35.5C12.5 32.45 13.7116 29.5249 15.8683 27.3683C18.0249 25.2116 20.95 24 24 24C27.05 24 29.9751 25.2116 32.1317 27.3683C34.2884 29.5249 35.5 32.45 35.5 35.5V37.8" stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round"/>
