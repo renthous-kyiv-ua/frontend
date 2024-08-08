@@ -136,7 +136,8 @@ body, html {
 
 .panel p {
   margin-left: 30px;
-  margin-top: -20px;
+  margin-top: -10px;
+  font-family: Helvetica Neue, arial;
 }
 
 .panel-settings-3 {
@@ -148,7 +149,7 @@ body, html {
   justify-content: center;
   padding: 15px 20px;
   margin-left: 50px;
-  margin-top: 45px;
+  margin-top: 110px;
   border-radius: 5px;
   height: 150px;
 }
@@ -187,4 +188,30 @@ body, html {
 
 .panel-settings-3 svg {
   width: 30px;
+}
+
+.loyalty p {
+  color: #040606;
+  font-size: 11pt;
+  margin-left: 510px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.discount-plan {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.discount-plan button {
+  width: 220px;
+  height: 100px;
+  border-radius: 10px;
+  border: none;
+}
+
+.active-plan {
+  border: 2px solid #A94802;
 }

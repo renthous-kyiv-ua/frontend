@@ -187,7 +187,34 @@ const LoyaltyProgrammeTenant = () => {
             </div>
           </section>
           <section className='loyalty'>
-            
+            <p>Receive an additional percentage discount on every next reservations.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The maximum discount is 47%</p>
+            <div className='discount-plan'>
+              <button className='active-plan'>
+                <h3>1%</h3>
+                <p>Registration on the site</p>
+              </button>
+              <button>
+                <h3>2%</h3>
+                <p>Second reservations</p>
+              </button>
+              <button>
+                <h3>3%</h3>
+                <p>Third reservations</p>
+              </button>
+              <button>
+                <h3>4%</h3>
+                <p>Fourth reservations</p>
+              </button>
+              <button>
+                <h3>5%</h3>
+                <p>Five or more reservations</p>
+              </button>
+              <button>
+                <h3>9%-47%</h3>
+                <p>Discount from an experienced landlord</p>
+              </button>
+            </div>
           </section>
         </div>
     );
