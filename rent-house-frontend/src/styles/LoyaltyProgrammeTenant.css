@@ -198,6 +198,11 @@ body, html {
   font-weight: 500;
 }
 
+.loyalty a {
+  color: #A94802;
+  text-decoration: none;
+}
+
 .discount-plan {
   margin-top: 15px;
   display: flex;
@@ -209,9 +214,42 @@ body, html {
   width: 220px;
   height: 100px;
   border-radius: 10px;
-  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .active-plan {
   border: 2px solid #A94802;
+}
+
+.current-plan {
+  width: 220px;
+  border-radius: 20px;
+  background-color: #E6D0C4;
+  color: #040606;
+  padding: 5px;
+  margin-left: 85px;
+  margin-top: 10px;
+}
+
+.additional-information p {
+  margin-left: 70px;
+}
+
+.program-entail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.entail {
+  width: 600px;
+  padding: 20px;
+  background-color: #DADDD7;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.entail h6, .entail p {
+  text-align: center;
+  font-family: Helvetica Neue, arial;
 }

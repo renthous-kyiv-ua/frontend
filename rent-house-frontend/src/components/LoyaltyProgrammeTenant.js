@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import rentImage from '../images/renthouse.png';
+import giftImage from '../images/gift.png';
 import '../styles/LoyaltyProgrammeTenant.css';
 
 const translations = {
@@ -215,6 +217,22 @@ const LoyaltyProgrammeTenant = () => {
                 <p>Discount from an experienced landlord</p>
               </button>
             </div>
+            <div className='current-plan'>
+              Your current discount
+            </div><br/>
+            <div className='additional-information'>
+              <p>After the 4th booking you become a member of the loyalty program -<a href='/'>Expert</a></p>
+              <div className='program-entail'>
+                <img src={rentImage} alt="Renthouse" />
+                <div className='entail'>
+                  <h6><b>What does participation in the program entail?</b></h6>
+                  <p>Experienced owners provide an additional discount of 9%-47% on the reservation of their apartments.</p>
+                  <p>Your discounts add up!</p>
+                </div>
+                <img src={giftImage} alt="Gift" />
+              </div>
+            </div>
+            
           </section>
         </div>
     );
