@@ -167,7 +167,7 @@ body, html {
   cursor: pointer;
 }
 
-.agent {
+.landlord {
   background-color: #A94802;
   width: 155px;
   height: 45px;
@@ -225,7 +225,7 @@ h2 {
   color: #A94802;
 }
 
-input[type="name"] {
+input[type="text"] {
   width: calc(100% - 20px);
   padding: 10px;
   margin: 10px 0;
