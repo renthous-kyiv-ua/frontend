@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import balanceImage from '../images/balance.png';
 import '../styles/WalletTenant.css';
 
 const translations = {
@@ -187,7 +188,94 @@ const WalletTenant = () => {
             </div>
           </section>
           <section className='wallet'>
-            
+            <div className='wallet-balance'>
+              <div className='balance-left'>
+                <h4>Wallet balance</h4>
+                <p>Includes all spendable rewards</p>
+                <img src={balanceImage} className='balance-img' alt="Wallet balance" />
+                <div className='balance-currency'>
+                <div className='currency-item'>
+                    <input type='text' className='currency-input' value='     €          0.00' />
+                    <div className='currency-edit'>
+                      <svg width="27" height="23" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="0.5" width="26" height="22" rx="4.5" stroke="#8A9084"/>
+                      <path d="M15.7952 8.33333L16.7127 9.16889L7.85008 17.2222H6.95211V16.4044L15.7952 8.33333ZM19.309 3C19.065 3 18.8112 3.08889 18.6257 3.25778L16.8395 4.88444L20.4998 8.21778L22.2859 6.59111C22.6666 6.24444 22.6666 5.66667 22.2859 5.33778L20.002 3.25778C19.8068 3.08 19.5627 3 19.309 3ZM15.7952 5.83556L5 15.6667V19H8.66021L19.4554 9.16889L15.7952 5.83556Z" fill="#8A9084"/>
+                      </svg>
+                    </div>
+                </div>
+                <div className='currency-item'>
+                    <input type='text' className='currency-input' value='     $          0.00' />
+                    <div className='currency-edit'>
+                      <svg width="27" height="23" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="0.5" width="26" height="22" rx="4.5" stroke="#8A9084"/>
+                      <path d="M15.7952 8.33333L16.7127 9.16889L7.85008 17.2222H6.95211V16.4044L15.7952 8.33333ZM19.309 3C19.065 3 18.8112 3.08889 18.6257 3.25778L16.8395 4.88444L20.4998 8.21778L22.2859 6.59111C22.6666 6.24444 22.6666 5.66667 22.2859 5.33778L20.002 3.25778C19.8068 3.08 19.5627 3 19.309 3ZM15.7952 5.83556L5 15.6667V19H8.66021L19.4554 9.16889L15.7952 5.83556Z" fill="#8A9084"/>
+                      </svg>
+                    </div>
+                </div>
+                <div className='currency-item'>
+                    <input type='text' className='currency-input' value='     ₴          0.00' />
+                    <div className='currency-edit'>
+                      <svg width="27" height="23" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="0.5" width="26" height="22" rx="4.5" stroke="#8A9084"/>
+                      <path d="M15.7952 8.33333L16.7127 9.16889L7.85008 17.2222H6.95211V16.4044L15.7952 8.33333ZM19.309 3C19.065 3 18.8112 3.08889 18.6257 3.25778L16.8395 4.88444L20.4998 8.21778L22.2859 6.59111C22.6666 6.24444 22.6666 5.66667 22.2859 5.33778L20.002 3.25778C19.8068 3.08 19.5627 3 19.309 3ZM15.7952 5.83556L5 15.6667V19H8.66021L19.4554 9.16889L15.7952 5.83556Z" fill="#8A9084"/>
+                      </svg>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div className='divider'></div>
+
+            <div className='balance-right'>
+                <div className='balance-card'>
+                <h5>Credit</h5>
+                    <input type='text' className='currency-input' value='     €          0.00' />
+                    <div className='currency-edit'>
+                      <svg width="27" height="23" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="0.5" width="26" height="22" rx="4.5" stroke="#8A9084"/>
+                      <path d="M15.7952 8.33333L16.7127 9.16889L7.85008 17.2222H6.95211V16.4044L15.7952 8.33333ZM19.309 3C19.065 3 18.8112 3.08889 18.6257 3.25778L16.8395 4.88444L20.4998 8.21778L22.2859 6.59111C22.6666 6.24444 22.6666 5.66667 22.2859 5.33778L20.002 3.25778C19.8068 3.08 19.5627 3 19.309 3ZM15.7952 5.83556L5 15.6667V19H8.66021L19.4554 9.16889L15.7952 5.83556Z" fill="#8A9084"/>
+                      </svg>
+                </div>
+                </div>
+                <div className='balance-vouchers'>
+                <h5>Vouchers (0)</h5>
+                <div className='balance-value'>
+                    <input type='text' className='voucher-input' value='00000000' />
+                    <div className='currency-edit-2'>
+                      <svg width="27" height="23" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="0.5" width="26" height="22" rx="4.5" stroke="#8A9084"/>
+                      <path d="M15.7952 8.33333L16.7127 9.16889L7.85008 17.2222H6.95211V16.4044L15.7952 8.33333ZM19.309 3C19.065 3 18.8112 3.08889 18.6257 3.25778L16.8395 4.88444L20.4998 8.21778L22.2859 6.59111C22.6666 6.24444 22.6666 5.66667 22.2859 5.33778L20.002 3.25778C19.8068 3.08 19.5627 3 19.309 3ZM15.7952 5.83556L5 15.6667V19H8.66021L19.4554 9.16889L15.7952 5.83556Z" fill="#8A9084"/>
+                      </svg>
+                    </div>
+                </div>
+                </div>
+                <a href='#' className='wallet-activity'>Browse Rewards & Wallet activity</a>
+            </div>
+            </div>
+
+            <div className='coupon-section'>
+                <h5>Got a coupon code?</h5>
+                <div className='coupon-input'>
+                <label for='coupon'>Add coupon code</label>
+                <input type='text' id='coupon' placeholder='Enter a coupon code' />
+                <button className='add-code-button'>Add code</button>
+                </div>
+            </div>
+
+            <div className='wallet-info'>
+                <div className='info-item'>
+                <img src='image1.png' alt='Icon' />
+                <p>Reservation and get discounts for travel...</p>
+                </div>
+                <div className='info-item'>
+                <img src='image2.png' alt='Icon' />
+                <p>Keep track of everything using your personal account...</p>
+                </div>
+                <div className='info-item'>
+                <img src='image3.png' alt='Icon' />
+                <p>Pay with Wallet to save money...</p>
+                </div>
+            </div>
           </section>
         </div>
     );
