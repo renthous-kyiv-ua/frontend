@@ -486,7 +486,7 @@ const MainPage = () => {
                     <p><strong>{house.details}</strong></p>
                     <p><strong>{house.discount}</strong></p>
                     <p>{house.description}</p>
-                    <p className='price'>{house.price}</p>
+                    <p>{house.price}</p>
                   </div>
                 </div>
               </div>

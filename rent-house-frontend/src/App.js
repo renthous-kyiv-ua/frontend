@@ -11,6 +11,7 @@ import LoyaltyProgrammeTenant from './components/LoyaltyProgrammeTenant';
 import WalletTenant from './components/WalletTenant';
 import ReferralLinkTenant from './components/ReferralLinkTenant';
 import AccountSettingsLandlord from './components/AccountSettingsLandlord';
+import MoreDetails from './components/MoreDetails';
 import AdminMainPanel from './components/AdminMainPanel';
 import UsersAdmin from './components/UsersAdmin';
 import PropertiesAdmin from './components/PropertiesAdmin';
@@ -28,6 +29,7 @@ function App() {
       <Route path="/loyalty" element={<LoyaltyProgrammeTenant />} />
       <Route path="/wallet" element={<WalletTenant />} />
       <Route path="/referral" element={<ReferralLinkTenant />} />
+      <Route path="/details" element={<MoreDetails />} />
       <Route path="/landlord" element={<AccountSettingsLandlord />} />
       <Route path="/admin" element={<AdminMainPanel />} />
       <Route path="/admin/users" element={<UsersAdmin />} />

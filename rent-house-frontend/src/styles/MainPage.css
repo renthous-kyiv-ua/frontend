@@ -630,7 +630,7 @@ input:checked + .slider:before {
   border-radius: 10px;
   overflow: hidden;
   width: 330px;
-  height: 510px;
+  height: 550px;
   margin-bottom: 20px;
   text-align: left;
   padding: 20px;

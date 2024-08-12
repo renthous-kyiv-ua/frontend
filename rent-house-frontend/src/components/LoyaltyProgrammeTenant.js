@@ -253,7 +253,7 @@ const LoyaltyProgrammeTenant = () => {
                 <img src={giftImage} alt="Gift" />
               </div>
               <p>The withdrawals will not be canceled and will no longer be valid again!</p>
-              <a href='/j'>More details about the Expert program</a>
+              <a href='/details'>More details about the Expert program</a>
             </div>
           </section>
           <footer className="loyalty-programme-footer">
