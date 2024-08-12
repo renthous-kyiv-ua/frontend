@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import balanceImage from '../images/balance.png';
+import moneyLogoImage from '../images/moneyLogo.png';
 import '../styles/ReferralLinkTenant.css';
 
 const translations = {
@@ -195,8 +195,8 @@ const ReferralLinkTenant = () => {
                   <li>You get 100 EUR on your credit card after their trip. Your friends also get 100 EUR</li>
                 </ol>
                 <div className='total-reward'>
-                  <h5><strong>Total reward amount</strong></h5>
-                  <p>0   EUR</p>
+                  <h5><strong>Total reward amount</strong></h5><br/>
+                  <p>0&nbsp;&nbsp;&nbsp;EUR</p>
                 </div>
                 <p>There are no rewards yet - start inviting friends!</p>
             </div>
@@ -254,6 +254,43 @@ const ReferralLinkTenant = () => {
                 </clipPath>
                 </defs>
                 </svg>
+            </div>
+            <div className='payment-part'>
+              <img src={moneyLogoImage} className='money-img' alt="Money logo" />
+              <div className='add-card'>
+                <h5>Add a card for the payment of reward</h5>
+                <div className='card-info'>
+                  <div className='first-card-info'>
+                    <label>card number</label>
+                    <input placeholder='1234  5678  9101  1213'/>
+                    <label>Fisrst name, Last name</label>
+                    <input placeholder='Anna Smidt'/>
+                  </div>
+                  <div className='second-card-info'>
+                    <label>Validity</label>
+                    <select className='card-month'>
+                        <option>month</option>
+                        <option>month</option>
+                        <option>month</option>
+                        <option>month</option>
+                        <option>month</option>
+                        <option>month</option>
+                        <option>month</option>
+                    </select>
+                    <select className='card-year'>
+                        <option>year</option>
+                        <option>2027</option>
+                        <option>month</option>
+                        <option>month</option>
+                        <option>month</option>
+                        <option>month</option>
+                        <option>month</option>
+                    </select>
+                    <label>CVV</label>
+                    <input type='CVV'/>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         </div>
