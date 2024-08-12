@@ -202,7 +202,7 @@ const WalletTenant = () => {
                       <path d="M15.7952 8.33333L16.7127 9.16889L7.85008 17.2222H6.95211V16.4044L15.7952 8.33333ZM19.309 3C19.065 3 18.8112 3.08889 18.6257 3.25778L16.8395 4.88444L20.4998 8.21778L22.2859 6.59111C22.6666 6.24444 22.6666 5.66667 22.2859 5.33778L20.002 3.25778C19.8068 3.08 19.5627 3 19.309 3ZM15.7952 5.83556L5 15.6667V19H8.66021L19.4554 9.16889L15.7952 5.83556Z" fill="#8A9084"/>
                       </svg>
                     </div>
-                </div>
+                </div><br/>
                 <div className='currency-item'>
                     <input type='text' className='currency-input' value='     $          0.00' />
                     <div className='currency-edit'>
@@ -211,7 +211,7 @@ const WalletTenant = () => {
                       <path d="M15.7952 8.33333L16.7127 9.16889L7.85008 17.2222H6.95211V16.4044L15.7952 8.33333ZM19.309 3C19.065 3 18.8112 3.08889 18.6257 3.25778L16.8395 4.88444L20.4998 8.21778L22.2859 6.59111C22.6666 6.24444 22.6666 5.66667 22.2859 5.33778L20.002 3.25778C19.8068 3.08 19.5627 3 19.309 3ZM15.7952 5.83556L5 15.6667V19H8.66021L19.4554 9.16889L15.7952 5.83556Z" fill="#8A9084"/>
                       </svg>
                     </div>
-                </div>
+                </div><br/>
                 <div className='currency-item'>
                     <input type='text' className='currency-input' value='     ₴          0.00' />
                     <div className='currency-edit'>
@@ -223,9 +223,7 @@ const WalletTenant = () => {
                 </div>
                 </div>
             </div>
-
             <div className='divider'></div>
-
             <div className='balance-right'>
                 <div className='balance-card'>
                 <h5>Credit</h5>
@@ -252,16 +250,17 @@ const WalletTenant = () => {
                 <a href='#' className='wallet-activity'>Browse Rewards & Wallet activity</a>
             </div>
             </div>
-
             <div className='coupon-section'>
                 <h5>Got a coupon code?</h5>
                 <div className='coupon-input'>
-                <label for='coupon'>Add coupon code</label>
-                <input type='text' id='coupon' placeholder='Enter a coupon code' />
-                <button className='add-code-button'>Add code</button>
+                    <div className='label-text'>
+                      <label for='coupon'>Add coupon code</label>
+                    </div>
+                    <input type='text' id='coupon' placeholder='Enter a coupon code' />
+                    <button className='add-code-button'>Add code</button>
                 </div>
             </div>
-
+            <div className='white-line-card'></div>
             <div className='wallet-info'>
                 <div className='info-item'>
                 <img src='image1.png' alt='Icon' />
