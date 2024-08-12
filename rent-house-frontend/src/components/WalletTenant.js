@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import balanceImage from '../images/balance.png';
+import discountImage from '../images/discount.png';
+import personalAccImage from '../images/personalAcc.png';
+import payImage from '../images/pay.png';
 import '../styles/WalletTenant.css';
 
 const translations = {
@@ -261,18 +264,25 @@ const WalletTenant = () => {
                 </div>
             </div>
             <div className='white-line-card'></div>
+            <div className='help-link'>
+              <a>Need help? Visit FAQ</a>
+            </div>
             <div className='wallet-info'>
+                <h5>What's Wallet?</h5>
                 <div className='info-item'>
-                <img src='image1.png' alt='Icon' />
-                <p>Reservation and get discounts for travel...</p>
+                <img src={discountImage} alt="Discount" />
+                <label>Reservation and get discounts for travel...</label>
+                <p>Credits, vouchers, discount system!<br/>All of this can be spent on your next<br/>trip at Rent House.com.</p>
                 </div>
                 <div className='info-item'>
-                <img src='image2.png' alt='Icon' />
-                <p>Keep track of everything using your personal account...</p>
+                <img src={personalAccImage} alt="Personal account" />
+                <label>Keep track of everything using your personal account...</label>
+                <p>Your wallet is where you store your rewards and also<br/>keeps you informed of your income and expenses.</p>
                 </div>
                 <div className='info-item'>
-                <img src='image3.png' alt='Icon' />
-                <p>Pay with Wallet to save money...</p>
+                <img src={payImage} alt="Pay" />
+                <label>Pay with Wallet to save money...</label>
+                <p>If your booking is eligible to receive any rewards<br/>in your Wallet, they will appear when you complete<br/>your payments.</p>
                 </div>
             </div>
           </section>

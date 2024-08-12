@@ -357,3 +357,12 @@ body, html {
   margin-left: 50px;
   margin-top: 50px;
 }
+
+.help-link {
+    display: inline;
+    align-items: end;
+    justify-content: end;
+    color: #A94802;
+    margin-left: 800px;
+    margin-top: 20px;
+}
