@@ -4,11 +4,11 @@ body, html {
   font-family: Helvetica Neue, arial;
 }
 
-.account-settings {
+.landlord-account-settings {
   text-align: center;
 }
 
-.account-header {
+.landlord-account-header {
   background-color: #1F2C13;
   background-size: cover;
   color: #F4F4F4;
@@ -117,9 +117,9 @@ body, html {
 }
 
 .panel {
-  background-image: url('../images/acc_background.png');
+  background-image: url('../images/lan_background.jpg');
   background-size: cover;
-  height: 480px;
+  height: 500px;
   text-align: left;
   padding: 20px;
   color: #F4F4F4;
@@ -147,7 +147,7 @@ body, html {
   background-color: #8A9084;
   margin: 20px auto;
   margin-left: 1000px;
-  margin-top: -150px;
+  margin-top: -280px;
 }
 
 .edit-account {

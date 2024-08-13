@@ -50,8 +50,8 @@ const AccountSettingsLandlord = () => {
   }, []);
     
     return (
-        <div className='account-settings'>
-          <header className="account-header">
+        <div className='landlord-account-settings'>
+          <header className="landlord-account-header">
             <nav className="navigation">
               <ul className="nav-list">
                 <li><a href='/'>{translations[language].home}</a></li>
@@ -141,8 +141,8 @@ const AccountSettingsLandlord = () => {
             <div className="white-strip"></div>
           </header>
           <section className='panel'>
-            <h1>Account Settings</h1>
-            <p>Update your information and find out how it's used.</p>
+            <h1>Landlord<br/>Account Settings</h1>
+            <p>We will take care of your peace of mind and comfort. Trust is<br/>our motto...</p>
             <button className='avatar'>
               <svg width="36" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.1456 28.7795H5.1758C4.26878 28.7795 3.3989 28.4144 2.75754 27.7645C2.11617 27.1146 1.75586 26.2331 1.75586 25.314V9.71903C1.75586 8.79991 2.11617 7.91844 2.75754 7.26852C3.3989 6.61861 4.26878 6.25349 5.1758 6.25349H6.88577C7.7928 6.25349 8.66267 5.88837 9.30404 5.23845C9.9454 4.58854 10.3057 3.70707 10.3057 2.78795C10.3057 2.32839 10.4859 1.88765 10.8066 1.56269C11.1272 1.23774 11.5622 1.05518 12.0157 1.05518H22.2755C22.729 1.05518 23.164 1.23774 23.4846 1.56269C23.8053 1.88765 23.9855 2.32839 23.9855 2.78795C23.9855 3.70707 24.3458 4.58854 24.9872 5.23845C25.6285 5.88837 26.4984 6.25349 27.4054 6.25349H29.1154C30.0224 6.25349 30.8923 6.61861 31.5337 7.26852C32.175 7.91844 32.5353 8.79991 32.5353 9.71903V15.7837M23.9855 27.0467H34.2453H23.9855ZM29.1154 21.8484V32.245V21.8484Z" fill="#8A9084"/>

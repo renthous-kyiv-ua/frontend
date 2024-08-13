@@ -325,7 +325,7 @@ const AboutUs = () => {
                   <div className="register-property">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;By listing your accommodation on Rent House, you gain access to a vast audience of travelers seeking unique and reliable places to stay. Our user-friendly platform makes it easy to showcase your property and manage bookings seamlessly.</p>
                   </div>
-                  <button className="reg-prop">Register your property</button>
+                  <button className="reg-prop" onClick={() => window.location.href='/property'}>Register your property</button>
                 </div>
               </div>
               <div className="white-strip-footer-2"></div>

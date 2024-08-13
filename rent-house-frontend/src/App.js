@@ -14,6 +14,7 @@ import SavedTenant from './components/SavedTenant';
 import AccountSettingsLandlord from './components/AccountSettingsLandlord';
 import MoreDetails from './components/MoreDetails';
 import WalletFAQ from './components/WalletFAQ';
+import HouseReg from './components/HouseReg';
 import AdminMainPanel from './components/AdminMainPanel';
 import UsersAdmin from './components/UsersAdmin';
 import PropertiesAdmin from './components/PropertiesAdmin';
@@ -34,6 +35,7 @@ function App() {
       <Route path="/saved" element={<SavedTenant />} />
       <Route path="/details" element={<MoreDetails />} />
       <Route path="/faq" element={<WalletFAQ />} />
+      <Route path="/property" element={<HouseReg />} />
       <Route path="/landlord" element={<AccountSettingsLandlord />} />
       <Route path="/admin" element={<AdminMainPanel />} />
       <Route path="/admin/users" element={<UsersAdmin />} />
