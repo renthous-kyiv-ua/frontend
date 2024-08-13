@@ -56,8 +56,8 @@ const AccountSettingsLandlord = () => {
               <ul className="nav-list">
                 <li><a href='/'>{translations[language].home}</a></li>
                 <li><a href='/about'>{translations[language].about}</a></li>
-                <li className='active'><a href='/tenant'>{translations[language].tenant}</a></li>
-                <li><a href='/landlord'>{translations[language].landlord}</a></li>
+                <li><a href='/tenant'>{translations[language].tenant}</a></li>
+                <li className='active'><a href='/landlord'>{translations[language].landlord}</a></li>
                 <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
               </ul>
               <div className="logo">
@@ -140,7 +140,7 @@ const AccountSettingsLandlord = () => {
             </nav>
             <div className="white-strip"></div>
           </header>
-          <section className='panel'>
+          <section className='lan-panel'>
             <h1>Landlord<br/>Account Settings</h1>
             <p>We will take care of your peace of mind and comfort. Trust is<br/>our motto...</p>
             <button className='avatar'>

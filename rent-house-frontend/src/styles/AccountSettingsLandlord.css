@@ -116,7 +116,7 @@ body, html {
   width: 1480px;
 }
 
-.panel {
+.lan-panel {
   background-image: url('../images/lan_background.jpg');
   background-size: cover;
   height: 500px;
@@ -125,7 +125,7 @@ body, html {
   color: #F4F4F4;
 }
 
-.panel h1 {
+.lan-panel h1 {
   font-family: Chonburi, arial;
   font-size: 50pt;
   text-align: left;
@@ -134,7 +134,7 @@ body, html {
   margin-left: 40px;
 }
 
-.panel p {
+.lan-panel p {
   margin-left: 30px;
   margin-top: -20px;
 }
