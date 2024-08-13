@@ -362,7 +362,11 @@ body, html {
     display: inline;
     align-items: end;
     justify-content: end;
-    color: #A94802;
     margin-left: 800px;
     margin-top: 20px;
+}
+
+.help-link a {
+    text-decoration: none;
+    color: #A94802;
 }

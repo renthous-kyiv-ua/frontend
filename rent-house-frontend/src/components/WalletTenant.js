@@ -265,7 +265,7 @@ const WalletTenant = () => {
             </div>
             <div className='white-line-card'></div>
             <div className='help-link'>
-              <a>Need help? Visit FAQ</a>
+              <a href='/faq'>Need help? Visit FAQ</a>
             </div>
             <div className='wallet-info'>
                 <h5>What's Wallet?</h5>
