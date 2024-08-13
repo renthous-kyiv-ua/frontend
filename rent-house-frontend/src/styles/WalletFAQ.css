@@ -29,5 +29,59 @@ body, html {
 }
 
 .faq-info {
-  padding: 30px;
+    margin: 20px;
+    margin-top: 60px;
+    font-family: Arial, sans-serif;
+}
+
+.faq-category {
+    margin-bottom: 35px;
+}
+
+.faq-category h2 {
+    font-size: 20px;
+    color: #040606;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 245px;
+    font-weight: 600;
+}
+
+.faq-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #f5f5f5;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    width: 1320px;
+    margin-left: 60px;
+}
+
+.faq-item span {
+    font-size: 16px;
+    margin-left: 175px;
+}
+
+.faq-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.faq-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-toggle svg {
+    transform: rotate(180deg);
+}
+
+.faq-item.highlighted {
+    background-color: #E6D0C4;
 }

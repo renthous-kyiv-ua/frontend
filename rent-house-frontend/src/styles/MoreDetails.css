@@ -198,6 +198,24 @@ ul {
   align-items: center;
   font-size: 14px;
   color: #000;
-  margin-top: 150px;
+  margin-top: 20px; /* Отступ сверху для размещения под "Verified Landlord" */
+  position: relative;
+}
+
+.emblem svg:first-child {
+  margin-left: 20px; /* Отступ между текстом и первой иконкой */
+}
+
+.emblem svg:last-child {
+  margin-top: -19px;
+  margin-left: -2px;
+  flex-shrink: 0; /* Предотвращает сжатие линии */
+}
+
+.emblem p {
+  margin-right: 10px;
+  background-color: #fff; /* Фон для текста, чтобы перекрыть линию */
+  padding: 0 5px;
+  z-index: 1;
   position: relative;
 }
