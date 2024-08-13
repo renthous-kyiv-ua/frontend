@@ -13,4 +13,191 @@ body, html {
   background-size: cover;
   color: #F4F4F4;
   padding: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.details-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.details-header h6 {
+    cursor: pointer;
+}
+
+.details-info {
+  padding: 30px;
+}
+
+.details-info h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #394425;
+}
+
+.details-info p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333333;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.details-info ul li {
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding-left: 30px;
+  line-height: 1.5;
+  position: relative;
+  font-weight: 450;
+  text-align: left;
+}
+
+.details-info ul li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  color: #040606; 
+  margin-right: 10px;
+}
+
+
+.more-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.expert-example {
+  position: relative;
+  width: 410px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #8A9084;
+  color: #F4F4F4;
+  padding: 15px;
+  text-align: left;
+  margin-left: 80px;
+}
+
+.expert-example img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.expert-example .rating-expert {
+  background-color: #A94802;
+  color: #F4F4F4;
+  padding: 5px;
+  text-align: center;
+  border-radius: 20px;
+  width: auto;
+  height: 35px;
+  position: absolute;
+  top: 195px;
+  right: 40px;
+  font-family: 'Helvetica Neue', arial;
+}
+
+.rating-expert p {
+  width: 63px;
+  height: 2px;
+  margin-left: 4px;
+  margin-top: -10px;
+  color: #F4F4F4;
+}
+
+.expert-example .discount-expert {
+  margin-top: -30px;
+  text-align: left;
+  margin-left: -60px;
+}
+
+.discount-expert p {
+    color: #F4F4F4;
+    font-size: 11pt;
+}
+
+.expert-example .details-expert {
+  margin-top: -5px;
+  margin-left: -60px;
+}
+
+.expert-example .description-expert {
+  margin-top: -5px;
+  margin-left: -60px;
+}
+
+.description-expert p {
+    font-size: 11pt;
+    color: #F4F4F4;
+    margin-top: -25px;
+}
+
+.details-expert p {
+  font-size: 11pt;
+  color: #F4F4F4;
+}
+
+.expert-example .price-expert {
+  margin-top: 15px;
+  color: #F4F4F4;
+  margin-left: 10px;
+}
+
+.price-expert p {
+  font-size: 13pt;
+}
+
+.expert-example .saved-expert {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.expert-info {
+  flex-basis: 45%;
+  padding: 10px;
+  font-size: 14px;
+  color: #333333;
+  font-family: Helvetica Neue, arial;
+}
+
+.verified {
+  display: flex;
+  align-items: center;
+  color: #A94802;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.verified svg {
+  margin-right: 10px;
+}
+
+.verified p {
+  margin: 0;
+  white-space: nowrap;
+  color: #A94802;
+}
+
+.emblem {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #000;
+  margin-top: 150px;
+  position: relative;
 }

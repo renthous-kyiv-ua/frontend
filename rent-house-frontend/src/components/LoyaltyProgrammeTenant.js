@@ -226,7 +226,7 @@ const LoyaltyProgrammeTenant = () => {
               Your current discount
             </div><br/>
             <div className='additional-information'>
-              <p>After the 4th booking you become a member of the loyalty program - <a href='/gh'>Expert</a></p>
+              <p>After the 4th booking you become a member of the loyalty program - Expert</p>
               <div className='program-entail'>
                 <img src={rentImage} alt="Renthouse" />
                 <div className='entail'>
