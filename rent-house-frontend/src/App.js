@@ -10,6 +10,7 @@ import MyReservationsTenant from './components/MyReservationsTenant';
 import LoyaltyProgrammeTenant from './components/LoyaltyProgrammeTenant';
 import WalletTenant from './components/WalletTenant';
 import ReferralLinkTenant from './components/ReferralLinkTenant';
+import SavedTenant from './components/SavedTenant';
 import AccountSettingsLandlord from './components/AccountSettingsLandlord';
 import MoreDetails from './components/MoreDetails';
 import WalletFAQ from './components/WalletFAQ';
@@ -30,6 +31,7 @@ function App() {
       <Route path="/loyalty" element={<LoyaltyProgrammeTenant />} />
       <Route path="/wallet" element={<WalletTenant />} />
       <Route path="/referral" element={<ReferralLinkTenant />} />
+      <Route path="/saved" element={<SavedTenant />} />
       <Route path="/details" element={<MoreDetails />} />
       <Route path="/faq" element={<WalletFAQ />} />
       <Route path="/landlord" element={<AccountSettingsLandlord />} />
