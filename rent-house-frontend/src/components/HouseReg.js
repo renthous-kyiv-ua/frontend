@@ -1,4 +1,6 @@
 import React, { useState} from 'react';
+import cooperImage from '../images/cooper.png';
+import shadowImage from '../images/shadow.png';
 import '../styles/HouseReg.css';
 
 const translations = {
@@ -29,11 +31,11 @@ const HouseReg = () => {
   };
 
   return (
-    <div className="property-page">
-      <header className="property-header">
+    <div className="house-reg-page">
+      <header className="house-reg-header">
         <nav className="navigation">
           <ul className="nav-list">
-            <li className="active"><a href='/'>{translations[language].home}</a></li>
+            <li><a href='/'>{translations[language].home}</a></li>
             <li><a href='/about'>{translations[language].about}</a></li>
             <li><a href='/tenant'>{translations[language].tenant}</a></li>
             <li><a href='/landlord'>{translations[language].landlord}</a></li>
@@ -64,10 +66,183 @@ const HouseReg = () => {
         </nav>
         <div className="white-strip"></div>
       </header>
-      <section className='property-panel'>
-        <h1>Referral link</h1>
-        <p>Send a link and Get 100 EUR for each invited friend!</p>
-        
+      <section className='house-reg-panel'>
+        <img src={shadowImage} alt="Shadow" className="shadow" />
+        <div className='house-reg-content'>
+          <h1>Cooperation</h1>
+          <p>Welcome to our home rental website! We are pleased to offer<br/>you a unique opportunity to become part of our community and<br/>get the most out of working with us.</p>
+          <img src={cooperImage} alt="Advantages" className="advantages" />
+        </div>
+        <div className="category-panel">
+          <div className="categories">
+            <span className="category active">Housing information</span>
+            <span className="category">Additional Information</span>
+            <span className="category">Posting an ad</span>
+          </div>
+          <div className="progress-bar">
+            <div className="progress"></div>
+          </div>
+        </div>
+      </section>
+      <section className="housing-info">
+        <div className="info-fields">
+          <div className="phone-field">
+            <label>Telephone</label>
+            <input type="text" placeholder="(000)-000-00-00" />
+          </div>
+          <div className="field-group">
+            <div className="field">
+              <label>Category</label>
+              <select>
+                <option>Apartment</option>
+              </select>
+            </div>
+            <div className="field">
+              <label>&nbsp;</label>
+              <select>
+                <option>Room</option>
+              </select>
+            </div>
+            <div className="field">
+              <label>&nbsp;</label>
+              <select>
+                <option>Long term rental</option>
+              </select>
+            </div>
+          </div>
+          <div className="field-group">
+            <div className="field">
+              <label>Location</label>
+              <select>
+                <option>Region</option>
+              </select>
+            </div>
+            <div className="field">
+              <label>&nbsp;</label>
+              <select>
+                <option>City</option>
+              </select>
+            </div>
+            <div className="field">
+              <label>&nbsp;</label>
+              <select>
+                <option>Address</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="map-wrapper">
+          <iframe 
+            title="Map"
+            src="https://www.google.com/maps/embed"
+            width="600" 
+            height="450" 
+            style={{border:0}} 
+            allowFullScreen=""
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div className="progress-indicator">
+          <div className="circle-progress">
+            <div className="percentage">70%</div>
+          </div>
+          <ul className="progress-list">
+            <li className="completed">General information</li>
+            <li className="completed">Main settings</li>
+            <li className="completed">Price</li>
+            <li className="completed">Photo and video</li>
+            <li>Description</li>
+          </ul>
+        </div>
+      </section>
+      <section className="additional-info">
+        <div className="tabs">
+          <span className="tab">Housing information</span>
+          <span className="tab active">Additional Information</span>
+          <span className="tab">Posting an ad</span>
+        </div>
+        <div className="field-group">
+          <div className="field">
+            <label>Type</label>
+            <div className="btn-group">
+              <button className="btn">Primary housing</button>
+              <button className="btn active">Secondary housing</button>
+            </div>
+          </div>
+          {/* <div className="field">
+            <label>Rooms</label>
+            <div className="btn-group">
+              <button className="btn">1</button>
+              <button className="btn active">2</button>
+              <button className="btn">3</button>
+              <button className="btn">4</button>
+              <button className="btn">5</button>
+              <button className="btn">6</button>
+              <button className="btn">7+</button>
+            </div>
+          </div>
+          <div className="field">
+            <label>Wall material</label>
+            <div className="btn-group">
+              <button className="btn">Ceramic brick</button>
+              <button className="btn">Ceramic hollow brick</button>
+              <button className="btn active">Ceramic block</button>
+              <button className="btn">Sand-lime brick</button>
+              <button className="btn">Foam block</button>
+              <button className="btn">Reinforced concrete panel</button>
+            </div>
+          </div>
+        </div>
+        <div className="field-group">
+          <div className="field">
+            <label>Total area, m²</label>
+            <input type="text" value="100" />
+          </div>
+          <div className="field">
+            <label>Living space, m²</label>
+            <input type="text" value="100" />
+          </div>
+          <div className="field">
+            <label>Kitchen, m²</label>
+            <input type="text" value="10" />
+          </div>
+          <div className="field">
+            <label>Total floors</label>
+            <input type="text" value="1,2,3..." />
+          </div>
+          <div className="field">
+            <label>Barh Parking</label>
+            <input type="text" value="1,2,3..." />
+          </div>
+        </div>
+        <div className="field-group">
+          <div className="field">
+            <label>Heating</label>
+            <div className="btn-group">
+              <button className="btn active">Centralized</button>
+              <button className="btn">Individual</button>
+              <button className="btn">Combined</button>
+            </div>
+          </div>
+          <div className="field">
+            <label>Year of constr.</label>
+            <input type="text" value="2020" />
+          </div>
+          <div className="field">
+            <label>Finishing</label>
+            <div className="btn-group">
+              <button className="btn">Without finishing</button>
+              <button className="btn">Rough finish</button>
+              <button className="btn active">Modern renovation</button>
+              <button className="btn">Designer renovation</button>
+              <button className="btn">Repair 80-90 x</button>
+              <button className="btn">Renovation 2000's</button>
+              <button className="btn">Renovation 2010's</button>
+            </div>
+          </div>*/}
+        </div>
+        <button className="show-all-btn">Show all</button>
       </section>
     </div>
   );
