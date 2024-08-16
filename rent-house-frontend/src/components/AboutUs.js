@@ -145,6 +145,13 @@ const AboutUs = () => {
           </header>
           <section className='about-description'>
             <div className='description'>
+              <div className='marshrut'>
+                <h6 onClick={() => window.location.href='/about'}>About</h6>
+                <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L7.25 7.25L1 13.5" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h6 onClick={() => window.location.href='/'}>Home</h6>
+              </div>
               <h1>About US</h1>
               <p>Welcome to our housing search site! We offer<br/>thousands of vetted listings, easy searching, and full<br/>support every step of the way to help you find your<br/>ideal home quickly and easily.</p>
             </div>

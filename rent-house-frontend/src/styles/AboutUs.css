@@ -168,6 +168,14 @@ body, html {
   margin-left: 60px;
 }
 
+.marshrut h6, .marshrut svg {
+  display: inline;
+  justify-content: space-between;
+  color: #F4F4F4;
+  margin-right: 570px;
+  margin-left: -640px;
+}
+
 .long-description {
   margin-top: 50px;
   color: #040606;
