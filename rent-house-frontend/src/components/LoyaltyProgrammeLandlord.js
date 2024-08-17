@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../styles/MyProperties.css';
+import '../styles/LoyaltyProgrammeLandlord.css';
 
 const translations = {
   en: {
@@ -19,7 +19,7 @@ const translations = {
   }
 };
 
-const MyProperties = () => {
+const LoyaltyProgrammeLandlord = () => {
 
   const [language, setLanguage] = useState('en');
   const [isAccountComboboxOpen, setIsAccountComboboxOpen] = useState(false);
@@ -50,14 +50,14 @@ const MyProperties = () => {
   }, []);
     
     return (
-        <div className='my-properties'>
-          <header className="properties-header">
+        <div className='lan-loyalty'>
+          <header className="lan-loyalty-header">
             <nav className="navigation">
               <ul className="nav-list">
                 <li><a href='/'>{translations[language].home}</a></li>
                 <li><a href='/about'>{translations[language].about}</a></li>
                 <li><a href='/tenant'>{translations[language].tenant}</a></li>
-                <li><a href='/landlord'>{translations[language].landlord}</a></li>
+                <li className='active'><a href='/landlord'>{translations[language].landlord}</a></li>
                 <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
               </ul>
               <div className="logo">
@@ -147,7 +147,7 @@ const MyProperties = () => {
             <div className="white-strip"></div>
           </header>
           <section className='lan-panel'>
-            <h1>My properties</h1><br/><br/>
+            <h1>Loyalty programme</h1><br/><br/>
             <p>We will take care of your peace of mind and comfort. Trust is<br/>our motto...</p>
             <div className='edit-account-2'>
               <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -155,7 +155,7 @@ const MyProperties = () => {
               </svg>
               <p>Edit title</p>
             </div>
-            <div className='lan-panel-settings-2'>
+            <div className='lan-panel-settings-3'>
               <button onClick={() => window.location.href='/landlord'}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.5 37.8V35.5C12.5 32.45 13.7116 29.5249 15.8683 27.3683C18.0249 25.2116 20.95 24 24 24C27.05 24 29.9751 25.2116 32.1317 27.3683C34.2884 29.5249 35.5 32.45 35.5 35.5V37.8" stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round"/>
@@ -164,13 +164,13 @@ const MyProperties = () => {
                   </svg>
                   &nbsp;&nbsp;Account Settings
               </button>
-              <button className='active-button' onClick={() => window.location.href='/myProperties'}>
+              <button onClick={() => window.location.href='/myProperties'}>
                   <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1337 1.25479C15.6618 0.915069 16.3382 0.915069 16.8663 1.25479L30.259 9.87018C31.0066 10.3511 31.2248 11.3501 30.7463 12.1015C30.2679 12.853 29.2739 13.0723 28.5264 12.5914L27.2499 11.7702V24.6923C27.2499 27.0714 25.3311 29 22.9642 29H9.0358C6.6689 29 4.75015 27.0714 4.75015 24.6923V11.7702L3.47365 12.5914C2.72605 13.0723 1.73215 12.853 1.25369 12.1015C0.77523 11.3501 0.993405 10.3511 1.741 9.87018L15.1337 1.25479ZM10.3751 12.8462C10.3751 12.2514 10.8548 11.7692 11.4465 11.7692H14.6607C15.2525 11.7692 15.7321 12.2514 15.7321 12.8462V16.0769C15.7321 16.6717 15.2525 17.1538 14.6607 17.1538H11.4465C10.8548 17.1538 10.3751 16.6717 10.3751 16.0769V12.8462ZM11.4465 19.8462C11.4465 19.2514 11.9262 18.7692 12.5179 18.7692H14.6607C15.2525 18.7692 15.7321 19.2514 15.7321 19.8462V22C15.7321 22.5948 15.2525 23.0769 14.6607 23.0769H12.5179C11.9262 23.0769 11.4465 22.5948 11.4465 22V19.8462ZM17.3393 13.9231C17.3393 13.3283 17.819 12.8462 18.4107 12.8462H20.5535C21.1452 12.8462 21.6249 13.3283 21.6249 13.9231V16.0769C21.6249 16.6717 21.1452 17.1538 20.5535 17.1538H18.4107C17.819 17.1538 17.3393 16.6717 17.3393 16.0769V13.9231ZM17.3393 19.8462C17.3393 19.2514 17.819 18.7692 18.4107 18.7692H20.5535C21.1452 18.7692 21.6249 19.2514 21.6249 19.8462V22C21.6249 22.5948 21.1452 23.0769 20.5535 23.0769H18.4107C17.819 23.0769 17.3393 22.5948 17.3393 22V19.8462Z" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                   &nbsp;&nbsp;My properties
               </button>
-              <button onClick={() => window.location.href='/lanLoyalty'}>
+              <button className='active-button' onClick={() => window.location.href='/lanLoyalty'}>
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.089 13.3299L12.5106 24L2.93227 13.3299C2.30049 12.6384 1.80284 11.8072 1.47067 10.8888C1.1385 9.97031 0.979002 8.98445 1.00221 7.99325C1.02543 7.00206 1.23085 6.02701 1.60555 5.1295C1.98025 4.23199 2.51611 3.43147 3.17938 2.77834C3.84265 2.12521 4.61897 1.63362 5.45944 1.33454C6.29992 1.03545 7.18635 0.935346 8.06292 1.04052C8.93948 1.1457 9.78719 1.45388 10.5527 1.94565C11.3181 2.43743 11.9848 3.10215 12.5106 3.89796C13.0388 3.10793 13.7062 2.44901 14.4711 1.96246C15.2361 1.4759 16.0821 1.17217 16.9562 1.07028C17.8303 0.968394 18.7137 1.07054 19.5511 1.37032C20.3885 1.67011 21.1619 2.16108 21.8228 2.8125C22.4837 3.46393 23.018 4.26179 23.3922 5.15616C23.7664 6.05052 23.9724 7.02212 23.9974 8.01017C24.0224 8.99821 23.8658 9.98142 23.5374 10.8983C23.2091 11.8151 22.716 12.6458 22.089 13.3385" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12.5101 3.88916L8.30459 8.61948C8.06516 8.88885 7.93066 9.25416 7.93066 9.63506C7.93066 10.016 8.06516 10.3813 8.30459 10.6507L8.99806 11.4307C9.87927 12.4218 11.3096 12.4218 12.1909 11.4307L13.468 9.99418C13.8452 9.5694 14.2931 9.23242 14.7861 9.0025C15.2792 8.77258 15.8077 8.65424 16.3415 8.65424C16.8752 8.65424 17.4038 8.77258 17.8968 9.0025C18.3899 9.23242 18.8378 9.5694 19.215 9.99418L22.0885 13.2263M13.1487 17.5357L15.7029 20.4086M16.3415 13.9445L18.8957 16.8174" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -199,11 +199,11 @@ const MyProperties = () => {
               </button>
             </div>
           </section>
-          <section className='lan-properties'>
+          <section className='lan-loyalty-programme'>
             
           </section>
         </div>
     );
 }
 
-export default MyProperties;
+export default LoyaltyProgrammeLandlord;
