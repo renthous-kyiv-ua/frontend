@@ -12,6 +12,7 @@ import WalletTenant from './components/WalletTenant';
 import ReferralLinkTenant from './components/ReferralLinkTenant';
 import SavedTenant from './components/SavedTenant';
 import AccountSettingsLandlord from './components/AccountSettingsLandlord';
+import MyProperties from './components/MyProperties';
 import MoreDetails from './components/MoreDetails';
 import WalletFAQ from './components/WalletFAQ';
 import HouseReg from './components/HouseReg';
@@ -37,6 +38,7 @@ function App() {
       <Route path="/faq" element={<WalletFAQ />} />
       <Route path="/property" element={<HouseReg />} />
       <Route path="/landlord" element={<AccountSettingsLandlord />} />
+      <Route path="/myProperties" element={<MyProperties />} />
       <Route path="/admin" element={<AdminMainPanel />} />
       <Route path="/admin/users" element={<UsersAdmin />} />
       <Route path="/admin/properties" element={<PropertiesAdmin />} />

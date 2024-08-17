@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../styles/AccountSettingsLandlord.css';
+import '../styles/MyProperties.css';
 
 const translations = {
   en: {
@@ -19,7 +19,7 @@ const translations = {
   }
 };
 
-const AccountSettingsLandlord = () => {
+const MyProperties = () => {
 
   const [language, setLanguage] = useState('en');
   const [isAccountComboboxOpen, setIsAccountComboboxOpen] = useState(false);
@@ -50,14 +50,14 @@ const AccountSettingsLandlord = () => {
   }, []);
     
     return (
-        <div className='landlord-account-settings'>
-          <header className="landlord-account-header">
+        <div className='my-properties'>
+          <header className="properties-header">
             <nav className="navigation">
               <ul className="nav-list">
                 <li><a href='/'>{translations[language].home}</a></li>
                 <li><a href='/about'>{translations[language].about}</a></li>
-                <li><a href='/tenant'>{translations[language].tenant}</a></li>
-                <li className='active'><a href='/landlord'>{translations[language].landlord}</a></li>
+                <li className='active'><a href='/tenant'>{translations[language].tenant}</a></li>
+                <li><a href='/landlord'>{translations[language].landlord}</a></li>
                 <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
               </ul>
               <div className="logo">
@@ -147,23 +147,16 @@ const AccountSettingsLandlord = () => {
             <div className="white-strip"></div>
           </header>
           <section className='lan-panel'>
-            <h1>Landlord<br/>Account Settings</h1>
+            <h1>My properties</h1><br/><br/>
             <p>We will take care of your peace of mind and comfort. Trust is<br/>our motto...</p>
-            <button className='avatar'>
-              <svg width="36" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.1456 28.7795H5.1758C4.26878 28.7795 3.3989 28.4144 2.75754 27.7645C2.11617 27.1146 1.75586 26.2331 1.75586 25.314V9.71903C1.75586 8.79991 2.11617 7.91844 2.75754 7.26852C3.3989 6.61861 4.26878 6.25349 5.1758 6.25349H6.88577C7.7928 6.25349 8.66267 5.88837 9.30404 5.23845C9.9454 4.58854 10.3057 3.70707 10.3057 2.78795C10.3057 2.32839 10.4859 1.88765 10.8066 1.56269C11.1272 1.23774 11.5622 1.05518 12.0157 1.05518H22.2755C22.729 1.05518 23.164 1.23774 23.4846 1.56269C23.8053 1.88765 23.9855 2.32839 23.9855 2.78795C23.9855 3.70707 24.3458 4.58854 24.9872 5.23845C25.6285 5.88837 26.4984 6.25349 27.4054 6.25349H29.1154C30.0224 6.25349 30.8923 6.61861 31.5337 7.26852C32.175 7.91844 32.5353 8.79991 32.5353 9.71903V15.7837M23.9855 27.0467H34.2453H23.9855ZM29.1154 21.8484V32.245V21.8484Z" fill="#8A9084"/>
-              <path d="M17.1456 28.7795H5.1758C4.26878 28.7795 3.3989 28.4144 2.75754 27.7645C2.11617 27.1146 1.75586 26.2331 1.75586 25.314V9.71903C1.75586 8.79991 2.11617 7.91844 2.75754 7.26852C3.3989 6.61861 4.26878 6.25349 5.1758 6.25349H6.88577C7.7928 6.25349 8.66267 5.88837 9.30404 5.23845C9.9454 4.58854 10.3057 3.70707 10.3057 2.78795C10.3057 2.32839 10.4859 1.88765 10.8066 1.56269C11.1272 1.23774 11.5622 1.05518 12.0157 1.05518H22.2755C22.729 1.05518 23.164 1.23774 23.4846 1.56269C23.8053 1.88765 23.9855 2.32839 23.9855 2.78795C23.9855 3.70707 24.3458 4.58854 24.9872 5.23845C25.6285 5.88837 26.4984 6.25349 27.4054 6.25349H29.1154C30.0224 6.25349 30.8923 6.61861 31.5337 7.26852C32.175 7.91844 32.5353 8.79991 32.5353 9.71903V15.7837M23.9855 27.0467H34.2453M29.1154 21.8484V32.245" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12.0156 16.6495C12.0156 18.0282 12.5561 19.3504 13.5181 20.3252C14.4802 21.3001 15.785 21.8478 17.1455 21.8478C18.5061 21.8478 19.8109 21.3001 20.7729 20.3252C21.735 19.3504 22.2755 18.0282 22.2755 16.6495C22.2755 15.2708 21.735 13.9486 20.7729 12.9737C19.8109 11.9988 18.5061 11.4512 17.1455 11.4512C15.785 11.4512 14.4802 11.9988 13.5181 12.9737C12.5561 13.9486 12.0156 15.2708 12.0156 16.6495Z" fill="#8A9084" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <div className='edit-account'>
+            <div className='edit-account-2'>
               <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.7952 5.33333L11.7127 6.16889L2.85008 14.2222H1.95211V13.4044L10.7952 5.33333ZM14.309 0C14.065 0 13.8112 0.0888889 13.6257 0.257778L11.8395 1.88444L15.4998 5.21778L17.2859 3.59111C17.6666 3.24444 17.6666 2.66667 17.2859 2.33778L15.002 0.257778C14.8068 0.08 14.5627 0 14.309 0ZM10.7952 2.83556L0 12.6667V16H3.66021L14.4554 6.16889L10.7952 2.83556Z" fill="#F4F4F4"/>
               </svg>
               <p>Edit title</p>
             </div>
-            <div className='lan-panel-settings'>
-              <button className='active-button' onClick={() => window.location.href='/landlord'}>
+            <div className='lan-panel-settings-2'>
+              <button onClick={() => window.location.href='/landlord'}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.5 37.8V35.5C12.5 32.45 13.7116 29.5249 15.8683 27.3683C18.0249 25.2116 20.95 24 24 24C27.05 24 29.9751 25.2116 32.1317 27.3683C34.2884 29.5249 35.5 32.45 35.5 35.5V37.8" stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round"/>
                   <path d="M23.9996 24.0002C25.8296 24.0002 27.5846 23.2732 28.8786 21.9792C30.1726 20.6852 30.8996 18.9302 30.8996 17.1002C30.8996 15.2702 30.1726 13.5152 28.8786 12.2212C27.5846 10.9272 25.8296 10.2002 23.9996 10.2002C22.1696 10.2002 20.4146 10.9272 19.1206 12.2212C17.8266 13.5152 17.0996 15.2702 17.0996 17.1002C17.0996 18.9302 17.8266 20.6852 19.1206 21.9792C20.4146 23.2732 22.1696 24.0002 23.9996 24.0002Z" stroke="#F4F4F4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -171,7 +164,7 @@ const AccountSettingsLandlord = () => {
                   </svg>
                   &nbsp;&nbsp;Account Settings
               </button>
-              <button onClick={() => window.location.href='/myProperties'}>
+              <button className='active-button' onClick={() => window.location.href='/myProperties'}>
                   <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1337 1.25479C15.6618 0.915069 16.3382 0.915069 16.8663 1.25479L30.259 9.87018C31.0066 10.3511 31.2248 11.3501 30.7463 12.1015C30.2679 12.853 29.2739 13.0723 28.5264 12.5914L27.2499 11.7702V24.6923C27.2499 27.0714 25.3311 29 22.9642 29H9.0358C6.6689 29 4.75015 27.0714 4.75015 24.6923V11.7702L3.47365 12.5914C2.72605 13.0723 1.73215 12.853 1.25369 12.1015C0.77523 11.3501 0.993405 10.3511 1.741 9.87018L15.1337 1.25479ZM10.3751 12.8462C10.3751 12.2514 10.8548 11.7692 11.4465 11.7692H14.6607C15.2525 11.7692 15.7321 12.2514 15.7321 12.8462V16.0769C15.7321 16.6717 15.2525 17.1538 14.6607 17.1538H11.4465C10.8548 17.1538 10.3751 16.6717 10.3751 16.0769V12.8462ZM11.4465 19.8462C11.4465 19.2514 11.9262 18.7692 12.5179 18.7692H14.6607C15.2525 18.7692 15.7321 19.2514 15.7321 19.8462V22C15.7321 22.5948 15.2525 23.0769 14.6607 23.0769H12.5179C11.9262 23.0769 11.4465 22.5948 11.4465 22V19.8462ZM17.3393 13.9231C17.3393 13.3283 17.819 12.8462 18.4107 12.8462H20.5535C21.1452 12.8462 21.6249 13.3283 21.6249 13.9231V16.0769C21.6249 16.6717 21.1452 17.1538 20.5535 17.1538H18.4107C17.819 17.1538 17.3393 16.6717 17.3393 16.0769V13.9231ZM17.3393 19.8462C17.3393 19.2514 17.819 18.7692 18.4107 18.7692H20.5535C21.1452 18.7692 21.6249 19.2514 21.6249 19.8462V22C21.6249 22.5948 21.1452 23.0769 20.5535 23.0769H18.4107C17.819 23.0769 17.3393 22.5948 17.3393 22V19.8462Z" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -206,97 +199,11 @@ const AccountSettingsLandlord = () => {
               </button>
             </div>
           </section>
-          <section className='edit-info'>
-            <div className='edit-person'>
-              <div className='user-fullname'>
-                <p>Name</p>
-                <div className='fullname'>
-                  <label>First name(s)<span class="necessarily">*</span></label>
-                  <br/>
-                  <input placeholder='Enter First Name'/><br/>
-                  <label>Last name(s)<span class="necessarily">*</span></label>
-                  <br/>
-                  <input placeholder='Enter Last Name'/>
-                </div>
-              </div>
-              <br/>
-              <div className='display-name'>
-                <p>Display name</p>
-                <input placeholder='Choose a display name'/>
-              </div>
-              <div className='birth-date'>
-                <p>Birth date</p>
-                <input placeholder='YYYY/DD/MM'/>
-                <label className='note'>We will congratulate you with your birthday and give you a gift certificate</label>
-              </div>
-              <div className='phone-number'>
-                <p>Phone number</p>
-                <input type='number' placeholder='+38(0__)___ __ __'/>
-                <label className='note'>Phone not displayed on this site</label>
-              </div>
-              <div className='about-me'>
-                <p>About me</p>
-                <textarea placeholder='Leave a few words about yourself'/>
-              </div>
-              <div className='confirm-data'>
-                <input type='checkbox'/>
-                <p>I consent to Renthouse.com storing my passport information in accordance with the privacy statement</p>
-              </div>
-            </div>
-            <div className='update-info'>
-              <button>Save</button>
-              <button>Cancel</button>
-            </div>
-            <div className='edit-data'>
-              <div className='email-address'>
-                <p>Email address</p>
-                <input type='email' placeholder='anna.romanova@gmail.com'/>
-                <p className='note2'>Email (not displayed on the site)</p>
-              </div>
-              <div className='country'>
-                <p>Country</p>
-                <select>
-                  <option>Choose the country</option>
-                  <option>Ukraine</option>
-                  <option>Poland</option>
-                  <option>England</option>
-                  <option>Spain</option>
-                </select>
-              </div>
-              <div className='address'>
-                <p>Address</p>
-                <input type='address' placeholder='Add your town, street name and house/apartment numder, postcode'/>
-              </div>
-              <div className='passport-details'>
-                <p>Passport details</p>
-                <p>Save your passport details to use when reservation your next stay, transfer or attraction.</p>
-                <div className='passport-fullname'>
-                  <label>First name(s)<span class="necessarily">*</span></label>
-                  <input placeholder='Enter First Name'/><br/>
-                  <label>Last name(s)<span class="necessarily">*</span></label>
-                  <input placeholder='Enter Last Name'/>
-                  <p>Please enter the name exactly as written on the passport or other official travel document.</p>
-                </div>
-                <div className='passport-country'>
-                  <label>Issuing country<span class="necessarily">*</span></label>
-                  <select>
-                    <option>Select issuing country</option>
-                    <option>Ukraine</option>
-                    <option>Poland</option>
-                    <option>England</option>
-                    <option>Spain</option>
-                  </select>
-                  <label>Passport number<span class="necessarily">*</span></label>
-                  <input placeholder='Enter document number'/>
-                  <label>Expiry date<span class="necessarily">*</span></label>
-                  <input placeholder='YYYY/DD/MM'/>
-                  <p>We’ll safely store this data and remove it after two years of inactivity.</p>
-                </div>
-              </div>
-            </div>
+          <section className='lan-properties'>
+            
           </section>
         </div>
     );
 }
 
-export default AccountSettingsLandlord;
+export default MyProperties;
