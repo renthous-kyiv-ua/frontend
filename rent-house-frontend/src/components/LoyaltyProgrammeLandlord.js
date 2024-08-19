@@ -198,9 +198,75 @@ const LoyaltyProgrammeLandlord = () => {
                 &nbsp;&nbsp;Incoming messages
               </button>
             </div>
+            <div className="lan-category-panel">
+              <div className="lan-categories">
+                <span className="category active">Partnership</span>
+                <span className="category">Discount</span>
+                <span className="category">Seasonal</span>
+              </div>
+              <div className="progress-bar">
+                <div className="progress"></div>
+              </div>
+            </div>
           </section>
           <section className='lan-loyalty-programme'>
-            
+            <div className='lan-discount-plan'>
+              <label>A basic level</label>
+              <button>
+                <h3>1%</h3>
+                <p>Registration on the site</p>
+                <p>Placement of at least one object</p>
+              </button>
+              <label>Silver level</label>
+              <button className='active-plan'>
+                <h3>5%</h3>
+                <p>Placement of at least 5 objects</p>
+                <p>Minimum 10 successful reservations</p>
+              </button>
+              <label>Gold level</label>
+              <button>
+                <h3>10%</h3>
+                <p>Placement of at least 10 objects</p>
+                <p>Minimum 50 successful reservations</p>
+                <p>The average rating of objects is not lower than 4.5</p>
+              </button>
+              <label>Platinum level</label>
+              <button>
+                <h3>20%</h3>
+                <p>Placement of at least 20 objects</p>
+                <p>Minimum 100 successful reservations</p>
+                <p>The average rating of objects is not lower than 4.8</p>
+              </button>
+            </div>
+            <div className='current-plan'>
+              Your current discount
+            </div><br/>
+            <div className='advantages'>
+              <div className='advantage'>
+                <h6>Advantages:</h6>
+                <p>Access to a database of potential tenants.<br/>Basic analytics on views and bookings<br/>of properties.<br/>Support 24/7.</p>
+              </div>
+              <div className='advantage'>
+                <h6>Advantages:</h6>
+                <p>Increased visibility of objects in search (by 5%).<br/>5% discount on professional photography services.<br/>Access to advanced analytics and reports.</p>
+              </div>
+              <div className='advantage'>
+                <h6>Advantages:</h6>
+                <p>Increased visibility of objects in search (by 10%).<br/>Free professional photography of one object per year.<br/>Access to a personal manager.<br/>15% discount on advertising promotion services.</p>
+              </div>
+              <div className='advantage'>
+                <h6>Advantages:</h6>
+                <p>Increased visibility of objects in search (by 30%).<br/>Free professional photography of two objects per year.<br/>Access to a personal manager and support team.<br/>20% discount on advertising promotion services.<br/>Opportunity to participate in closed events and trainings for landlords.</p>
+              </div>
+            </div>
+            <div className='bonuses'>
+              <div className='additional'>
+                Additional bonuses and promotions:
+              </div>
+              <div className='example-bonuses'>
+                Example of bonuses:
+              </div>
+            </div>
           </section>
         </div>
     );
