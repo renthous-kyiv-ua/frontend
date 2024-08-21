@@ -147,7 +147,7 @@ const MyRules = () => {
             <div className="white-strip"></div>
           </header>
           <section className='rules-panel'>
-            <h1>Loyalty programme</h1><br/><br/>
+            <h1>My rules</h1><br/><br/>
             <p>We will take care of your peace of mind and comfort. Trust is<br/>our motto...</p>
             <div className='edit-account-2'>
               <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
