@@ -245,65 +245,275 @@ body, html {
 }
 
 .lan-loyalty-programme {
-    margin-top: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 40px;
 }
 
 .lan-discount-plan {
-  margin-top: 15px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.lan-discount-plan label {
-  margin-top: -180px;
-  font-weight: 500;
-  color: #A94802;
-}
-
-.lan-discount-plan button {
-  width: 300px;
-  height: 150px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #DADDD7;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-top: 50px;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.lan-discount-plan button h3 {
-  margin: 0;
-  font-size: 24px;
-  color: #040606;
-  display: flex;
-  align-items: center;
+.plan-item {
+  background-color: #DADDD7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 32%;
+  text-align: center;
+  margin-left: 20px;
 }
 
-.lan-discount-plan button p {
-  margin: 5px 0 0 0;
-  font-size: 14px;
-  color: #040606;
+.plan-item label {
+  color: #A94802;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
   text-align: center;
 }
 
+.plan-details h3 {
+  margin: 0;
+  font-size: 36px;
+  color: #040606;
+}
+
+.plan-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
 .active-plan {
-  border: 2px solid #A94802;
+  border: 2px solid #f06a34;
 }
 
 .current-plan {
+  width: 270px;
+  background-color: #f2d7d5;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-left: 310px;
+  border-radius: 5px;
+}
+
+.advantages {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  gap: 20px;
+}
+
+.advantage {
   width: 300px;
-  border-radius: 20px;
-  background-color: #E6D0C4;
+  text-align: left;
+  margin-left: -350px;
+}
+
+.advantage h6 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.advantage p {
+  font-size: 14px;
   color: #040606;
-  padding: 5px;
-  margin-left: 435px;
-  margin-top: 10px;
+  text-align: left;
+  margin-left: -50px;
+}
+
+.bonuses {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.additional, .example-bonuses {
+  width: 1000px;
+  font-weight: bold;
+  color: #333;
+  border-radius: 10px 10px 0px 0px;
+  background-color: #DADDD7;
+  margin-left: 50px;
+  padding: 20px;
+}
+
+
+
+.additional-describ {
+  padding: 20px;
+  background-color: #DADDD7;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.divider-describ {
+  width: 2px;
+  height: auto;
+  background-color: #CCC;
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.make-quesrtion {
+  margin-left: -840px;
+}
+
+.make-quesrtion p {
+  color: #F4F4F4;
+}
+
+.make-quesrtion a {
+  color: #A94802;
+  text-decoration: none;
+}
+
+.lan-loyalty-footer {
+  background-color: #1F2C13;
+  color: #F4F4F4;
+  padding: 20px 0;
+  height: 610px;
+  margin-top: 60px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.logo-footer svg {
+  margin-top: -10px;
+}
+
+.logo-footer p {
+  font-size: 25px;
+  font-family: Helvetica Neue, Arial;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.footer-sections {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.footer-column {
+  flex: 1;
+  margin: 0 20px;
+  text-align: left;
+  justify-content: left;
+}
+
+.footer-column p {
+  margin: 5px 0;
+  text-align: left;
+  margin-left: -100px;
+  cursor: pointer;
+}
+
+.register-property-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  margin-top: -10px;
+}
+
+.register-property {
+  width: 380px;
+  text-align: center;
+  border: 1px solid #F4F4F4;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.register-property p {
+  margin-left: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.reg-prop {
+  width: 400px;
+  background-color: #fff;
+  color: #1F2C13;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reg-prop:hover {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-left: -80px;
+  margin-top: 30px;
+}
+
+.footer-payments, .footer-apps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-apps {
+  margin-left: -120px;
+}
+
+.footer-apps svg {
+  margin-left: 40px;
+}
+
+.footer-copy {
+  text-align: right;
+  margin-right: -80px;
+}
+
+.white-strip-footer {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 99vw;
+  position: absolute;
+  margin-left: -141px;
+  margin-top: -25px;
+}
+.white-strip-footer-2 {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 99vw;
+  position: absolute;
+  margin-left: -141px;
+  margin-top: 20px;
+}
+
+.download-app {
+  margin-left: 100px;
 }
