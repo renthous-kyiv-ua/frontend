@@ -87,26 +87,26 @@ const HouseReg = () => {
       <section className="housing-info">
         <div className="info-fields">
           <div className="phone-field">
-            <label>Telephone</label>
-            <input type="text" placeholder="(000)-000-00-00" />
+            <label>Object name</label>
+            <input type="text" placeholder="Enter the name of the object" />
           </div>
           <div className="field-group">
             <div className="field">
               <label>Category</label>
               <select>
-                <option>Apartment</option>
+                <option>Object category</option>
               </select>
             </div>
             <div className="field">
               <label>&nbsp;</label>
               <select>
-                <option>Room</option>
+                <option>Number of people</option>
               </select>
             </div>
             <div className="field">
               <label>&nbsp;</label>
               <select>
-                <option>Long term rental</option>
+                <option>Term rental</option>
               </select>
             </div>
           </div>
@@ -114,7 +114,7 @@ const HouseReg = () => {
             <div className="field">
               <label>Location</label>
               <select>
-                <option>Region</option>
+                <option>Country</option>
               </select>
             </div>
             <div className="field">

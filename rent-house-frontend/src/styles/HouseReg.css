@@ -221,7 +221,7 @@ body, html {
 }
 
 .phone-field input {
-  width: 200px;
+  width: 300px;
   margin-left: 20px;
 }
 
@@ -230,6 +230,12 @@ body, html {
   flex-direction: column;
   flex-grow: 1;
   margin-right: 20px;
+}
+
+.field select {
+  background-color: #ccc;
+  padding: 10px;
+  width: 250px;
 }
 
 .field:last-child {
@@ -256,9 +262,10 @@ input[type="text"], select {
 }
 
 .progress-indicator {
-  display: flex;
+  display: block;
   align-items: center;
   margin-top: 20px;
+  margin-left: 900px;
 }
 
 .circle-progress {
@@ -272,7 +279,7 @@ input[type="text"], select {
   font-size: 24px;
   font-weight: bold;
   color: #333;
-  margin-right: 20px;
+  margin-left: 50px;
 }
 
 .percentage {

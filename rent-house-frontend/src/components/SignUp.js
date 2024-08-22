@@ -50,8 +50,7 @@ const translations = {
   }
 };
 
-const SignUp = () => { 
-
+const SignUp = () => {
   const [language, setLanguage] = useState('en');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -60,8 +59,8 @@ const SignUp = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [role, setRole] = useState('tenant');
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -71,14 +70,30 @@ const SignUp = () => {
     setShowPassword(!showPassword);
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
+
   const handleSignUp = async () => {
+    setError('');
+
     if (!firstName || !lastName || !email || !password || !repeatPassword) {
       setError('All fields are required');
       return;
     }
 
-    if (!email.includes('@')) {
+    if (!validateEmail(email)) {
       setError('Invalid email address');
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setError('Password must be at least 8 characters long');
       return;
     }
 
@@ -125,7 +140,7 @@ const SignUp = () => {
                 <option value="ua">UA</option>
               </select>
             </div>
-            <button onClick={() => window.location.href='/signin'} className="login">Registration / Login</button>
+            <button onClick={() => window.location.href='/signin'} className="login">{translations[language].regLog}</button>
           </div>
         </nav>
         <div className="white-strip"></div>
@@ -134,13 +149,13 @@ const SignUp = () => {
           <p className="create-acc">Or, <span className="highlight"><a href="/signin">Sign in</a></span></p>
           {error && <p className="error">{error}</p>}
           <div className="person">
-            <button className={`tenant ${role === 'tenant' ? 'active' : ''}`} onClick={() => setRole('tenant')}>Tenant</button>
-            <button className={`landlord ${role === 'landlord' ? 'active' : ''}`} onClick={() => setRole('landlord')}>Landlord</button>
+            <button className={`tenant ${role === 'tenant' ? 'active' : ''}`} onClick={() => setRole('tenant')}>{translations[language].tenant}</button>
+            <button className={`landlord ${role === 'landlord' ? 'active' : ''}`} onClick={() => setRole('landlord')}>{translations[language].landlord}</button>
           </div><br/><br/>
           <label>First Name, Last Name</label>
           <input 
             type="text" 
-            placeholder="Enter your passport First Name, Last Name" 
+            placeholder="Enter your First Name" 
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           /><br/>
@@ -161,10 +176,9 @@ const SignUp = () => {
           <div className="password-wrapper">
             <input 
               type={showPassword ? "text" : "password"} 
-              id="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
+              placeholder="Password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
               {showPassword ? (
@@ -182,40 +196,33 @@ const SignUp = () => {
                 </svg>
               )}
             </button>
-          </div>
-          <label>Repeat password</label>
-          <input 
-            type={showPassword ? "text" : "password"} 
-            placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" 
-            value={repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
-          /><br/>
-          <a className='forgot' href='/forgot_pass'>Forgot your password?</a>
-          <button class="email-button" onClick={handleSignUp}>Create an account</button>
-          <p>or use one of these options</p>
-          <div class="other-options">
-            <button class="social-button">
-              <div class="inner-square">
-                <svg width="18" height="31" viewBox="0 0 18 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17 1H12.6364C10.7075 1 8.85767 1.76384 7.49377 3.12348C6.12987 4.48311 5.36364 6.32718 5.36364 8.25V12.6H1V18.4H5.36364V30H11.1818V18.4H15.5455L17 12.6H11.1818V8.25C11.1818 7.86544 11.3351 7.49662 11.6078 7.2247C11.8806 6.95277 12.2506 6.8 12.6364 6.8H17V1Z" fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </div><br/>
+          <label>Repeat Password</label>
+          <div className="password-wrapper">
+            <input 
+              type={showPassword ? "text" : "password"} 
+              placeholder="Password" 
+              value={repeatPassword}
+              onChange={(e) => setRepeatPassword(e.target.value)}
+            />
+            <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
+              {showPassword ? (
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-              </div>
+              ) : (
+                <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
             </button>
-            <button class="social-button">
-              <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30.6985 12.4643H29.45V12.4H15.5V18.6H24.2598C22.9818 22.2092 19.5478 24.8 15.5 24.8C10.3641 24.8 6.2 20.6359 6.2 15.5C6.2 10.3641 10.3641 6.2 15.5 6.2C17.8707 6.2 20.0275 7.09435 21.6698 8.55522L26.0539 4.17105C23.2856 1.59107 19.5827 0 15.5 0C6.94012 0 0 6.94012 0 15.5C0 24.0599 6.94012 31 15.5 31C24.0599 31 31 24.0599 31 15.5C31 14.4607 30.893 13.4462 30.6985 12.4643Z" fill="#FFC107"/>
-                <path d="M1.78711 8.28552L6.87963 12.0202C8.25758 8.6087 11.5947 6.2 15.5 6.2C17.8707 6.2 20.0275 7.09435 21.6697 8.55522L26.0539 4.17105C23.2856 1.59107 19.5827 0 15.5 0C9.54641 0 4.38336 3.36117 1.78711 8.28552Z" fill="#FF3D00"/>
-                <path d="M15.5 31C19.5037 31 23.1415 29.4678 25.892 26.9762L21.0948 22.9167C19.4863 24.14 17.5208 24.8016 15.5 24.8C11.4685 24.8 8.04532 22.2293 6.75572 18.6418L1.70117 22.5362C4.26642 27.5559 9.47597 31 15.5 31Z" fill="#4CAF50"/>
-                <path d="M30.6985 12.4643H29.45V12.4H15.5V18.6H24.2598C23.6485 20.3177 22.5474 21.8187 21.0924 22.9175L21.0947 22.916L25.892 26.9754C25.5525 27.2839 31 23.25 31 15.5C31 14.4607 30.893 13.4462 30.6985 12.4643Z" fill="#1976D2"/>
-              </svg>
-            </button>
-            <button class="social-button">
-              <svg width="27" height="33" viewBox="0 0 27 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22.4962 31.676C20.7516 33.4174 18.8468 33.1425 17.0132 32.3176C15.0729 31.4744 13.2927 31.4377 11.2455 32.3176C8.68203 33.4541 7.32911 33.1242 5.79816 31.676C-2.88908 22.4555 -1.60736 8.41394 8.2548 7.90067C10.658 8.02899 12.3314 9.25716 13.7377 9.36715C15.8383 8.92721 17.8499 7.66237 20.0929 7.82735C22.781 8.04732 24.8104 9.14718 26.1455 11.1269C20.5914 14.5548 21.9087 22.0889 27 24.1969C25.9853 26.9466 24.668 29.6779 22.4784 31.6943L22.4962 31.676ZM13.5597 7.79068C13.2927 3.70287 16.5148 0.329958 20.2175 0C20.7338 4.7294 16.0519 8.24896 13.5597 7.79068Z" fill="black"/>
-              </svg>
-            </button>
-          </div>
-          <p>By signing in or creating an account, you agree with our <a href="/terms">Terms & Conditions</a> and <a href="/privacy">Privacy Statement</a></p>
+          </div><br/>
+          <button className="email-button" onClick={handleSignUp}>Create an account</button>
         </div>
       </header>
       <footer className="sign-up-footer">

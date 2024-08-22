@@ -166,7 +166,7 @@ const SignIn = () => {
             </button>
           </div>
           {error && <p className="error">{error}</p>}
-          <button type="submit" onClick={handleSignIn}>Sign In</button>
+          <button className='email-button' type="submit" onClick={handleSignIn}>Sign In</button>
         </div>
       </header>
       <footer className="sign-in-footer">
