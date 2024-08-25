@@ -145,21 +145,25 @@ body, html {
   color: #F4F4F4;
 }
 
-.marshrut-2 {
+.breadcrumbs {
+  display: flex;
+  align-items: center;
   margin-top: -40px;
+  margin-left: 65px;
 }
 
-.marshrut-2 h6, .marshrut-2 svg {
-  display: inline;
-  justify-content: space-between;
+.breadcrumbs h6 {
   color: #F4F4F4;
-  margin-right: 570px;
-  margin-left: -645px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
+.breadcrumbs svg {
+  margin-right: 10px;
+}
+
 .house {
-  background-image: url('../images/Background.jpg');
+  background-image: url('../images/house_back.jpg');
   background-size: cover;
   padding: 60px 0;
   color: #F4F4F4;
@@ -167,30 +171,56 @@ body, html {
 
 .house h1 {
   margin-top: 20px;
-  text-align: left;
-  font-family: Chonburi, arial;
+  font-family: 'Chonburi', arial;
   font-size: 45pt;
   margin-left: 65px;
+  text-align: left;
 }
 
 .house p {
-  text-align: left;
-  font-family: Helvetica Neue, arial;
-  margin-left: 55px;
+  font-family: 'Helvetica Neue', arial;
+  margin-left: 65px;
+  line-height: 1.6;
 }
 
 .find-house-describe {
+  display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 40px;
+  flex-direction: column;
 }
 
 .find-house-describe svg {
-  width: 50%;
+  width: 60%;
+  margin-bottom: 20px;
+  margin-left: 50px;
 }
 
-.find-describe label {
+.find-describe {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 80%;
+  text-align: center;
+}
+
+.step {
+  width: 30%;
+}
+
+.step label {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-left: 60px;
+}
+
+.step p {
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .house-spisok {
@@ -200,7 +230,7 @@ body, html {
   margin: 20px 0;
 }
 
-.house-card {
+.house-cards {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -211,11 +241,11 @@ body, html {
   transition: transform 0.3s ease;
 }
 
-.house-card:hover {
+.house-cards:hover {
   transform: translateY(-5px);
 }
 
-.house-card img {
+.house-cards img {
   width: 100%;
   height: 200px;
   object-fit: cover;
