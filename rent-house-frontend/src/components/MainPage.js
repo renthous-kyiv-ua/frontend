@@ -319,7 +319,7 @@ const MainPage = () => {
               <span class="dot" onclick="currentSlide(8)"></span>
             </div>
           </div>
-          <button className="find-house-btn">{translations[language].findHouse}</button>
+          <button className="find-house-btn"><a href='/find_house'>{translations[language].findHouse}</a></button>
           <p>Welcome to our housing search site! We offer thousands of vetted<br/>listings, easy searching, and full support every step of the way to<br/>help you find your ideal home quickly and easily.</p>
           <div class="search-bar">
             <div class="search-field">

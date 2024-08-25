@@ -200,6 +200,15 @@ body, html {
   margin-left: 55px;
 }
 
+.hero-section a {
+  text-decoration: none;
+  color: #040606;
+}
+
+.hero-section a:hover {
+  color: #F4F4F4;
+}
+
 .find-house-btn {
   background-color: #E6D0C4;
   font-family: Helvetica Neue, arial;

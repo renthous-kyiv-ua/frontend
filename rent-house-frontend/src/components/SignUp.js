@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/SignUp.css';
 
 const translations = {
@@ -52,15 +54,11 @@ const translations = {
 
 const SignUp = () => {
   const [language, setLanguage] = useState('en');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
   const [role, setRole] = useState('tenant');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const { signUp, authLoading, authError } = useContext(AuthContext);
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -70,49 +68,39 @@ const SignUp = () => {
     setShowPassword(!showPassword);
   };
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  const validationSchema = Yup.object({
+    firstName: Yup.string().required('First Name is required'),
+    lastName: Yup.string().required('Last Name is required'),
+    email: Yup.string().email('Invalid email address').required('Email is required'),
+    password: Yup.string().min(8, 'Password must be at least 8 characters long').required('Password is required'),
+    repeatPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Repeat Password is required'),
+  });
 
-  const validatePassword = (password) => {
-    return password.length >= 8;
-  };
-
-  const handleSignUp = async () => {
-    setError('');
-
-    if (!firstName || !lastName || !email || !password || !repeatPassword) {
-      setError('All fields are required');
-      return;
-    }
-
-    if (!validateEmail(email)) {
-      setError('Invalid email address');
-      return;
-    }
-
-    if (!validatePassword(password)) {
-      setError('Password must be at least 8 characters long');
-      return;
-    }
-
-    if (password !== repeatPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    try {
-      const response = await axios.post('https://localhost:7074/api/Users', { firstName, lastName, email, password, role });
-      if (response.data.success) {
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      repeatPassword: '',
+    },
+    validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const userData = {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          password: values.password,
+          ...(role === 'tenant' && { phoneNumber: '0', referralCode: '0' }),
+        };
+        await signUp(userData, role);
         navigate('/signin');
-      } else {
-        setError('Error signing up');
+      } catch (err) {
+        formik.setFieldError('general', authError || 'Error signing up');
       }
-    } catch (error) {
-      setError('Error signing up');
-    }
-  };
+    },
+  });
   
   return (
     <div className="sign-up-page">
@@ -147,82 +135,111 @@ const SignUp = () => {
         <div className="sign-up-content">
           <h2>Create New Account</h2>
           <p className="create-acc">Or, <span className="highlight"><a href="/signin">Sign in</a></span></p>
-          {error && <p className="error">{error}</p>}
+          {formik.errors.general && <p className="error">{formik.errors.general}</p>}
+          {authLoading && <p className="loading">Signing up...</p>}
           <div className="person">
-            <button className={`tenant ${role === 'tenant' ? 'active' : ''}`} onClick={() => setRole('tenant')}>{translations[language].tenant}</button>
-            <button className={`landlord ${role === 'landlord' ? 'active' : ''}`} onClick={() => setRole('landlord')}>{translations[language].landlord}</button>
-          </div><br/><br/>
-          <label>First Name, Last Name</label>
-          <input 
-            type="text" 
-            placeholder="Enter your First Name" 
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          /><br/>
-          <input 
-            type="text" 
-            placeholder="Enter your Last Name" 
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          /><br/>
-          <label>Email address</label>
-          <input 
-            type="email" 
-            placeholder="Enter your email address" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          /><br/>
-          <label>Password</label>
-          <div className="password-wrapper">
-            <input 
-              type={showPassword ? "text" : "password"} 
-              placeholder="Password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
-              {showPassword ? (
-                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              ) : (
-                <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              )}
+            <button className={`tenant ${role === 'tenant' ? 'active' : ''}`} onClick={() => setRole('tenant')}>
+              {translations[language].tenant}
             </button>
-          </div><br/>
-          <label>Repeat Password</label>
-          <div className="password-wrapper">
-            <input 
-              type={showPassword ? "text" : "password"} 
-              placeholder="Password" 
-              value={repeatPassword}
-              onChange={(e) => setRepeatPassword(e.target.value)}
-            />
-            <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
-              {showPassword ? (
-                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              ) : (
-                <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              )}
+            <button className={`landlord ${role === 'landlord' ? 'active' : ''}`} onClick={() => setRole('landlord')}>
+              {translations[language].landlord}
             </button>
-          </div><br/>
-          <button className="email-button" onClick={handleSignUp}>Create an account</button>
+          </div>
+          <form onSubmit={formik.handleSubmit}>
+            <label>First Name, Last Name</label>
+            <input
+              type="text"
+              placeholder="Enter your First Name"
+              name="firstName"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.firstName}
+            />
+            {formik.touched.firstName && formik.errors.firstName ? <div className="error">{formik.errors.firstName}</div> : null}
+
+            <input
+              type="text"
+              placeholder="Enter your Last Name"
+              name="lastName"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.lastName}
+            />
+            {formik.touched.lastName && formik.errors.lastName ? <div className="error">{formik.errors.lastName}</div> : null}
+
+            <label>Email address</label>
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              name="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
+
+            <label>Password</label>
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                name="password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
+                {showPassword ? (
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                ) : (
+                  <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
+              </button>
+            </div>
+            {formik.touched.password && formik.errors.password ? <div className="error">{formik.errors.password}</div> : null}
+
+            <label>Repeat Password</label>
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Repeat Password"
+                name="repeatPassword"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.repeatPassword}
+              />
+              <button type="button" id="togglePassword" className="toggle-password" onClick={togglePasswordVisibility}>
+                {showPassword ? (
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00036 7.61084 9.50134C7.61093 10.0023 7.81003 10.4827 8.16433 10.8369C8.51864 11.1911 8.99913 11.39 9.50011 11.3899C10.0011 11.3899 10.4815 11.1908 10.8357 10.8365" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M4.29589 4.43399C2.94062 5.39931 1.7835 6.7348 1 9.5C1.8374 12.6072 4.75247 15 9.49994 15C11.3368 15 12.9074 14.4958 14.1083 13.6842" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M13.8939 10.5261C13.636 9.64255 13.0042 8.89592 12.1511 8.44035C11.2979 7.98477 10.2874 7.85646 9.33594 8.07553M11.7174 6.22556C10.9683 5.81784 10.1088 5.61122 9.23243 5.63166C8.35607 5.6521 7.50911 5.89891 6.78955 6.34894C6.0701 6.79897 5.50736 7.43562 5.16657 8.18693" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12.8582 12.3285C13.7556 11.6578 14.5406 10.7634 15.1732 9.5C14.3358 6.39279 11.4208 4 6.67334 4C5.65708 4.00018 4.6537 4.16129 3.70581 4.474" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                ) : (
+                  <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.5 6.5C1.61538 9.42308 4.53846 12 9.5 12C14.4615 12 17.3846 9.42308 18.5 6.5C17.3846 3.57692 14.4615 1 9.5 1C4.53846 1 1.61538 3.57692 0.5 6.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M9.5 9.5C10.8807 9.5 12 8.38071 12 7C12 5.61929 10.8807 4.5 9.5 4.5C8.11929 4.5 7 5.61929 7 7C7 8.38071 8.11929 9.5 9.5 9.5Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
+              </button>
+            </div>
+            {formik.touched.repeatPassword && formik.errors.repeatPassword ? <div className="error">{formik.errors.repeatPassword}</div> : null}
+
+            <button type="submit" className="email-button" disabled={authLoading}>
+              {authLoading ? 'Creating account...' : 'Create an account'}
+            </button>
+          </form>
         </div>
       </header>
       <footer className="sign-up-footer">

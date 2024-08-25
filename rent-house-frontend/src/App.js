@@ -5,6 +5,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import ForgotPassword from './components/ForgotPassword';
 import AboutUs from './components/AboutUs';
+import FindHouse from './components/FindHouse';
 import AccountSettingsTenant from './components/AccountSettingsTenant';
 import MyReservationsTenant from './components/MyReservationsTenant';
 import LoyaltyProgrammeTenant from './components/LoyaltyProgrammeTenant';
@@ -21,35 +22,38 @@ import HouseReg from './components/HouseReg';
 import AdminMainPanel from './components/AdminMainPanel';
 import UsersAdmin from './components/UsersAdmin';
 import PropertiesAdmin from './components/PropertiesAdmin';
-import { AuthProvider } from './context/AuthContext';
+import { useAuth } from './context/AuthContext';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
+  const { user } = useAuth();
+
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/register" element={<SignUp />} />
-        <Route path="/forgot_pass" element={<ForgotPassword />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/tenant" element={<AccountSettingsTenant />} />
-        <Route path="/reservations" element={<MyReservationsTenant />} />
-        <Route path="/loyalty" element={<LoyaltyProgrammeTenant />} />
-        <Route path="/wallet" element={<WalletTenant />} />
-        <Route path="/referral" element={<ReferralLinkTenant />} />
-        <Route path="/saved" element={<SavedTenant />} />
-        <Route path="/details" element={<MoreDetails />} />
-        <Route path="/faq" element={<WalletFAQ />} />
-        <Route path="/property" element={<HouseReg />} />
-        <Route path="/landlord" element={<AccountSettingsLandlord />} />
-        <Route path="/myProperties" element={<MyProperties />} />
-        <Route path="/lanLoyalty" element={<LoyaltyProgrammeLandlord />} />
-        <Route path="/rules" element={<MyRules />} />
-        <Route path="/admin" element={<AdminMainPanel />} />
-        <Route path="/admin/users" element={<UsersAdmin />} />
-        <Route path="/admin/properties" element={<PropertiesAdmin />} />
-      </Routes>
-    </AuthProvider>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/register" element={<SignUp />} />
+      <Route path="/forgot_pass" element={<ForgotPassword />} />
+      <Route path="/about" element={<AboutUs />} />
+      <Route path="/find_house" element={<FindHouse />} />
+      <Route path="/tenant" element={<PrivateRoute><AccountSettingsTenant /></PrivateRoute>} />
+      <Route path="/reservations" element={<PrivateRoute><MyReservationsTenant /></PrivateRoute>} />
+      <Route path="/loyalty" element={<PrivateRoute><LoyaltyProgrammeTenant /></PrivateRoute>} />
+      <Route path="/wallet" element={<PrivateRoute><WalletTenant /></PrivateRoute>} />
+      <Route path="/referral" element={<PrivateRoute><ReferralLinkTenant /></PrivateRoute>} />
+      <Route path="/saved" element={<PrivateRoute><SavedTenant /></PrivateRoute>} />
+      <Route path="/details" element={<MoreDetails />} />
+      <Route path="/faq" element={<WalletFAQ />} />
+      <Route path="/property" element={<PrivateRoute><HouseReg /></PrivateRoute>} />
+      <Route path="/landlord" element={<PrivateRoute><AccountSettingsLandlord /></PrivateRoute>} />
+      <Route path="/myProperties" element={<PrivateRoute><MyProperties /></PrivateRoute>} />
+      <Route path="/lanLoyalty" element={<PrivateRoute><LoyaltyProgrammeLandlord /></PrivateRoute>} />
+      <Route path="/rules" element={<PrivateRoute><MyRules /></PrivateRoute>} />
+      
+      <Route path="/admin" element={user?.role === 'admin' ? <AdminMainPanel /> : <SignIn />} />
+      <Route path="/admin/users" element={user?.role === 'admin' ? <UsersAdmin /> : <SignIn />} />
+      <Route path="/admin/properties" element={user?.role === 'admin' ? <PropertiesAdmin /> : <SignIn />} />
+    </Routes>
   );
 }
 
