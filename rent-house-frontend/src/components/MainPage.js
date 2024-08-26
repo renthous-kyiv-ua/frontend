@@ -201,15 +201,15 @@ const MainPage = () => {
 
   }, []);
 
-  useEffect(() => {
-    axios.get('/api/Reviews')
-      .then(response => {
-        setReviews(response.data);
-      })
-      .catch(error => {
-        console.error("There was an error fetching the reviews!", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get('/api/Reviews')
+  //     .then(response => {
+  //       setReviews(response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error("There was an error fetching the reviews!", error);
+  //     });
+  // }, []);
 
   const handlePeopleButtonClick = () => {
     setIsPeopleComboboxOpen(!isPeopleComboboxOpen);

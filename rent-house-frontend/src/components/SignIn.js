@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/SignIn.css';
 
 const translations = {
@@ -57,7 +56,7 @@ const SignIn = () => {
   const [language, setLanguage] = useState('en');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { setAuthData } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -77,12 +76,9 @@ const SignIn = () => {
 
   const handleSignIn = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const response = await axios.post('https://localhost:7074/Auth/login', values);
-      const { data } = response;
+      const data = await signIn(values.email, values.password);
 
       if (data) {
-        setAuthData(data);
-
         if (values.email === 'admin@example.com' && values.password === '4215') {
           navigate('/admin');
         } else {
@@ -157,25 +153,22 @@ const SignIn = () => {
                       {showPassword ? (
                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00668 7.61075 9.5224C7.61075 10.8126 8.69711 11.8989 9.98728 11.8989C10.4967 11.8989 10.9881 11.7007 11.3424 11.3451M13.1981 10.4999C12.7994 11.5378 11.6565 12.2753 10.3856 12.2753C9.09542 12.2753 8.00906 11.189 8.00906 9.89883C8.00906 8.62792 8.74658 7.485 9.7845 7.08635M11.087 8.38916L12.5625 6.91362M17.875 9.5224C15.4235 5.23926 11.4293 4.30469 9.52246 4.30469C6.39081 4.30469 3.41254 6.05713 1.13525 10.2473C1.05124 10.3991 1 10.5701 1 10.7452C1 10.9204 1.05124 11.0914 1.13525 11.2432C3.41254 15.4334 6.39081 17.1858 9.52246 17.1858C11.4293 17.1858 15.4235 16.2512 17.875 11.9681C17.959 11.8163 18.0103 11.6453 18.0103 11.4701C18.0103 11.295 17.959 11.124 17.875 10.9722Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M8.16386 8.16556C7.80968 8.51986 7.61075 9.00668 7.61075 9.52533C7.61075 10.7768 8.60598 11.772 9.8575 11.772C10.3742 11.772 10.861 11.5731 11.2153 11.2189" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M14.3812 13.2996C13.062 14.2213 11.493 14.8247 9.8575 14.8247C5.79956 14.8247 2.51609 11.7731 1.5 9.52533C2.51609 7.27753 5.79956 4.22595 9.8575 4.22595C11.493 4.22595 13.062 4.82933 14.3812 5.75105" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M11.9193 9.59969C11.9193 8.34991 10.8572 7.28784 9.60742 7.28784M15.9823 15.772C17.297 14.7334 18.1221 13.3368 18.215 13.1632C18.3183 12.9655 18.3183 12.7297 18.215 12.532C18.1221 12.3584 17.297 10.9617 15.9823 9.92309C14.6867 8.90029 12.8544 8.16699 9.8575 8.16699C9.58256 8.16699 9.32066 8.17854 9.06305 8.20095" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       ) : (
-                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.52257 13.25C11.2705 13.25 12.6793 11.8412 12.6793 10.0933C12.6793 8.34544 11.2705 6.93661 9.52257 6.93661C7.77467 6.93661 6.36584 8.34544 6.36584 10.0933C6.36584 11.8412 7.77467 13.25 9.52257 13.25Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M9.52257 13.25C11.2705 13.25 12.6793 11.8412 12.6793 10.0933C12.6793 8.34544 11.2705 6.93661 9.52257 6.93661C7.77467 6.93661 6.36584 8.34544 6.36584 10.0933C6.36584 11.8412 7.77467 13.25 9.52257 13.25Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M1 1L18 18" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M17.875 11.2505C15.4235 6.9674 11.4293 6.03282 9.52246 6.03282C6.39081 6.03282 3.41254 7.78526 1.13525 11.9754C1.05124 12.1273 1 12.2982 1 12.4734C1 12.6486 1.05124 12.8195 1.13525 12.9713C3.41254 17.1615 6.39081 18.9139 9.52246 18.9139C11.4293 18.9139 15.4235 17.9793 17.875 13.6962C17.959 13.5444 18.0103 13.3734 18.0103 13.1982C18.0103 13.0231 17.959 12.8521 17.875 12.7003Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.85759 12.0343C5.79966 12.0343 2.51619 8.98275 1.5001 6.73495C2.51619 4.48715 5.79966 1.43557 9.85759 1.43557C13.9155 1.43557 17.199 4.48715 18.2151 6.73495C17.199 8.98275 13.9155 12.0343 9.85759 12.0343Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M9.85758 9.85957C11.1081 9.85957 12.1033 8.86434 12.1033 7.61282C12.1033 6.3613 11.1081 5.36607 9.85758 5.36607C8.60606 5.36607 7.61084 6.3613 7.61084 7.61282C7.61084 8.86434 8.60606 9.85957 9.85758 9.85957Z" stroke="#F4F4F4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       )}
                     </button>
                   </div>
                   <ErrorMessage name="password" component="div" className="error" />
                 </div>
-                
-                <button className='email-button' type="submit" disabled={isSubmitting}>
+
+                <button type="submit" className="sign-in-button" disabled={isSubmitting}>
                   {isSubmitting ? 'Signing in...' : 'Sign In'}
                 </button>
               </Form>
