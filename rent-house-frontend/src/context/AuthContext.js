@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 
 export const AuthContext = createContext();
 
@@ -41,13 +42,30 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const response = await axios.post(url, { email, password });
-      const { token, user } = response.data;
-      setToken(token);
-      setUser(user);
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-      setAuthLoading(false);
-      return response.data;
+      const { token } = response.data;
+
+      if (token) {
+        // Декодируем токен для извлечения данных пользователя
+        const decodedToken = jwtDecode(token);
+        const userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+        // Сохраняем токен и данные пользователя в состоянии и локальном хранилище
+        setToken(token);
+        setUser({
+          id: decodedToken.sub,
+          role: userRole,
+        });
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify({
+          id: decodedToken.sub,
+          role: userRole,
+        }));
+
+        setAuthLoading(false);
+        return { token, user: { id: decodedToken.sub, role: userRole } };
+      } else {
+        throw new Error('Login failed: No token returned');
+      }
     } catch (error) {
       setAuthLoading(false);
       setAuthError(error.response ? error.response.data.message : 'Login failed');

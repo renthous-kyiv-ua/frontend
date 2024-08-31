@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/MainPage.css';
 import mapImage from '../images/world-map.png';
 import photo1Image from '../images/photo1.jpg';
@@ -71,6 +72,8 @@ const translations = {
 };
 
 const MainPage = () => {
+  const { user, logout } = useContext(AuthContext);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const [language, setLanguage] = useState('en');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -129,6 +132,14 @@ const MainPage = () => {
       price: "$499/night"
     }
   ];
+
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+  };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? housesData.length - 1 : prevIndex - 1));
@@ -237,9 +248,15 @@ const MainPage = () => {
           <ul className="nav-list">
             <li className="active"><a href='/'>{translations[language].home}</a></li>
             <li><a href='/about'>{translations[language].about}</a></li>
-            <li><a href='/tenant'>{translations[language].tenant}</a></li>
-            <li><a href='/landlord'>{translations[language].landlord}</a></li>
-            <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
+            {user?.role !== 'tenant' && (
+              <>
+                <li><a href='/landlord'>{translations[language].landlord}</a></li>
+                <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
+              </>
+            )}
+            {user?.role !== 'landlord' && (
+              <li><a href='/tenant'>{translations[language].tenant}</a></li>
+            )}
           </ul>
           <div className="logo">
             <svg width="81" height="51" viewBox="0 0 81 51" fill="none" xmlns="http://www.w3.org/2000/svg">

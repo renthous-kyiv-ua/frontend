@@ -84,7 +84,7 @@ import AdminMainPanel from './components/AdminMainPanel';
 import UsersAdmin from './components/UsersAdmin';
 import PropertiesAdmin from './components/PropertiesAdmin';
 import { useAuth } from './context/AuthContext';
-
+import PrivateRoute from './components/PrivateRoute';
 function App() {
   const { user } = useAuth();
 
@@ -110,9 +110,30 @@ function App() {
       <Route path="/lanLoyalty" element={<LoyaltyProgrammeLandlord />} />
       <Route path="/rules" element={<MyRules />} />
       
-      <Route path="/admin" element={user?.role === 'admin' ? <AdminMainPanel /> : <SignIn />} />
-      <Route path="/admin/users" element={user?.role === 'admin' ? <UsersAdmin /> : <SignIn />} />
-      <Route path="/admin/properties" element={user?.role === 'admin' ? <PropertiesAdmin /> : <SignIn />} />
+      <Route
+        path="/admin"
+        element={
+          <PrivateRoute requiredRole="Admin">
+            <AdminMainPanel />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/users"
+        element={
+          <PrivateRoute requiredRole="Admin">
+            <UsersAdmin />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/properties"
+        element={
+          <PrivateRoute requiredRole="Admin">
+            <PropertiesAdmin />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }

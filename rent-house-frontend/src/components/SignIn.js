@@ -57,7 +57,6 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
-
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
   };
@@ -76,16 +75,12 @@ const SignIn = () => {
 
   const handleSignIn = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const data = await signIn(values.email, values.password);
+      const { user } = await signIn(values.email, values.password);
 
-      if (data) {
-        if (values.email === 'admin@example.com' && values.password === '4215') {
-          navigate('/admin');
-        } else {
-          navigate('/');
-        }
+      if (user.role === 'Admin') {
+        navigate('/admin');
       } else {
-        setFieldError('email', 'Invalid email or password.');
+        navigate('/');
       }
     } catch (error) {
       setFieldError('email', 'User does not exist.');
