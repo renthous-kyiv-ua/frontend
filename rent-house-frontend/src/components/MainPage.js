@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import {jwtDecode} from 'jwt-decode';
+import { useAuth } from '../context/AuthContext';
 import '../styles/MainPage.css';
 import mapImage from '../images/world-map.png';
 import photo1Image from '../images/photo1.jpg';
@@ -71,11 +72,10 @@ const translations = {
 };
 
 const MainPage = () => {
+  const { token, user, signIn, signOut, authLoading, authError } = useAuth();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-
   const [language, setLanguage] = useState('en');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [reviews, setReviews] = useState([]);
   const [isPeopleComboboxOpen, setIsPeopleComboboxOpen] = useState(false);
   const peopleButtonRef = useRef(null);
   const peopleComboboxRef = useRef(null);
@@ -84,11 +84,7 @@ const MainPage = () => {
   const [ageNeeded, setAgeNeeded] = useState(0);
   const [rooms, setRooms] = useState(1);
   const [isPets, setIsPets] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAccountComboboxOpen, setIsAccountComboboxOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(false);
-  const [authError, setAuthError] = useState(null);
 
   const increment = (setter, value) => () => setter(value + 1);
   const decrement = (setter, value) => () => setter(value > 0 ? value - 1 : 0);
@@ -141,7 +137,7 @@ const MainPage = () => {
   };
 
   const handleLogout = () => {
-    logout();
+    signOut();
   };
 
   const handlePrev = () => {
@@ -227,22 +223,6 @@ const MainPage = () => {
 
   const handlePeopleButtonClick = () => {
     setIsPeopleComboboxOpen(!isPeopleComboboxOpen);
-  };
-
-  const handleLoginClick = async () => {
-    const email = 'user@example.com';
-    const password = 'password';
-    try {
-      setAuthLoading(true);
-      setAuthError(null);
-      const response = await signIn(email, password);
-      setIsAuthenticated(true);
-      setUser(response.user);
-    } catch (error) {
-      setAuthError('Login failed');
-    } finally {
-      setAuthLoading(false);
-    }
   };
 
   const handleLogoutClick = () => {
