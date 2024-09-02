@@ -26,8 +26,69 @@ const HouseReg = () => {
 
   const [language, setLanguage] = useState('en');
   
+  
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
+  };
+
+  const [formData, setFormData] = useState({
+    objectName: '',
+    objectCategory: '',
+    numberOfPeople: '',
+    termRental: '',
+    country: '',
+    city: '',
+    address: '',
+    class: '',
+    rooms: '',
+    wallMaterial: '',
+    totalArea: '',
+    livingSpace: '',
+    kitchenArea: '',
+    totalFloors: '',
+    terraceArea: '',
+    heating: '',
+    price: '',
+    description: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:5206/api/Properties', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          numberOfPeople: parseInt(formData.numberOfPeople, 10),
+          totalArea: parseFloat(formData.totalArea),
+          livingSpace: parseFloat(formData.livingSpace),
+          kitchenArea: parseFloat(formData.kitchenArea),
+          totalFloors: parseInt(formData.totalFloors, 10),
+          terraceArea: parseFloat(formData.terraceArea),
+          price: parseFloat(formData.price),
+          rooms: parseInt(formData.rooms, 10),
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Property data submitted successfully');
+      } else {
+        console.error('Failed to submit property data');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -88,13 +149,19 @@ const HouseReg = () => {
         <div className="info-fields">
           <div className="phone-field">
             <label>Object name</label>
-            <input type="text" placeholder="Enter the name of the object" />
+            <input type="text" placeholder="Enter the name of the object" value={formData.objectName} onChange={handleInputChange}/>
           </div>
           <div className="field-group">
             <div className="field">
               <label>Category</label>
               <select>
                 <option>Object category</option>
+                <option>House</option>
+                <option>Apartment</option>
+                <option>Villa</option>
+                <option>Hotel</option>
+                <option>Hostel</option>
+                <option>Couchsurfing</option>
               </select>
             </div>
             <div className="field">
@@ -107,6 +174,8 @@ const HouseReg = () => {
               <label>&nbsp;</label>
               <select>
                 <option>Term rental</option>
+                <option>Long term rental</option>
+                <option>Short term rental</option>
               </select>
             </div>
           </div>

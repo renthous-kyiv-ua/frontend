@@ -162,6 +162,16 @@ body, html {
   margin-right: 10px;
 }
 
+.shadow-find {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 87%;
+  z-index: 1;
+  margin-top: 92px;
+}
+
 .house {
   background-image: url('../images/house_back.jpg');
   background-size: cover;
