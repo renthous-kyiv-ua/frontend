@@ -1,12 +1,13 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
   const [authError, setAuthError] = useState(null);
 
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }) => {
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
+      setIsAuthenticated(true);
     }
   }, []);
 
@@ -45,16 +47,17 @@ export const AuthProvider = ({ children }) => {
       const { token } = response.data;
 
       if (token) {
-        // Декодируем токен для извлечения данных пользователя
+        // Decode the token to extract user data
         const decodedToken = jwtDecode(token);
         const userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
-        // Сохраняем токен и данные пользователя в состоянии и локальном хранилище
+        // Save token and user data in state and local storage
         setToken(token);
         setUser({
           id: decodedToken.sub,
           role: userRole,
         });
+        setIsAuthenticated(true);
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify({
           id: decodedToken.sub,
@@ -76,12 +79,13 @@ export const AuthProvider = ({ children }) => {
   const signOut = () => {
     setToken(null);
     setUser(null);
+    setIsAuthenticated(false);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, signUp, signIn, signOut, authLoading, authError }}>
+    <AuthContext.Provider value={{ token, user, isAuthenticated, setIsAuthenticated, setUser, signUp, signIn, signOut, authLoading, authError }}>
       {children}
     </AuthContext.Provider>
   );

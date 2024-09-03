@@ -72,7 +72,7 @@ const translations = {
 };
 
 const MainPage = () => {
-  const { token, user, signIn, signOut, authLoading, authError } = useAuth();
+  const { token, user, setUser, userRole, isAuthenticated, setIsAuthenticated, signIn, signOut, authLoading, authError } = useAuth();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [language, setLanguage] = useState('en');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -695,7 +695,7 @@ const MainPage = () => {
       <section className='testimonials'>
         <h1>Testimonials</h1>
         <div className="testimonials-container">
-          {reviews.map((review, index) => (
+          {/* {reviews.map((review, index) => (
             <div className="testimonial" key={index}>
               <div className="testimonial-header">
                 <img src={review.image} alt={review.name} className="testimonial-avatar" />
@@ -706,7 +706,7 @@ const MainPage = () => {
               </div>
               <p>{review.text}</p>
             </div>
-          ))}
+          ))} */}
         </div>
       </section>
       <footer className="main-footer">
