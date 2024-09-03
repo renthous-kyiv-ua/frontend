@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/AdminMainPanel.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AdminMainPanel = () => {
 
