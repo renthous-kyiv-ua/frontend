@@ -1,14 +1,8 @@
 # Используем базовый образ Nginx
 FROM nginx:alpine
 
-# Определяем аргумент для версии сборки
-ARG BUILD_NUMBER
-
-# Устанавливаем переменную окружения для использования в последующих командах
-ENV BUILD_NUMBER=${BUILD_NUMBER}
-
 # Копируем собранное приложение из этапа сборки в директорию, которую обслуживает Nginx
-COPY --from=sergiiops/my-react-app:${BUILD_NUMBER} /app/build /usr/share/nginx/html
+COPY --from=my-react-app /app/build /usr/share/nginx/html
 
 # Открываем порт 80 для доступа к приложению
 EXPOSE 80
