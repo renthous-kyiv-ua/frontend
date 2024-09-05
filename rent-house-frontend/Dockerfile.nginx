@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Копируем собранное приложение из этапа сборки в директорию, которую обслуживает Nginx
-COPY --from=my-react-app /app/build /usr/share/nginx/html
+COPY --from=sergiiops/my-react-app:24 /app/build /usr/share/nginx/html
 
 # Открываем порт 80 для доступа к приложению
 EXPOSE 80
