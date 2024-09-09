@@ -197,8 +197,8 @@ const HouseReg = () => {
   
         // Загрузка всех файлов только сейчас, после успешного создания объекта
         for (let i = 1; i <= 5; i++) {
-          if (preview[`file${i}`]) {
-            await uploadFile(preview[`file${i}`], propertyId, i <= 3 ? 'photo' : 'video');
+          if (uploadedFiles[`file${i}`]) {
+            await uploadFile(uploadedFiles[`file${i}`], propertyId, i <= 3 ? 'photo' : 'video');
           }
         }
         console.log('Property and files uploaded successfully');

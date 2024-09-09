@@ -92,7 +92,8 @@ const SignUp = () => {
           lastName: values.lastName,
           email: values.email,
           password: values.password,
-          ...(role === 'tenant' && { phoneNumber: '0', referralCode: '0' }),
+          phoneNumber: '0', 
+          ...(role === 'tenant' && { referralCode: '' }), 
         };
         await signUp(userData, role);
         navigate('/signin');
