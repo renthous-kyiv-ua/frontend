@@ -85,6 +85,7 @@ import UsersAdmin from './components/UsersAdmin';
 import PropertiesAdmin from './components/PropertiesAdmin';
 import { useAuth } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
+import ConfirmEmail from './components/ConfirmEmail';
 function App() {
   const { user } = useAuth();
 
@@ -109,7 +110,7 @@ function App() {
       <Route path="/myProperties" element={<MyProperties />} />
       <Route path="/lanLoyalty" element={<LoyaltyProgrammeLandlord />} />
       <Route path="/rules" element={<MyRules />} />
-      
+      <Route path="/confirm-email" Component={ConfirmEmail} />
       <Route
         path="/admin"
         element={

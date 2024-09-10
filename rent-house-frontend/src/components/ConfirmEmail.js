@@ -9,19 +9,16 @@ const ConfirmEmail = () => {
   useEffect(() => {
     const token = queryParams.get("token");
     const email = queryParams.get("email");
-
+  
     if (token && email) {
-      // Отправляем запрос на бэкенд для подтверждения
-      axios.post("https://your-backend.com/api/auth/confirm-email", {
+      axios.post("http://localhost:5206/Auth/confirm-email", {
         token,
         email,
       })
       .then(response => {
-        // Успешное подтверждение
         console.log("Email confirmed:", response.data);
       })
       .catch(error => {
-        // Обработка ошибки
         console.error("Error confirming email:", error);
       });
     }
