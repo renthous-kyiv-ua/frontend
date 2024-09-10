@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useAuth } from '../context/AuthContext';
+import axios from 'axios';
 import '../styles/AccountSettingsLandlord.css';
 
 const translations = {
@@ -20,14 +22,106 @@ const translations = {
 };
 
 const AccountSettingsLandlord = () => {
-
+  const { token, user } = useAuth();
+  const [profileData, setProfileData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '', // Email всегда пустой
+    displayName: '',
+    birthDate: '',
+    phoneNumber: '',
+    aboutMe: '',
+    country: '',
+    address: '',
+    passportFirstName: '',
+    passportLastName: '',
+    issuingCountry: '',
+    passportNumber: '',
+    passportExpiryDate: '',
+    avatar: null, // Для хранения аватара
+  });
   const [language, setLanguage] = useState('en');
   const [isAccountComboboxOpen, setIsAccountComboboxOpen] = useState(false);
   const accountButtonRef = useRef(null);
   const accountComboboxRef = useRef(null);
+  const [avatarPreview, setAvatarPreview] = useState(null);
 
   const handleLanguageChange = (event) => {
-      setLanguage(event.target.value);
+    const selectedLanguage = event.target.value;
+    setLanguage(selectedLanguage);
+  };
+
+  const fetchUserProfile = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:5206/Auth/profile', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setProfileData({
+        ...response.data,
+        birthDate: response.data.birthDate ? new Date(response.data.birthDate).toISOString().split('T')[0] : '',
+        passportExpiryDate: response.data.passportExpiryDate ? new Date(response.data.passportExpiryDate).toISOString().split('T')[0] : '',
+      });
+    } catch (error) {
+      console.error('Failed to load profile data', error);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (user && user.role === 'Landlord') {
+      fetchUserProfile();
+    }
+  }, [user, fetchUserProfile]);
+
+  const handleSave = async () => {
+    const formData = new FormData();
+    formData.append('FirstName', profileData.firstName || '');
+    formData.append('LastName', profileData.lastName || '');
+    formData.append('DisplayName', profileData.displayName || '');
+    formData.append('BirthDate', profileData.birthDate || '');
+    formData.append('PhoneNumber', profileData.phoneNumber || '');
+    formData.append('AboutMe', profileData.aboutMe || '');
+    formData.append('Country', profileData.country || '');
+    formData.append('Address', profileData.address || '');
+    formData.append('PassportFirstName', profileData.passportFirstName || '');
+    formData.append('PassportLastName', profileData.passportLastName || '');
+    formData.append('IssuingCountry', profileData.issuingCountry || '');
+    formData.append('PassportNumber', profileData.passportNumber || '');
+    formData.append('PassportExpiryDate', profileData.passportExpiryDate || '');
+    if (profileData.avatar) {
+      formData.append('Avatar', profileData.avatar);
+    }
+
+    try {
+      await axios.post('http://localhost:5206/Auth/updateProfile', formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      alert('Profile updated successfully');
+    } catch (error) {
+      console.error('Failed to update profile', error);
+      alert('Failed to update profile');
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProfileData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    setProfileData(prevState => ({
+      ...prevState,
+      avatar: file,
+    }));
+    setAvatarPreview(URL.createObjectURL(file));
   };
 
   const handleAccountButtonClick = () => {
@@ -35,15 +129,18 @@ const AccountSettingsLandlord = () => {
   };
 
   const handleClickOutside = (event) => {
-    if (accountComboboxRef.current && !accountComboboxRef.current.contains(event.target) &&
-        accountButtonRef.current && !accountButtonRef.current.contains(event.target)) {
+    if (
+      accountComboboxRef.current && 
+      !accountComboboxRef.current.contains(event.target) &&
+      accountButtonRef.current && 
+      !accountButtonRef.current.contains(event.target)
+    ) {
       setIsAccountComboboxOpen(false);
     }
   };
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
-
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
@@ -211,32 +308,64 @@ const AccountSettingsLandlord = () => {
               <div className='user-fullname'>
                 <p>Name</p>
                 <div className='fullname'>
-                  <label>First name(s)<span class="necessarily">*</span></label>
+                  <label>First name(s)<span className="necessarily">*</span></label>
                   <br/>
-                  <input placeholder='Enter First Name'/><br/>
-                  <label>Last name(s)<span class="necessarily">*</span></label>
+                  <input 
+                    name="firstName" 
+                    value={profileData.firstName} 
+                    onChange={handleChange} 
+                    placeholder='Enter First Name'
+                  />
                   <br/>
-                  <input placeholder='Enter Last Name'/>
+                  <label>Last name(s)<span className="necessarily">*</span></label>
+                  <br/>
+                  <input 
+                    name="lastName" 
+                    value={profileData.lastName} 
+                    onChange={handleChange} 
+                    placeholder='Enter Last Name'
+                  />
                 </div>
               </div>
               <br/>
               <div className='display-name'>
                 <p>Display name</p>
-                <input placeholder='Choose a display name'/>
+                <input 
+                  name="displayName" 
+                  value={profileData.displayName} 
+                  onChange={handleChange} 
+                  placeholder='Choose a display name'
+                />
               </div>
               <div className='birth-date'>
                 <p>Birth date</p>
-                <input placeholder='YYYY/DD/MM'/>
+                <input 
+                  name="birthDate" 
+                  value={profileData.birthDate} 
+                  onChange={handleChange} 
+                  placeholder='YYYY/MM/DD'
+                />
                 <label className='note'>We will congratulate you with your birthday and give you a gift certificate</label>
               </div>
               <div className='phone-number'>
                 <p>Phone number</p>
-                <input type='number' placeholder='+38(0__)___ __ __'/>
+                <input 
+                  name="phoneNumber" 
+                  value={profileData.phoneNumber} 
+                  onChange={handleChange} 
+                  type='number' 
+                  placeholder='+38(0__)___ __ __'
+                />
                 <label className='note'>Phone not displayed on this site</label>
               </div>
               <div className='about-me'>
                 <p>About me</p>
-                <textarea placeholder='Leave a few words about yourself'/>
+                <textarea 
+                  name="aboutMe" 
+                  value={profileData.aboutMe} 
+                  onChange={handleChange} 
+                  placeholder='Leave a few words about yourself'
+                />
               </div>
               <div className='confirm-data'>
                 <input type='checkbox'/>
@@ -244,57 +373,482 @@ const AccountSettingsLandlord = () => {
               </div>
             </div>
             <div className='update-info'>
-              <button>Save</button>
+              <button onClick={handleSave}>Save</button>
               <button>Cancel</button>
             </div>
             <div className='edit-data'>
               <div className='email-address'>
                 <p>Email address</p>
-                <input type='email' placeholder='anna.romanova@gmail.com'/>
+                <input 
+                  name="email" 
+                  type='email' 
+                  value={profileData.email} 
+                  onChange={handleChange} 
+                  placeholder='Enter your email address'
+                />
                 <p className='note2'>Email (not displayed on the site)</p>
               </div>
               <div className='country'>
                 <p>Country</p>
-                <select>
-                  <option>Choose the country</option>
-                  <option>Ukraine</option>
-                  <option>Poland</option>
-                  <option>England</option>
-                  <option>Spain</option>
+                <select 
+                  name="country" 
+                  value={profileData.country} 
+                  onChange={handleChange}
+                >
+                  <option value="">Choose the country</option>
+              <option>Afghanistan</option>
+              <option>Albania</option>
+              <option>Algeria</option>
+              <option>Andorra</option>
+              <option>Angola</option>
+              <option>Antigua and Barbuda</option>
+              <option>Argentina</option>
+              <option>Armenia</option>
+              <option>Australia</option>
+              <option>Austria</option>
+              <option>Azerbaijan</option>
+              <option>Bahamas</option>
+              <option>Bahrain</option>
+              <option>Bangladesh</option>
+              <option>Barbados</option>
+              <option>Belarus</option>
+              <option>Belgium</option>
+              <option>Belize</option>
+              <option>Benin</option>
+              <option>Bhutan</option>
+              <option>Bolivia</option>
+              <option>Bosnia and Herzegovina</option>
+              <option>Botswana</option>
+              <option>Brazil</option>
+              <option>Brunei</option>
+              <option>Bulgaria</option>
+              <option>Burkina Faso</option>
+              <option>Burundi</option>
+              <option>Cabo Verde</option>
+              <option>Cambodia</option>
+              <option>Cameroon</option>
+              <option>Canada</option>
+              <option>Central African Republic</option>
+              <option>Chad</option>
+              <option>Chile</option>
+              <option>China</option>
+              <option>Colombia</option>
+              <option>Comoros</option>
+              <option>Congo, Democratic Republic of the</option>
+              <option>Congo, Republic of the</option>
+              <option>Costa Rica</option>
+              <option>Cote d'Ivoire</option>
+              <option>Croatia</option>
+              <option>Cuba</option>
+              <option>Cyprus</option>
+              <option>Czech Republic</option>
+              <option>Denmark</option>
+              <option>Djibouti</option>
+              <option>Dominica</option>
+              <option>Dominican Republic</option>
+              <option>Ecuador</option>
+              <option>Egypt</option>
+              <option>El Salvador</option>
+              <option>Equatorial Guinea</option>
+              <option>Eritrea</option>
+              <option>Estonia</option>
+              <option>Eswatini</option>
+              <option>Ethiopia</option>
+              <option>Fiji</option>
+              <option>Finland</option>
+              <option>France</option>
+              <option>Gabon</option>
+              <option>Gambia</option>
+              <option>Georgia</option>
+              <option>Germany</option>
+              <option>Ghana</option>
+              <option>Greece</option>
+              <option>Grenada</option>
+              <option>Guatemala</option>
+              <option>Guinea</option>
+              <option>Guinea-Bissau</option>
+              <option>Guyana</option>
+              <option>Haiti</option>
+              <option>Honduras</option>
+              <option>Hungary</option>
+              <option>Iceland</option>
+              <option>India</option>
+              <option>Indonesia</option>
+              <option>Iran</option>
+              <option>Iraq</option>
+              <option>Ireland</option>
+              <option>Israel</option>
+              <option>Italy</option>
+              <option>Jamaica</option>
+              <option>Japan</option>
+              <option>Jordan</option>
+              <option>Kazakhstan</option>
+              <option>Kenya</option>
+              <option>Kiribati</option>
+              <option>Korea, North</option>
+              <option>Korea, South</option>
+              <option>Kosovo</option>
+              <option>Kuwait</option>
+              <option>Kyrgyzstan</option>
+              <option>Laos</option>
+              <option>Latvia</option>
+              <option>Lebanon</option>
+              <option>Lesotho</option>
+              <option>Liberia</option>
+              <option>Libya</option>
+              <option>Liechtenstein</option>
+              <option>Lithuania</option>
+              <option>Luxembourg</option>
+              <option>Madagascar</option>
+              <option>Malawi</option>
+              <option>Malaysia</option>
+              <option>Maldives</option>
+              <option>Mali</option>
+              <option>Malta</option>
+              <option>Marshall Islands</option>
+              <option>Mauritania</option>
+              <option>Mauritius</option>
+              <option>Mexico</option>
+              <option>Micronesia</option>
+              <option>Moldova</option>
+              <option>Monaco</option>
+              <option>Mongolia</option>
+              <option>Montenegro</option>
+              <option>Morocco</option>
+              <option>Mozambique</option>
+              <option>Myanmar</option>
+              <option>Namibia</option>
+              <option>Nauru</option>
+              <option>Nepal</option>
+              <option>Netherlands</option>
+              <option>New Zealand</option>
+              <option>Nicaragua</option>
+              <option>Niger</option>
+              <option>Nigeria</option>
+              <option>North Macedonia</option>
+              <option>Norway</option>
+              <option>Oman</option>
+              <option>Pakistan</option>
+              <option>Palau</option>
+              <option>Panama</option>
+              <option>Papua New Guinea</option>
+              <option>Paraguay</option>
+              <option>Peru</option>
+              <option>Philippines</option>
+              <option>Poland</option>
+              <option>Portugal</option>
+              <option>Qatar</option>
+              <option>Romania</option>
+              <option>Russia</option>
+              <option>Rwanda</option>
+              <option>Saint Kitts and Nevis</option>
+              <option>Saint Lucia</option>
+              <option>Saint Vincent and the Grenadines</option>
+              <option>Samoa</option>
+              <option>San Marino</option>
+              <option>Sao Tome and Principe</option>
+              <option>Saudi Arabia</option>
+              <option>Senegal</option>
+              <option>Serbia</option>
+              <option>Seychelles</option>
+              <option>Sierra Leone</option>
+              <option>Singapore</option>
+              <option>Slovakia</option>
+              <option>Slovenia</option>
+              <option>Solomon Islands</option>
+              <option>Somalia</option>
+              <option>South Africa</option>
+              <option>South Sudan</option>
+              <option>Spain</option>
+              <option>Sri Lanka</option>
+              <option>Sudan</option>
+              <option>Suriname</option>
+              <option>Sweden</option>
+              <option>Switzerland</option>
+              <option>Syria</option>
+              <option>Taiwan</option>
+              <option>Tajikistan</option>
+              <option>Tanzania</option>
+              <option>Thailand</option>
+              <option>Timor-Leste</option>
+              <option>Togo</option>
+              <option>Tonga</option>
+              <option>Trinidad and Tobago</option>
+              <option>Tunisia</option>
+              <option>Turkey</option>
+              <option>Turkmenistan</option>
+              <option>Tuvalu</option>
+              <option>Uganda</option>
+              <option>Ukraine</option>
+              <option>United Arab Emirates</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <option>Uruguay</option>
+              <option>Uzbekistan</option>
+              <option>Vanuatu</option>
+              <option>Vatican City</option>
+              <option>Venezuela</option>
+              <option>Vietnam</option>
+              <option>Yemen</option>
+              <option>Zambia</option>
+              <option>Zimbabwe</option>
                 </select>
               </div>
               <div className='address'>
                 <p>Address</p>
-                <input type='address' placeholder='Add your town, street name and house/apartment numder, postcode'/>
+                <input 
+                  name="address" 
+                  value={profileData.address} 
+                  onChange={handleChange} 
+                  placeholder='Add your town, street name, house/apartment number, postcode'
+                />
               </div>
               <div className='passport-details'>
                 <p>Passport details</p>
-                <p>Save your passport details to use when reservation your next stay, transfer or attraction.</p>
+                <p>Save your passport details to use when reserving your next stay, transfer, or attraction.</p>
                 <div className='passport-fullname'>
-                  <label>First name(s)<span class="necessarily">*</span></label>
-                  <input placeholder='Enter First Name'/><br/>
-                  <label>Last name(s)<span class="necessarily">*</span></label>
-                  <input placeholder='Enter Last Name'/>
+                  <label>First name(s)<span className="necessarily">*</span></label>
+                  <input 
+                    name="passportFirstName" 
+                    value={profileData.passportFirstName} 
+                    onChange={handleChange} 
+                    placeholder='Enter First Name'
+                  />
+                  <br/>
+                  <label>Last name(s)<span className="necessarily">*</span></label>
+                  <input 
+                    name="passportLastName" 
+                    value={profileData.passportLastName} 
+                    onChange={handleChange} 
+                    placeholder='Enter Last Name'
+                  />
                   <p>Please enter the name exactly as written on the passport or other official travel document.</p>
                 </div>
                 <div className='passport-country'>
-                  <label>Issuing country<span class="necessarily">*</span></label>
-                  <select>
-                    <option>Select issuing country</option>
-                    <option>Ukraine</option>
-                    <option>Poland</option>
-                    <option>England</option>
-                    <option>Spain</option>
-                  </select>
-                  <label>Passport number<span class="necessarily">*</span></label>
-                  <input placeholder='Enter document number'/>
-                  <label>Expiry date<span class="necessarily">*</span></label>
-                  <input placeholder='YYYY/DD/MM'/>
+                  <label>Issuing country<span className="necessarily">*</span></label>
+                    <select
+                      name='issuingCountry'
+                      value={profileData.issuingCountry}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select issuing country</option>
+                      <option>Afghanistan</option>
+                      <option>Albania</option>
+                      <option>Algeria</option>
+                      <option>Andorra</option>
+                      <option>Angola</option>
+                      <option>Antigua and Barbuda</option>
+                      <option>Argentina</option>
+                      <option>Armenia</option>
+                      <option>Australia</option>
+                      <option>Austria</option>
+                      <option>Azerbaijan</option>
+                      <option>Bahamas</option>
+                      <option>Bahrain</option>
+                      <option>Bangladesh</option>
+                      <option>Barbados</option>
+                      <option>Belarus</option>
+                      <option>Belgium</option>
+                      <option>Belize</option>
+                      <option>Benin</option>
+                      <option>Bhutan</option>
+                      <option>Bolivia</option>
+                      <option>Bosnia and Herzegovina</option>
+                      <option>Botswana</option>
+                      <option>Brazil</option>
+                      <option>Brunei</option>
+                      <option>Bulgaria</option>
+                      <option>Burkina Faso</option>
+                      <option>Burundi</option>
+                      <option>Cabo Verde</option>
+                      <option>Cambodia</option>
+                      <option>Cameroon</option>
+                      <option>Canada</option>
+                      <option>Central African Republic</option>
+                      <option>Chad</option>
+                      <option>Chile</option>
+                      <option>China</option>
+                      <option>Colombia</option>
+                      <option>Comoros</option>
+                      <option>Congo, Democratic Republic of the</option>
+                      <option>Congo, Republic of the</option>
+                      <option>Costa Rica</option>
+                      <option>Cote d'Ivoire</option>
+                      <option>Croatia</option>
+                      <option>Cuba</option>
+                      <option>Cyprus</option>
+                      <option>Czech Republic</option>
+                      <option>Denmark</option>
+                      <option>Djibouti</option>
+                      <option>Dominica</option>
+                      <option>Dominican Republic</option>
+                      <option>Ecuador</option>
+                      <option>Egypt</option>
+                      <option>El Salvador</option>
+                      <option>Equatorial Guinea</option>
+                      <option>Eritrea</option>
+                      <option>Estonia</option>
+                      <option>Eswatini</option>
+                      <option>Ethiopia</option>
+                      <option>Fiji</option>
+                      <option>Finland</option>
+                      <option>France</option>
+                      <option>Gabon</option>
+                      <option>Gambia</option>
+                      <option>Georgia</option>
+                      <option>Germany</option>
+                      <option>Ghana</option>
+                      <option>Greece</option>
+                      <option>Grenada</option>
+                      <option>Guatemala</option>
+                      <option>Guinea</option>
+                      <option>Guinea-Bissau</option>
+                      <option>Guyana</option>
+                      <option>Haiti</option>
+                      <option>Honduras</option>
+                      <option>Hungary</option>
+                      <option>Iceland</option>
+                      <option>India</option>
+                      <option>Indonesia</option>
+                      <option>Iran</option>
+                      <option>Iraq</option>
+                      <option>Ireland</option>
+                      <option>Israel</option>
+                      <option>Italy</option>
+                      <option>Jamaica</option>
+                      <option>Japan</option>
+                      <option>Jordan</option>
+                      <option>Kazakhstan</option>
+                      <option>Kenya</option>
+                      <option>Kiribati</option>
+                      <option>Korea, North</option>
+                      <option>Korea, South</option>
+                      <option>Kosovo</option>
+                      <option>Kuwait</option>
+                      <option>Kyrgyzstan</option>
+                      <option>Laos</option>
+                      <option>Latvia</option>
+                      <option>Lebanon</option>
+                      <option>Lesotho</option>
+                      <option>Liberia</option>
+                      <option>Libya</option>
+                      <option>Liechtenstein</option>
+                      <option>Lithuania</option>
+                      <option>Luxembourg</option>
+                      <option>Madagascar</option>
+                      <option>Malawi</option>
+                      <option>Malaysia</option>
+                      <option>Maldives</option>
+                      <option>Mali</option>
+                      <option>Malta</option>
+                      <option>Marshall Islands</option>
+                      <option>Mauritania</option>
+                      <option>Mauritius</option>
+                      <option>Mexico</option>
+                      <option>Micronesia</option>
+                      <option>Moldova</option>
+                      <option>Monaco</option>
+                      <option>Mongolia</option>
+                      <option>Montenegro</option>
+                      <option>Morocco</option>
+                      <option>Mozambique</option>
+                      <option>Myanmar</option>
+                      <option>Namibia</option>
+                      <option>Nauru</option>
+                      <option>Nepal</option>
+                      <option>Netherlands</option>
+                      <option>New Zealand</option>
+                      <option>Nicaragua</option>
+                      <option>Niger</option>
+                      <option>Nigeria</option>
+                      <option>North Macedonia</option>
+                      <option>Norway</option>
+                      <option>Oman</option>
+                      <option>Pakistan</option>
+                      <option>Palau</option>
+                      <option>Panama</option>
+                      <option>Papua New Guinea</option>
+                      <option>Paraguay</option>
+                      <option>Peru</option>
+                      <option>Philippines</option>
+                      <option>Poland</option>
+                      <option>Portugal</option>
+                      <option>Qatar</option>
+                      <option>Romania</option>
+                      <option>Russia</option>
+                      <option>Rwanda</option>
+                      <option>Saint Kitts and Nevis</option>
+                      <option>Saint Lucia</option>
+                      <option>Saint Vincent and the Grenadines</option>
+                      <option>Samoa</option>
+                      <option>San Marino</option>
+                      <option>Sao Tome and Principe</option>
+                      <option>Saudi Arabia</option>
+                      <option>Senegal</option>
+                      <option>Serbia</option>
+                      <option>Seychelles</option>
+                      <option>Sierra Leone</option>
+                      <option>Singapore</option>
+                      <option>Slovakia</option>
+                      <option>Slovenia</option>
+                      <option>Solomon Islands</option>
+                      <option>Somalia</option>
+                      <option>South Africa</option>
+                      <option>South Sudan</option>
+                      <option>Spain</option>
+                      <option>Sri Lanka</option>
+                      <option>Sudan</option>
+                      <option>Suriname</option>
+                      <option>Sweden</option>
+                      <option>Switzerland</option>
+                      <option>Syria</option>
+                      <option>Taiwan</option>
+                      <option>Tajikistan</option>
+                      <option>Tanzania</option>
+                      <option>Thailand</option>
+                      <option>Timor-Leste</option>
+                      <option>Togo</option>
+                      <option>Tonga</option>
+                      <option>Trinidad and Tobago</option>
+                      <option>Tunisia</option>
+                      <option>Turkey</option>
+                      <option>Turkmenistan</option>
+                      <option>Tuvalu</option>
+                      <option>Uganda</option>
+                      <option>Ukraine</option>
+                      <option>United Arab Emirates</option>
+                      <option>United Kingdom</option>
+                      <option>United States</option>
+                      <option>Uruguay</option>
+                      <option>Uzbekistan</option>
+                      <option>Vanuatu</option>
+                      <option>Vatican City</option>
+                      <option>Venezuela</option>
+                      <option>Vietnam</option>
+                      <option>Yemen</option>
+                      <option>Zambia</option>
+                      <option>Zimbabwe</option>
+                    </select>
+                  <label>Passport number<span className="necessarily">*</span></label>
+                  <input 
+                    name="passportNumber" 
+                    value={profileData.passportNumber} 
+                    onChange={handleChange} 
+                    placeholder='Enter document number'
+                  />
+                  <label>Expiry date<span className="necessarily">*</span></label>
+                  <input 
+                    name="passportExpiryDate" 
+                    value={profileData.passportExpiryDate} 
+                    onChange={handleChange} 
+                    placeholder='YYYY/MM/DD'
+                  />
                   <p>We’ll safely store this data and remove it after two years of inactivity.</p>
                 </div>
               </div>
             </div>
           </section>
+
         </div>
     );
 }
