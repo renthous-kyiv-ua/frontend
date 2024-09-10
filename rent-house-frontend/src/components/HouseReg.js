@@ -1,7 +1,9 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import cooperImage from '../images/cooper.png';
 import shadowImage from '../images/shadow.png';
 import { useAuth } from '../context/AuthContext';
+import { jwtDecode } from 'jwt-decode';
 import '../styles/HouseReg.css';
 
 const translations = {
@@ -30,6 +32,20 @@ const HouseReg = () => {
   const [bedrooms, setBedrooms] = useState(0);
   const [beds, setBeds] = useState(0);
   const [bathrooms, setBathrooms] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+      if (userRole !== 'Landlord') {
+        navigate('/');
+      }
+    } else {
+      navigate('/signin');
+    }
+  }, [token, navigate]);
 
   const increment = (setter) => setter(prev => prev + 1);
   const decrement = (setter, value) => setter(prev => (prev > 0 ? prev - 1 : prev));
