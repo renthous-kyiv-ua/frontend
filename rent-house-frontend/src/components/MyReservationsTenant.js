@@ -22,9 +22,60 @@ const translations = {
 const MyReservationsTenant = () => {
 
   const [language, setLanguage] = useState('en');
+  const [reservations, setReservations] = useState([]);
+  const [properties, setProperties] = useState({});
   const [isAccountComboboxOpen, setIsAccountComboboxOpen] = useState(false);
   const accountButtonRef = useRef(null);
   const accountComboboxRef = useRef(null);
+
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    // Функция для получения данных о бронированиях
+    const fetchReservations = async () => {
+      try {
+        const response = await fetch('http://localhost:5206/api/Bookings', {
+          headers: {
+            'accept': 'text/plain',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        if (data?.$values) {
+          setReservations(data.$values);
+          // Для каждого бронирования получаем данные по недвижимости
+          data.$values.forEach((reservation) => {
+            fetchPropertyData(reservation.propertyId);
+          });
+        } else {
+          setReservations([]);
+        }
+      } catch (error) {
+        console.error('Ошибка при загрузке бронирований:', error);
+        setReservations([]);
+      }
+    };
+
+    const fetchPropertyData = async (propertyId) => {
+      try {
+        const response = await fetch(`http://localhost:5206/api/Properties/${propertyId}`, {
+          headers: {
+            'accept': 'text/plain',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        const propertyData = await response.json();
+        setProperties((prevState) => ({
+          ...prevState,
+          [propertyId]: propertyData,
+        }));
+      } catch (error) {
+        console.error(`Ошибка при загрузке данных недвижимости с id ${propertyId}:`, error);
+      }
+    };
+
+    fetchReservations();
+  }, [token]);
 
   const handleLanguageChange = (event) => {
       setLanguage(event.target.value);
@@ -187,8 +238,37 @@ const MyReservationsTenant = () => {
             </div>
           </section>
           <section className='reservations'>
-            
-          </section>
+        {reservations.length > 0 ? (
+          <div className="reservations-list">
+            {reservations.map((reservation) => {
+              const property = properties[reservation.propertyId];
+              return (
+                <div key={reservation.bookingId} className="reservation-card">
+                  <div className="card-content">
+                    <h3>Booking #{reservation.bookingId}</h3>
+                    {property && (
+                      <div className="property-info">
+                        <img
+                          src={property.photos?.$values[0] ? `data:image/jpeg;base64,${property.photos.$values[0].photo}` : 'default-image.jpg'}
+                          alt={property.objectName}
+                          style={{ width: '200px', height: '150px' }}
+                        />
+                        <p><strong>Property Name:</strong> {property.objectName}</p>
+                      </div>
+                    )}
+                    <p><strong>Check-in:</strong> {new Date(reservation.checkInDate).toLocaleDateString()}</p>
+                    <p><strong>Check-out:</strong> {new Date(reservation.checkOutDate).toLocaleDateString()}</p>
+                    <p><strong>Total Price:</strong> ${reservation.totalPrice}</p>
+                    <p><strong>Status:</strong> {reservation.status}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p>No reservations found.</p>
+        )}
+      </section>
         </div>
     );
 }
