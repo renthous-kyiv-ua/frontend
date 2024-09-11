@@ -175,41 +175,56 @@ const MainPage = () => {
   useEffect(() => {
     let currentIndex = 0;
 
-  function showSlide(index) {
+    function showSlide(index) {
+      const slides = document.querySelectorAll('.carousel-item');
+      const dots = document.querySelectorAll('.dot');
+      const totalSlides = slides.length;
+
+      if (index >= totalSlides) {
+        currentIndex = 0;
+      } else if (index < 0) {
+        currentIndex = totalSlides - 1;
+      } else {
+        currentIndex = index;
+      }
+
+      const carouselImages = document.querySelector('.carousel-images');
+      carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[currentIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    const interval = setInterval(nextSlide, 3000);
+
+    showSlide(currentIndex);
+
+    // Очистка таймера при размонтировании компонента
+    return () => clearInterval(interval);
+  }, []);
+
+  // Перенесенная функция для использования в качестве обработчика событий
+  const currentSlide = (index) => {
     const slides = document.querySelectorAll('.carousel-item');
     const dots = document.querySelectorAll('.dot');
     const totalSlides = slides.length;
 
     if (index >= totalSlides) {
-      currentIndex = 0;
+      index = 0;
     } else if (index < 0) {
-      currentIndex = totalSlides - 1;
-    } else {
-      currentIndex = index;
+      index = totalSlides - 1;
     }
 
     const carouselImages = document.querySelector('.carousel-images');
-    carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+    carouselImages.style.transform = `translateX(-${index * 100}%)`;
 
     dots.forEach(dot => dot.classList.remove('active'));
-    dots[currentIndex].classList.add('active');
-  }
-
-  function nextSlide() {
-    showSlide(currentIndex + 1);
-  }
-
-  function currentSlide(index) {
-    showSlide(index);
-  }
-
-  setInterval(() => {
-    nextSlide();
-  }, 3000);
-
-  showSlide(currentIndex);
-
-  }, []);
+    dots[index].classList.add('active');
+  };
 
   // useEffect(() => {
   //   axios.get('/api/Reviews')
@@ -276,6 +291,9 @@ const MainPage = () => {
           <ul className="nav-list">
             <li className="active"><a href='/'>{translations[language].home}</a></li>
             <li><a href='/about'>{translations[language].about}</a></li>
+            <li><a href='/tenant'>{translations[language].tenant}</a></li>
+            <li><a href='/landlord'>{translations[language].landlord}</a></li>
+            <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
             {user?.role === 'landlord' ? (
               <>
                 <li><a href='/tenant'>{translations[language].tenant}</a></li>
@@ -474,16 +492,15 @@ const MainPage = () => {
               </div>
             </div>
             <button className="carousel-btn next" onclick="nextSlide()">🠒</button>
-            <div class="carousel-dots">
-              <span class="dot" onclick="currentSlide(0)"></span>
-              <span class="dot" onclick="currentSlide(1)"></span>
-              <span class="dot" onclick="currentSlide(2)"></span>
-              <span class="dot" onclick="currentSlide(3)"></span>
-              <span class="dot" onclick="currentSlide(4)"></span>
-              <span class="dot" onclick="currentSlide(5)"></span>
-              <span class="dot" onclick="currentSlide(6)"></span>
-              <span class="dot" onclick="currentSlide(7)"></span>
-              <span class="dot" onclick="currentSlide(8)"></span>
+            <button className="carousel-btn next" onClick={() => currentSlide(currentIndex + 1)}>🠒</button>
+            <div className="carousel-dots">
+              {[...Array(9)].map((_, i) => (
+                <span
+                  key={i}
+                  className="dot"
+                  onClick={() => currentSlide(i)}
+                ></span>
+              ))}
             </div>
           </div>
           <button className="find-house-btn"><a href='/find_house'>{translations[language].findHouse}</a></button>

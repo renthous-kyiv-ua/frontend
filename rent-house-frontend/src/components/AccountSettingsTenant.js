@@ -149,8 +149,6 @@ const AccountSettingsTenant = () => {
             <li><a href='/'>{translations[language].home}</a></li>
             <li><a href='/about'>{translations[language].about}</a></li>
             <li className='active'><a href='/tenant'>{translations[language].tenant}</a></li>
-            <li><a href='/landlord'>{translations[language].landlord}</a></li>
-            <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
           </ul>
           <div className="logo">
             <svg width="81" height="51" viewBox="0 0 81 51" fill="none" xmlns="http://www.w3.org/2000/svg">

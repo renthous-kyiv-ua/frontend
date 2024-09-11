@@ -153,7 +153,6 @@ const AccountSettingsLandlord = () => {
               <ul className="nav-list">
                 <li><a href='/'>{translations[language].home}</a></li>
                 <li><a href='/about'>{translations[language].about}</a></li>
-                <li><a href='/tenant'>{translations[language].tenant}</a></li>
                 <li className='active'><a href='/landlord'>{translations[language].landlord}</a></li>
                 <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
               </ul>
