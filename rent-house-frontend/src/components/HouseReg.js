@@ -26,26 +26,18 @@ const translations = {
 };
 
 const HouseReg = () => {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [budget, setBudget] = useState(500);
   const [language, setLanguage] = useState('en');
   const [bedrooms, setBedrooms] = useState(0);
   const [beds, setBeds] = useState(0);
   const [bathrooms, setBathrooms] = useState(0);
   const navigate = useNavigate();
-
   useEffect(() => {
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      const userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-
-      if (userRole !== 'Landlord') {
-        navigate('/');
-      }
-    } else {
-      navigate('/signin');
+    if (user && user.role === 'Tenant') {
+      navigate('/');
     }
-  }, [token, navigate]);
+  }, [user]);
 
   const increment = (setter) => setter(prev => prev + 1);
   const decrement = (setter, value) => setter(prev => (prev > 0 ? prev - 1 : prev));
