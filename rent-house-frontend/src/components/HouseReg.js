@@ -693,6 +693,7 @@ const HouseReg = () => {
                         <div className="budget">
                           <h3>Your budget (per night)</h3>
                           <p>$500 - $7000+</p>
+                          <p>{budget}$</p>
                           <input
                             type="range"
                             min="500"
@@ -700,7 +701,6 @@ const HouseReg = () => {
                             value={budget}
                             onChange={(e) => setBudget(e.target.value)}
                           />
-                          <p>{budget}$</p>
                         </div>
                         <input type="date" placeholder="By date of posting" />
                         <select>

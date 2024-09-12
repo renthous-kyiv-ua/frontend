@@ -590,8 +590,12 @@ span {
   border: 1px solid #ddd;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+
+.filter-options {
+  grid-column: span 3;
 }
 
 .filter-section {
@@ -603,8 +607,6 @@ span {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
   border-radius: 10px;
   margin-top: 20px;
 }
@@ -614,17 +616,25 @@ span {
   flex-direction: column;
   align-items: flex-start;
   margin-right: 20px;
+  width: 250px;
 }
 
 .budget h3 {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #040606;
 }
 
 .budget p {
   font-size: 14px;
   margin-bottom: 10px;
+  color: #040606;
+}
+
+hr {
+  width: 850px;
+  margin-right: 80px;
 }
 
 .budget input[type="range"] {
@@ -635,6 +645,7 @@ span {
   background: #ccc;
   outline: none;
   border-radius: 3px;
+  border: none;
 }
 
 .budget input[type="range"]::-webkit-slider-thumb {
@@ -704,7 +715,7 @@ label input[type="checkbox"] {
   width: 20px;
   height: 20px;
   border: 2px solid #ccc;
-  border-radius: 50%; /* Rounded corners */
+  border-radius: 20%; /* Rounded corners */
   display: inline-block;
   margin-right: 10px;
   cursor: pointer;
@@ -717,15 +728,17 @@ label input[type="checkbox"]:checked {
 }
 
 label input[type="checkbox"]:checked::before {
-  content: '\2714'; /* Unicode for checkmark */
+  content: '✓'; /* Unicode for checkmark */
   display: block;
   text-align: center;
   color: white;
   font-weight: bold;
+  margin-top: -10px;
+  margin-left: -5px;
 }
 
 .apply-filters {
-  grid-column: span 4; /* Make the button span all columns */
+  grid-column: span 3; /* Make the button span all columns */
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #ff5722;
