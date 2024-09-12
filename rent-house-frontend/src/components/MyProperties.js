@@ -26,8 +26,13 @@ const MyProperties = () => {
   const accountButtonRef = useRef(null);
   const accountComboboxRef = useRef(null);
 
+  const [properties, setProperties] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
+
   const handleLanguageChange = (event) => {
-      setLanguage(event.target.value);
+    setLanguage(event.target.value);
   };
 
   const handleAccountButtonClick = () => {
@@ -35,19 +40,76 @@ const MyProperties = () => {
   };
 
   const handleClickOutside = (event) => {
-    if (accountComboboxRef.current && !accountComboboxRef.current.contains(event.target) &&
-        accountButtonRef.current && !accountButtonRef.current.contains(event.target)) {
+    if (
+      accountComboboxRef.current &&
+      !accountComboboxRef.current.contains(event.target) &&
+      accountButtonRef.current &&
+      !accountButtonRef.current.contains(event.target)
+    ) {
       setIsAccountComboboxOpen(false);
     }
   };
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
-
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
+  const token = localStorage.getItem('token');
+
+
+  // Функция для загрузки недвижимости с использованием токена
+  const fetchProperties = async () => {
+    try {
+        const response = await fetch(
+            `http://localhost:5206/api/Properties/landlordPropertiesGet?pageNumber=${pageNumber}&pageSize=${pageSize}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}` // Используем токен для авторизации
+                }
+            }
+        );
+        if (!response.ok) {
+            throw new Error('Ошибка при загрузке данных');
+        }
+        const data = await response.json();
+
+        // Проверяем наличие данных и ключа $values
+        if (data && data.$values) {
+            setProperties(data.$values);
+        } else {
+            setProperties([]); // Если данных нет, сбрасываем properties
+            console.error('Данные не содержат ожидаемой структуры:', data);
+        }
+
+        // Допустим, в ответе от сервера нет ключа totalPages, установим его вручную
+        const totalItems = data.$values.length;
+        setTotalPages(Math.ceil(totalItems / pageSize)); // Если нет totalPages, определяем вручную
+    } catch (error) {
+        console.error('Ошибка:', error);
+        setProperties([]); // сброс если ошибка
+    }
+};
+
+  useEffect(() => {
+    fetchProperties(); // Загружаем данные при изменении страницы или первого рендера
+  }, [pageNumber]);
+
+  const handlePreviousPage = () => {
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (pageNumber < totalPages) {
+      setPageNumber(pageNumber + 1);
+    }
+  };
     
     return (
         <div className='my-properties'>
@@ -200,7 +262,44 @@ const MyProperties = () => {
             </div>
           </section>
           <section className='lan-properties'>
-            
+          <div className='properties-list'>
+              {properties.length > 0 ? (
+                properties.map((property) => (
+                  <div key={property.propertyId} className='property-card'>
+                    <div className='property-image-wrapper'>
+                      <img
+                        src={property.photos?.$values[0]?.photo ? `data:image/jpeg;base64,${property.photos.$values[0].photo}` : 'default-image.jpg'}
+                        alt={property.objectName}
+                        className='property-image'
+                      />
+                      <img src={`data:image/jpeg;base64,${property.photos?.$values[0]?.photo}`} alt={`House in ${property.city}`} />
+                    </div>
+                    <div className='card-content'>
+                      <h3 className='property-title'>{property.objectName}</h3>
+                      <p className='property-location'>
+                        <span className='label'>City:</span> {property.city}
+                      </p>
+                      <p className='property-price'>
+                        <span className='label'>Price:</span> ${property.price}/day
+                      </p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No properties available.</p>
+              )}
+            </div>
+
+
+        <div className='pagination'>
+          <button onClick={handlePreviousPage} disabled={pageNumber === 1}>
+            Previous
+          </button>
+          <span>Page {pageNumber} of {totalPages}</span>
+          <button onClick={handleNextPage} disabled={pageNumber === totalPages}>
+            Next
+          </button>
+        </div>
           </section>
         </div>
     );
