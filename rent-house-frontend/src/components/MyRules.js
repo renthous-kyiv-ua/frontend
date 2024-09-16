@@ -23,6 +23,9 @@ const MyRules = () => {
 
   const [language, setLanguage] = useState('en');
   const [isAccountComboboxOpen, setIsAccountComboboxOpen] = useState(false);
+  const [topic, setTopic] = useState('');
+  const [condition, setCondition] = useState('');
+  const [rules, setRules] = useState([]);
   const accountButtonRef = useRef(null);
   const accountComboboxRef = useRef(null);
 
@@ -41,6 +44,14 @@ const MyRules = () => {
     }
   };
 
+  const handleAddRule = () => {
+    if (topic || condition) {
+      setRules([...rules, { topic, condition }]);
+      setTopic('');
+      setCondition('');
+    }
+  };
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
 
@@ -56,7 +67,6 @@ const MyRules = () => {
               <ul className="nav-list">
                 <li><a href='/'>{translations[language].home}</a></li>
                 <li><a href='/about'>{translations[language].about}</a></li>
-                <li><a href='/tenant'>{translations[language].tenant}</a></li>
                 <li className='active'><a href='/landlord'>{translations[language].landlord}</a></li>
                 <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
               </ul>
@@ -209,7 +219,30 @@ const MyRules = () => {
             </div>
           </section>
           <section className="my-rules-content">
-            
+            <div className="rules-container">
+              {rules.map((rule, index) => (
+                <div className="added-rule" key={index}>
+                  <span className="rule-topic">{rule.topic}</span>
+                  <span className="rule-condition">{rule.condition}</span>
+                </div>
+              ))}
+              <div className="lan-rules">
+                <input 
+                  type="text" 
+                  className="input-label" 
+                  placeholder="Add a topic" 
+                  value={topic} 
+                  onChange={(e) => setTopic(e.target.value)} 
+                />
+                <input 
+                  type="text" 
+                  placeholder="Write down the conditions" 
+                  value={condition} 
+                  onChange={(e) => setCondition(e.target.value)} 
+                />
+              </div>
+            </div>
+            <button className="save-button" onClick={handleAddRule}>Save</button>
           </section>
           <footer className="my-rules-footer">
             <div className="footer-content">

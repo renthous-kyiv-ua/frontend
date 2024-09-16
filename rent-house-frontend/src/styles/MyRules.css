@@ -201,13 +201,11 @@ body, html {
   z-index: 2;
   margin-top: 40px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 5px;
-  width: 1330px;
+  background: none;
+  width: 1290px;
   margin-left: 50px;
-  height: 65px;
-  margin-top: 210px;
+  height: 50px;
+  margin-top: 250px;
 }
 
 .lan-categories {
@@ -244,11 +242,99 @@ body, html {
   transition: left 0.3s ease, width 0.3s ease;
 }
 
+.my-rules-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.rules-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1400px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+.added-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.lan-rules-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.rule-topic, .rule-condition {
+  flex: 1;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.lan-rules {
+  display: flex;
+  align-items: center;
+  gap: -50px;
+  margin-right: 100px;
+  width: 50%;
+  margin-left: 60px;
+}
+
+.lan-rules .input-label {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  color: #666;
+  cursor: default;
+  width: auto;
+  box-shadow: none;
+  outline: none;
+  white-space: nowrap;
+}
+
+.lan-rules input[type="text"]:not(.input-label) {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 60%;
+  box-sizing: border-box;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  flex: 1;
+}
+
+.save-button {
+  background-color: #A94802;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.save-button:hover {
+  background-color: #8c3c02;
+}
+
 .my-rules-footer {
   background-color: #1F2C13;
   color: #F4F4F4;
   padding: 20px 0;
-  height: 610px;
+  height: 520px;
   margin-top: 60px;
 }
 

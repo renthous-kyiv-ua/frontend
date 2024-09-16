@@ -103,16 +103,15 @@ body, html {
 .carousel {
   position: relative;
   overflow: hidden;
-  margin-top: 50px;
-  width: 400px;
+  width: 350px;
   margin-left: 1000px;
-  margin-top: -270px;
+  margin-top: -450px;
 }
 
 .carousel-images {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  height: 200px;
+  height: 250px;
   margin-top: 300px;
 }
 
@@ -125,12 +124,17 @@ body, html {
   align-items: center;
   padding: 20px;
   margin: 20px 0;
+  height: 280px;
+  position: relative;
+  text-align: left;
 }
 
 .carousel-item img {
   width: 100%;
   display: block;
   border-radius: 10px;
+  margin-left: 0px;
+  margin-top: -2px;
 }
 
 .carousel-item p {
@@ -152,7 +156,8 @@ body, html {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  margin-top: 80px;
+  margin-top: 230px;
+  z-index: 2;
 }
 
 .carousel-btn.next {
@@ -162,7 +167,11 @@ body, html {
 .carousel-dots {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
 }
 
 .dot {
@@ -859,7 +868,7 @@ input:checked + .slider:before {
   background-color: #1F2C13;
   color: #F4F4F4;
   padding: 20px 0;
-  height: 610px;
+  height: 520px;
 }
 
 .footer-content {

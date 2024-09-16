@@ -138,6 +138,8 @@ const MainPage = () => {
 
   const handleLogout = () => {
     signOut();
+    setIsAuthenticated(false);
+    setUser(null);
   };
 
   const handlePrev = () => {
@@ -195,9 +197,9 @@ const MainPage = () => {
       dots[currentIndex].classList.add('active');
     }
 
-    function nextSlide() {
+    const nextSlide = () => {
       showSlide(currentIndex + 1);
-    }
+    };
 
     const interval = setInterval(nextSlide, 3000);
 
@@ -491,8 +493,7 @@ const MainPage = () => {
                 <p>Andriivskyi Union (Podilskyj, Kyiv region)<br/>08135 Ukraine</p>
               </div>
             </div>
-            <button className="carousel-btn next" onclick="nextSlide()">🠒</button>
-            <button className="carousel-btn next" onClick={() => currentSlide(currentIndex + 1)}>🠒</button>
+            <button className="carousel-btn next" onClick={() => handleNext}>🠒</button>
             <div className="carousel-dots">
               {[...Array(9)].map((_, i) => (
                 <span

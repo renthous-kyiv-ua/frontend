@@ -369,3 +369,140 @@ body, html {
   width: 100%;
   margin-top: 10px;
 }
+
+.account-settings-footer {
+  background-color: #1F2C13;
+  color: #F4F4F4;
+  padding: 20px 0;
+  height: 520px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.logo-footer svg {
+  margin-top: -10px;
+}
+
+.logo-footer p {
+  font-size: 25px;
+  font-family: Helvetica Neue, Arial;
+  text-align: center;
+}
+
+.footer-sections {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.footer-column {
+  flex: 1;
+  margin: 0 20px;
+  text-align: left;
+  justify-content: left;
+}
+
+.footer-column p {
+  margin: 5px 0;
+  text-align: left;
+  margin-left: -100px;
+  cursor: pointer;
+}
+
+.register-property-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  margin-top: -10px;
+}
+
+.register-property {
+  width: 380px;
+  text-align: center;
+  border: 1px solid #F4F4F4;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.register-property p {
+  margin-left: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.reg-prop {
+  width: 400px;
+  background-color: #fff;
+  color: #1F2C13;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reg-prop:hover {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-left: -80px;
+  margin-top: 30px;
+}
+
+.footer-payments, .footer-apps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-apps {
+  margin-left: -120px;
+}
+
+.footer-apps svg {
+  margin-left: 40px;
+}
+
+.footer-copy {
+  text-align: right;
+  margin-right: -80px;
+}
+
+.white-strip-footer {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 99vw;
+  position: absolute;
+  margin-left: -141px;
+  margin-top: -10px;
+}
+.white-strip-footer-2 {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 99vw;
+  position: absolute;
+  margin-left: -141px;
+  margin-top: 20px;
+}
+
+.download-app {
+  margin-left: 100px;
+}
