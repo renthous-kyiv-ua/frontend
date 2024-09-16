@@ -12,7 +12,7 @@ const ConfirmEmail = () => {
     const token = queryParams.get("token");
 
     if (token) {
-      axios.get(`http://localhost:5206/Auth/confirm-email?token=${encodeURIComponent(token)}`)
+      axios.post(`http://localhost:5206/Auth/confirm-email?token=${encodeURIComponent(token)}`)
         .then(response => {
           console.log("Email confirmed:", response.data);
           setMessage("Ваш email успешно подтвержден!");
