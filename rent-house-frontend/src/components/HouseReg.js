@@ -104,7 +104,7 @@ const HouseReg = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+    console.log('Отправка данных жилья на сервер...');
     // Устанавливаем дефолтные значения
     const defaultData = {
       objectName: formData.objectName || 'Default Name',
@@ -194,51 +194,71 @@ const HouseReg = () => {
       });
 
       if (response.ok) {
+        console.log('Жилье успешно создано');
         const searchResponse = await fetch(`http://localhost:5206/api/Properties/searchByObjectName?objectName=${formData.objectName}&pageNumber=1&pageSize=10`);
         const searchData = await searchResponse.json();
         const propertyId = searchData.$values[0]?.propertyId;
   
+        console.log('Получен идентификатор жилья:', propertyId);
+
         if (!propertyId) {
-          console.error('Failed to fetch property ID');
-          return;
+        console.error('Не удалось получить идентификатор жилья');
+        return;
         }
-  
-        // Загрузка всех файлов только сейчас, после успешного создания объекта
-        for (let i = 1; i <= 5; i++) {
-          if (uploadedFiles[`file${i}`]) {
-            await uploadFile(uploadedFiles[`file${i}`], propertyId, i <= 3 ? 'photo' : 'video');
-          }
+        console.log('Загруженные файлы:', uploadedFiles);
+        // Загрузка файлов
+      for (let i = 1; i <= 5; i++) {
+        const photoFile = uploadedFiles[`photo${i}`];
+        if (photoFile) {
+          console.log(`Загрузка photo${i}...`);
+          await uploadFile(photoFile, propertyId, 'photo');
         }
-        console.log('Property and files uploaded successfully');
-      } else {
-        console.error('Failed to submit property data');
       }
-  
-    } catch (error) {
-      console.error('Error:', error);
+      if (uploadedFiles.video1) {
+        console.log('Загрузка video1...');
+        await uploadFile(uploadedFiles.video1, propertyId, 'video');
+      }
+      console.log('Все файлы успешно загружены');
+    } else {
+      console.error('Не удалось отправить данные жилья');
+      const errorText = await response.text();
+      console.error('Ответ ошибки:', errorText);
     }
-  };
+  } catch (error) {
+    console.error('Ошибка при отправке данных:', error);
+  }
+};
 
-  const uploadFile = async (file, propertyId, type) => {
-    const formData = new FormData();
-    formData.append('File', file);
-    formData.append('PropertyId', propertyId);
+const uploadFile = async (file, propertyId, type) => {
+  console.log(`Начата загрузка ${type} для жилья с ID ${propertyId}`);
+  const formData = new FormData();
+  formData.append('File', file); // Используем 'File' с заглавной буквы
+  formData.append('PropertyId', propertyId);
 
+  try {
     const response = await fetch('http://localhost:5206/Auth/uploadMediaandImage', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
       },
-      body: formData
+      body: formData,
     });
 
-    if (!response.ok) {
-      console.error(`Failed to upload ${type}`);
+    if (response.ok) {
+      console.log(`${type} успешно загружен`);
+    } else {
+      console.error(`Не удалось загрузить ${type}`);
+      const errorText = await response.text();
+      console.error('Ответ ошибки:', errorText);
     }
-  };
+  } catch (error) {
+    console.error(`Ошибка при загрузке ${type}:`, error);
+  }
+};
 
   const handleFileUpload = (e, type, index) => {
-    const file = URL.createObjectURL(e.target.files[0]);
+    const file = e.target.files[0];
+    console.log(`Выбран файл для ${type}${index}:`, file);
     setUploadedFiles((prev) => ({
       ...prev,
       [`${type}${index}`]: file,
@@ -249,11 +269,12 @@ const HouseReg = () => {
     const file = uploadedFiles[`${type}${index}`];
   
     if (file) {
+      const fileURL = URL.createObjectURL(file);
       if (type === 'photo') {
-        return <img src={file} alt={`upload-${type}-${index}`} />;
+        return <img src={fileURL} alt={`upload-${type}-${index}`} />;
       }
       if (type === 'video') {
-        return <video src={file} controls />;
+        return <video src={fileURL} controls />;
       }
     }
   
@@ -839,13 +860,25 @@ const HouseReg = () => {
             </div>
             <div className="photo-video-container">
               <div className="photo-pyramid">
-                <button className="upload-photo" onClick={() => document.getElementById('photo-upload-1').click()}>
+                <button
+                  type="button"
+                  className="upload-photo"
+                  onClick={() => document.getElementById('photo-upload-1').click()}
+                >
                   {renderButtonContent('photo', 1)}
                 </button>
-                <button className="upload-photo" onClick={() => document.getElementById('photo-upload-2').click()}>
+                <button
+                  type="button"
+                  className="upload-photo"
+                  onClick={() => document.getElementById('photo-upload-2').click()}
+                >
                   {renderButtonContent('photo', 2)}
                 </button>
-                <button className="upload-photo" onClick={() => document.getElementById('photo-upload-3').click()}>
+                <button
+                  type="button"
+                  className="upload-photo"
+                  onClick={() => document.getElementById('photo-upload-3').click()}
+                >
                   {renderButtonContent('photo', 3)}
                 </button>
 
@@ -872,19 +905,31 @@ const HouseReg = () => {
                 />
               </div>
               <div className="video-pyramid">
-                <button className="upload-video" onClick={() => document.getElementById('video-upload').click()}>
+                <button
+                  type="button"
+                  className="upload-video"
+                  onClick={() => document.getElementById('video-upload-1').click()}
+                >
                   {renderButtonContent('video', 1)}
                 </button>
-                <button className="upload-photo" onClick={() => document.getElementById('photo-upload-4').click()}>
+                <button
+                  type="button"
+                  className="upload-photo"
+                  onClick={() => document.getElementById('photo-upload-4').click()}
+                >
                   {renderButtonContent('photo', 4)}
                 </button>
-                <button className="upload-photo" onClick={() => document.getElementById('photo-upload-5').click()}>
+                <button
+                  type="button"
+                  className="upload-photo"
+                  onClick={() => document.getElementById('photo-upload-5').click()}
+                >
                   {renderButtonContent('photo', 5)}
                 </button>
 
                 <input
                   type="file"
-                  id="video-upload"
+                  id="video-upload-1"
                   accept="video/*"
                   style={{ display: 'none' }}
                   onChange={(e) => handleFileUpload(e, 'video', 1)}
@@ -908,8 +953,8 @@ const HouseReg = () => {
           </div>
           <div className='home-describe'>
             <label>Description</label>
-            <textarea 
-              placeholder="Please describe the object in as much detail as possible." 
+            <textarea
+              placeholder="Please describe the object in as much detail as possible."
               name="description"
               value={formData.description}
               onChange={handleInputChange}

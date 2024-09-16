@@ -275,8 +275,8 @@ const FindHouse = () => {
                         <div key={house.propertyId} className="house-cards">
                             <img src={`data:image/jpeg;base64,${house.photos?.$values[0]?.photo}`} alt={`House in ${house.city}`} />
                             <div className="card-content">
-                                <h3>{house.city}, {house.zipCode}</h3>
-                                <p>{house.description}</p>
+                                <h3>City: {house.city}, Name: {house.objectName}</h3>
+                                <p>Description: {house.description}</p>
                                 <p>Rating: {house.propertyDetails?.starRating}/5</p>
                                 <p>{house.discount ? `Discount: ${house.discount}%` : 'No discount'}</p>
                                 <p>Price: ${house.price}/month</p>

@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   const signUp = async (userData, role) => {
     setAuthLoading(true);
     setAuthError(null);
-    const url = `https://localhost:50554/Auth/register/${role}`;
+    const url = `http://localhost:5206/Auth/register/${role}`;
 
     try {
       const response = await axios.post(url, userData);
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
   const signIn = async (email, password) => {
     setAuthLoading(true);
     setAuthError(null);
-    const url = 'https://localhost:50554/Auth/login';
+    const url = 'http://localhost:5206/Auth/login';
 
     try {
       const response = await axios.post(url, { email, password });
