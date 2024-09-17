@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/ForgotPassword.css';
 
@@ -21,35 +22,52 @@ const translations = {
   }
 };
 
-const ForgotPassword = () => { 
-
+const ResetPassword = () => {
   const [language, setLanguage] = useState('en');
-  const [email, setEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Извлекаем токен из URL
+  const token = new URLSearchParams(location.search).get('token');
+
+  useEffect(() => {
+    if (!token) {
+      setMessage('Invalid or missing token.');
+    }
+  }, [token]);
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
   };
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+
+  const handlePasswordChange = (event) => {
+    setNewPassword(event.target.value);
   };
 
   const handleSubmit = async () => {
-    if (!email) {
-      setMessage('Please enter a valid email.');
+    if (!newPassword || !token) {
+      setMessage('Please enter a valid password and token.');
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:5206/Auth/forgot-password', {
-        email: email
+      const response = await axios.post('http://localhost:5206/Auth/reset-password', {
+        token: token,
+        newPassword: newPassword
       });
 
-      setMessage('Password reset link sent to your email.');
+      setMessage('Password has been reset successfully.');
+      // Переадресуем пользователя на страницу входа после успешного сброса
+      setTimeout(() => {
+        navigate('/signin'); // используем navigate вместо history.push
+      }, 3000);
     } catch (error) {
-      setMessage('Error sending password reset link.');
+      setMessage('Error resetting password. Please try again.');
     }
   };
+
   return (
     <div className="forgot-password-page">
       <header className="home-header">
@@ -81,13 +99,13 @@ const ForgotPassword = () => {
         </nav>
         <div className="white-strip"></div>
         <div className="forgot-password-content">
-          <h2>Forgot Password?</h2>
-          <p>Enter your e-mail address and we'll send you a<br/>link to reset your password.</p>
+          <h2>Reset Password</h2>
+          <p>Enter your new password below.</p>
           <input 
-            type="email" 
-            placeholder="Enter your email address"
-            value={email}
-            onChange={handleEmailChange} 
+            type="password" 
+            placeholder="Enter your new password"
+            value={newPassword}
+            onChange={handlePasswordChange}
           /><br/><br/>
           <button className="change-password" onClick={handleSubmit}>Submit</button>
           <p>{message}</p>
@@ -282,4 +300,4 @@ const ForgotPassword = () => {
   );
 }
 
-export default ForgotPassword;
+export default ResetPassword;
