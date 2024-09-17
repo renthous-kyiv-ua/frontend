@@ -85,6 +85,7 @@ const MainPage = () => {
   const [rooms, setRooms] = useState(1);
   const [isPets, setIsPets] = useState(false);
   const [isAccountComboboxOpen, setIsAccountComboboxOpen] = useState(false);
+  const [parsedUser, setParsedUser] = useState(null);
 
   const increment = (setter, value) => () => setter(value + 1);
   const decrement = (setter, value) => () => setter(value > 0 ? value - 1 : 0);
@@ -252,22 +253,26 @@ const MainPage = () => {
     setIsAccountComboboxOpen(!isAccountComboboxOpen);
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
+  useEffect(() => { 
+    const userData = localStorage.getItem('user');
+    
+    if (userData) {
       try {
-        const decodedToken = jwtDecode(token);
-        const userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        const user = JSON.parse(userData); // Преобразуем строку в объект
+        setParsedUser(user); // Сохраняем пользователя в состоянии
         setUser({
-          id: decodedToken.sub,
-          role: userRole,
+          id: user.id,
+          role: user.role,
         });
         setIsAuthenticated(true);
       } catch (error) {
-        console.error('Token decoding failed:', error);
+        console.error('Failed to parse user data from localStorage:', error);
         setIsAuthenticated(false);
         setUser(null);
       }
+    } else {
+      setIsAuthenticated(false);
+      setUser(null);
     }
   }, []);
 
@@ -296,12 +301,12 @@ const MainPage = () => {
             <li><a href='/tenant'>{translations[language].tenant}</a></li>
             <li><a href='/landlord'>{translations[language].landlord}</a></li>
             <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
-            {user?.role === 'landlord' ? (
+            {user?.role === 'Landlord' ? (
               <>
                 <li><a href='/tenant'>{translations[language].tenant}</a></li>
               </>
             ) : null}
-            {user?.role === 'tenant' ? (
+            {user?.role === 'Tenant' ? (
               <>
                 <li><a href='/landlord'>{translations[language].landlord}</a></li>
                 <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
@@ -342,7 +347,7 @@ const MainPage = () => {
                 {isAccountComboboxOpen && (
                   <div className="account-combobox">
                     <ul>
-                      {userRole === 'tenant' ? (
+                      {user.role === 'Tenant' ? (
                         <>
                           <div className='settings'>
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -393,7 +398,7 @@ const MainPage = () => {
                             <li><a href='/signout' onClick={handleLogoutClick}>Logout</a></li>
                           </div>
                         </>
-                      ) : userRole === 'landlord' ? (
+                      ) : user.role === 'Landlord' ? (
                         <>
                           <div className='settings'>
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
