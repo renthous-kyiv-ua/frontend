@@ -28,14 +28,14 @@ const FindHouse = () => {
 
   const [houses, setHouses] = useState([]);
   const [pageNumber, setPageNumber] = useState(1); // State for the current page
-  const [pageSize] = useState(10); // State for the page size
+  const [pageSize] = useState(1); // State for the page size
   const [totalPages, setTotalPages] = useState(1); // State for the total number of pages
   const [filters, setFilters] = useState({
-    houses: true,
-    apartments: false,
-    villas: false,
-    hotels: false,
-    hostels: false,
+    house: true,
+    apartment: false,
+    villa: false,
+    hotel: false,
+    hostel: false,
     couchsurfing: false,
   });
 
@@ -61,27 +61,40 @@ const FindHouse = () => {
           document.removeEventListener('click', handleClickOutside);
       };
   }, []);
+  const applyFilters = async () => {
+    const selectedCategories = Object.keys(filters).filter((key) => filters[key]);
 
+    const requestBody = {
+      categories: selectedCategories,
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:5206/api/Properties/search-by-categories?pageNumber=${pageNumber}&pageSize=${pageSize}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const data = await response.json();
+      setHouses(data.items.$values || []);
+      setTotalPages(data.totalPages || 1);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setHouses([]);
+    }
+  };
   useEffect(() => {
-      const fetchHouses = async () => {
-          try {
-              const response = await fetch(`http://localhost:5206/api/Properties?pageNumber=${pageNumber}&pageSize=${pageSize}`);
-              if (!response.ok) {
-                  throw new Error('Failed to fetch data');
-              }
-              const data = await response.json();
-              console.log('Received data:', data);
-
-              setHouses(data.items.$values || []);
-              setTotalPages(data.totalPages || 1);
-          } catch (error) {
-              console.error('Error fetching data:', error);
-              setHouses([]);
-          }
-      };
-
-      fetchHouses();
-  }, [pageNumber, pageSize]);
+    applyFilters(); // вызываем новую функцию для фильтрации
+  }, [pageNumber, pageSize, filters]);
 
   const toggleFilter = (filter) => {
     setFilters((prevFilters) => ({
@@ -283,56 +296,27 @@ const FindHouse = () => {
                 </div>
                 </div>
                 <div className="find-house-filters">
-              <label className="filter-option">
-                <input
-                  type="checkbox"
-                  checked={filters.houses}
-                  onChange={() => toggleFilter('houses')}
-                />
-                Houses
-              </label>
-              <label className="filter-option">
-                <input
-                  type="checkbox"
-                  checked={filters.apartments}
-                  onChange={() => toggleFilter('apartments')}
-                />
-                Apartments
-              </label>
-              <label className="filter-option">
-                <input
-                  type="checkbox"
-                  checked={filters.villas}
-                  onChange={() => toggleFilter('villas')}
-                />
-                Villas
-              </label>
-              <label className="filter-option">
-                <input
-                  type="checkbox"
-                  checked={filters.hotels}
-                  onChange={() => toggleFilter('hotels')}
-                />
-                Hotels
-              </label>
-              <label className="filter-option">
-                <input
-                  type="checkbox"
-                  checked={filters.hostels}
-                  onChange={() => toggleFilter('hostels')}
-                />
-                Hostels
-              </label>
-              <label className="filter-option">
-                <input
-                  type="checkbox"
-                  checked={filters.couchsurfing}
-                  onChange={() => toggleFilter('couchsurfing')}
-                />
-                Couchsurfing
-              </label>
-              <button className="all-filters-button">All Filters</button>
-            </div>
+                  {[
+                    { label: "Houses", filterKey: "house" },
+                    { label: "Apartments", filterKey: "apartment" },
+                    { label: "Villas", filterKey: "villa" },
+                    { label: "Hotels", filterKey: "hotel" },
+                    { label: "Hostels", filterKey: "hostel" },
+                    { label: "Couchsurfing", filterKey: "couchsurfing" },
+                  ].map(({ label, filterKey }) => (
+                    <label key={filterKey} className="filter-option">
+                      <input
+                        type="checkbox"
+                        checked={filters[filterKey]}
+                        onChange={() => toggleFilter(filterKey)}
+                      />
+                      {label}
+                    </label>
+                  ))}
+                  <button className="all-filters-button" onClick={applyFilters}>
+                    Apply Filters
+                  </button>
+                </div>
             </div>
             </section>
             <>
