@@ -86,6 +86,7 @@ import PropertiesAdmin from './components/PropertiesAdmin';
 import { useAuth } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import ConfirmEmail from './components/ConfirmEmail';
+import ResetPassword from './components/ResetPassword';
 function App() {
   const { user } = useAuth();
 
@@ -111,6 +112,7 @@ function App() {
       <Route path="/lanLoyalty" element={<LoyaltyProgrammeLandlord />} />
       <Route path="/rules" element={<MyRules />} />
       <Route path="/confirm-email" Component={ConfirmEmail} />
+      <Route path="/reset-password" Component={ResetPassword} />
       <Route
         path="/admin"
         element={
