@@ -301,15 +301,15 @@ const MainPage = () => {
             {/* <li><a href='/tenant'>{translations[language].tenant}</a></li> */}
             {/* <li><a href='/landlord'>{translations[language].landlord}</a></li>
             <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li> */}
-            {user?.role === 'landlord' ? (
-              <>
-                <li><a href='/tenant'>{translations[language].tenant}</a></li>
-              </>
-            ) : null}
-            {user?.role === 'tenant' ? (
+            {user?.role === 'Landlord' ? (
               <>
                 <li><a href='/landlord'>{translations[language].landlord}</a></li>
                 <li><a href='/for-landlord'>{translations[language].forLandlord}</a></li>
+              </>
+            ) : null}
+            {user?.role === 'Tenant' ? (
+              <>
+                <li><a href='/tenant'>{translations[language].tenant}</a></li>
               </>
             ) : null}
           </ul>
