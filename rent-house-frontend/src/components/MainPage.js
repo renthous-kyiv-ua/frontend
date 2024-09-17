@@ -493,7 +493,7 @@ const MainPage = () => {
                 <p>Andriivskyi Union (Podilskyj, Kyiv region)<br/>08135 Ukraine</p>
               </div>
             </div>
-            <button className="carousel-btn next" onClick={() => handleNext}>🠒</button>
+            <button className="carousel-btn next" onClick={handleNext}>🠒</button>
             <div className="carousel-dots">
               {[...Array(9)].map((_, i) => (
                 <span

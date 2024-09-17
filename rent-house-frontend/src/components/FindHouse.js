@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import shadowImage from '../images/shadow.png';
 import '../styles/FindHouse.css';
 
 const translations = {
@@ -29,6 +30,14 @@ const FindHouse = () => {
   const [pageNumber, setPageNumber] = useState(1); // State for the current page
   const [pageSize] = useState(10); // State for the page size
   const [totalPages, setTotalPages] = useState(1); // State for the total number of pages
+  const [filters, setFilters] = useState({
+    houses: true,
+    apartments: false,
+    villas: false,
+    hotels: false,
+    hostels: false,
+    couchsurfing: false,
+  });
 
   const handleLanguageChange = (event) => {
       setLanguage(event.target.value);
@@ -73,6 +82,13 @@ const FindHouse = () => {
 
       fetchHouses();
   }, [pageNumber, pageSize]);
+
+  const toggleFilter = (filter) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [filter]: !prevFilters[filter],
+    }));
+  };
 
   const handlePreviousPage = () => {
       if (pageNumber > 1) {
@@ -202,6 +218,7 @@ const FindHouse = () => {
             <div className="white-strip"></div>
           </header>
           <section className="house">
+            <img src={shadowImage} alt="Shadow" className="shadow2" />
             <div className="breadcrumbs">
                 <h6 onClick={() => window.location.href = '/'}>Home</h6>
                 <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -265,9 +282,59 @@ const FindHouse = () => {
                     <p>From thousands of results, choose<br />the one that suits you best. Please<br />note that when booking<br />accommodation through our<br />website, special prices apply.</p>
                 </div>
                 </div>
+                <div className="find-house-filters">
+              <label className="filter-option">
+                <input
+                  type="checkbox"
+                  checked={filters.houses}
+                  onChange={() => toggleFilter('houses')}
+                />
+                Houses
+              </label>
+              <label className="filter-option">
+                <input
+                  type="checkbox"
+                  checked={filters.apartments}
+                  onChange={() => toggleFilter('apartments')}
+                />
+                Apartments
+              </label>
+              <label className="filter-option">
+                <input
+                  type="checkbox"
+                  checked={filters.villas}
+                  onChange={() => toggleFilter('villas')}
+                />
+                Villas
+              </label>
+              <label className="filter-option">
+                <input
+                  type="checkbox"
+                  checked={filters.hotels}
+                  onChange={() => toggleFilter('hotels')}
+                />
+                Hotels
+              </label>
+              <label className="filter-option">
+                <input
+                  type="checkbox"
+                  checked={filters.hostels}
+                  onChange={() => toggleFilter('hostels')}
+                />
+                Hostels
+              </label>
+              <label className="filter-option">
+                <input
+                  type="checkbox"
+                  checked={filters.couchsurfing}
+                  onChange={() => toggleFilter('couchsurfing')}
+                />
+                Couchsurfing
+              </label>
+              <button className="all-filters-button">All Filters</button>
+            </div>
             </div>
             </section>
-            <div className='shadow-find'></div>
             <>
             <section className="house-spisok">
                 {houses.length > 0 ? (
