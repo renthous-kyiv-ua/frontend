@@ -924,3 +924,7 @@ button {
 button:hover {
   background-color: #873b0d;
 }
+
+a {
+  color: #F4F4F4;
+}

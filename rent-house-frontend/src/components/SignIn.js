@@ -160,12 +160,37 @@ const SignIn = () => {
                       )}
                     </button>
                   </div>
+                  <a className='forgot' href='/forgot_pass'>Forgot your password?</a>
+                  <button type="submit" className="sign-in-button" disabled={isSubmitting}>
+                    {isSubmitting ? 'Signing in...' : 'Sign In'}
+                  </button>
+                  <p>or use one of these options</p>
+                  <div class="other-options">
+                    <button class="social-button">
+                      <div class="inner-square">
+                        <svg width="18" height="31" viewBox="0 0 18 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 1H12.6364C10.7075 1 8.85767 1.76384 7.49377 3.12348C6.12987 4.48311 5.36364 6.32718 5.36364 8.25V12.6H1V18.4H5.36364V30H11.1818V18.4H15.5455L17 12.6H11.1818V8.25C11.1818 7.86544 11.3351 7.49662 11.6078 7.2247C11.8806 6.95277 12.2506 6.8 12.6364 6.8H17V1Z" fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                    </button>
+                    <button class="social-button">
+                      <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30.6985 12.4643H29.45V12.4H15.5V18.6H24.2598C22.9818 22.2092 19.5478 24.8 15.5 24.8C10.3641 24.8 6.2 20.6359 6.2 15.5C6.2 10.3641 10.3641 6.2 15.5 6.2C17.8707 6.2 20.0275 7.09435 21.6698 8.55522L26.0539 4.17105C23.2856 1.59107 19.5827 0 15.5 0C6.94012 0 0 6.94012 0 15.5C0 24.0599 6.94012 31 15.5 31C24.0599 31 31 24.0599 31 15.5C31 14.4607 30.893 13.4462 30.6985 12.4643Z" fill="#FFC107"/>
+                        <path d="M1.78711 8.28552L6.87963 12.0202C8.25758 8.6087 11.5947 6.2 15.5 6.2C17.8707 6.2 20.0275 7.09435 21.6697 8.55522L26.0539 4.17105C23.2856 1.59107 19.5827 0 15.5 0C9.54641 0 4.38336 3.36117 1.78711 8.28552Z" fill="#FF3D00"/>
+                        <path d="M15.5 31C19.5037 31 23.1415 29.4678 25.892 26.9762L21.0948 22.9167C19.4863 24.14 17.5208 24.8016 15.5 24.8C11.4685 24.8 8.04532 22.2293 6.75572 18.6418L1.70117 22.5362C4.26642 27.5559 9.47597 31 15.5 31Z" fill="#4CAF50"/>
+                        <path d="M30.6985 12.4643H29.45V12.4H15.5V18.6H24.2598C23.6485 20.3177 22.5474 21.8187 21.0924 22.9175L21.0947 22.916L25.892 26.9754C25.5525 27.2839 31 23.25 31 15.5C31 14.4607 30.893 13.4462 30.6985 12.4643Z" fill="#1976D2"/>
+                      </svg>
+                    </button>
+                    <button class="social-button">
+                      <svg width="27" height="33" viewBox="0 0 27 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.4962 31.676C20.7516 33.4174 18.8468 33.1425 17.0132 32.3176C15.0729 31.4744 13.2927 31.4377 11.2455 32.3176C8.68203 33.4541 7.32911 33.1242 5.79816 31.676C-2.88908 22.4555 -1.60736 8.41394 8.2548 7.90067C10.658 8.02899 12.3314 9.25716 13.7377 9.36715C15.8383 8.92721 17.8499 7.66237 20.0929 7.82735C22.781 8.04732 24.8104 9.14718 26.1455 11.1269C20.5914 14.5548 21.9087 22.0889 27 24.1969C25.9853 26.9466 24.668 29.6779 22.4784 31.6943L22.4962 31.676ZM13.5597 7.79068C13.2927 3.70287 16.5148 0.329958 20.2175 0C20.7338 4.7294 16.0519 8.24896 13.5597 7.79068Z" fill="black"/>
+                      </svg>
+                    </button>
+                  </div>
                   <ErrorMessage name="password" component="div" className="error" />
                 </div>
 
-                <button type="submit" className="sign-in-button" disabled={isSubmitting}>
-                  {isSubmitting ? 'Signing in...' : 'Sign In'}
-                </button>
+                
               </Form>
             )}
           </Formik>

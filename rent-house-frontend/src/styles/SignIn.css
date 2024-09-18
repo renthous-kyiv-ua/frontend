@@ -120,6 +120,7 @@ body, html {
 .sign-in-content label {
   display: block;
   text-align: left;
+  color: #F4F4F4;
 }
 
 .sign-in-content a {
@@ -146,6 +147,7 @@ body, html {
 }
 
 .toggle-password {
+  width: 70px;
   position: absolute;
   right: 10px;
   border: none;
@@ -282,7 +284,7 @@ a {
   background-color: #1F2C13;
   color: #F4F4F4;
   padding: 20px 0;
-  height: 610px;
+  height: 520px;
 }
 
 .footer-content {

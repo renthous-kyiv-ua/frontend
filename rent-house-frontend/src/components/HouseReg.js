@@ -960,7 +960,7 @@ const uploadFile = async (file, propertyId, type) => {
               onChange={handleInputChange}
             />
           </div>
-          <button onClick={handleSubmit}>Place an ad</button>
+          <button onClick={handleSubmit}><a href='/find_house'>Place an ad</a></button>
         </form>
       </section>
     </div>
