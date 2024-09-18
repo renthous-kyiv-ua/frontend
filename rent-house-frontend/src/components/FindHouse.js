@@ -344,12 +344,6 @@ const FindHouse = () => {
                 <button onClick={handlePreviousPage} disabled={pageNumber === 1} className="prev-button">&lt;</button>
                 {getPages()}
                 <span className="dots">...</span>
-                <button
-                    className={`page-button ${pageNumber === totalPages ? 'active' : ''}`}
-                    onClick={() => handlePageClick(totalPages)}
-                >
-                    {totalPages}
-                </button>
                 <button onClick={handleNextPage} disabled={pageNumber === totalPages} className="next-button">&gt;</button>
             </div>
         </>

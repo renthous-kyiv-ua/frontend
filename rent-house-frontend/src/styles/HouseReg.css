@@ -891,6 +891,7 @@ label input[type="checkbox"]:checked::before {
   margin-bottom: 10px;
   color: #333;
   text-align: center;
+  margin-left: 700px;
 }
 
 .home-describe textarea {
