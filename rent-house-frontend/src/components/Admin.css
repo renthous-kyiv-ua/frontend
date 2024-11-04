@@ -1,0 +1,53 @@
+.admin-container {
+    padding: 20px;
+}
+
+.btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.form-container form div {
+    margin-bottom: 10px;
+}
+
+.form-container form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-container form input,
+.form-container form select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}

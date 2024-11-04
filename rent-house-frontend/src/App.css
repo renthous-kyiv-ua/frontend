@@ -1,0 +1,24 @@
+.app {
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1.1rem;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}

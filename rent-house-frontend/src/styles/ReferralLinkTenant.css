@@ -1,0 +1,309 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica Neue, arial;
+}
+
+.referral-page {
+  text-align: center;
+}
+
+.referral-header {
+  background-color: #1F2C13;
+  background-size: cover;
+  color: #F4F4F4;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 24px;
+  justify-content: center;
+  margin-left: -160px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.nav-list a {
+  color: #F4F4F4;
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.nav-list li:hover {
+  background-color: #A94802;
+}
+
+.currency-lang {
+  display: flex;
+  gap: 10px;
+}
+
+.account {
+  background: transparent;
+  border: none;
+  margin-right: 50px;
+  cursor: pointer;
+  position: relative;
+}
+
+.account-combobox {
+  position: absolute;
+  top: 88px;
+  right: 55px;
+  width: 400px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid #F4F4F4;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.account-combobox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.account-combobox li {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  height: 45px;
+}
+
+.settings svg {
+  width: 30px;
+  height: 30px;
+}
+
+.white-line, .white-line-2 {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.white-line-2 {
+  margin-top: 15px;
+}
+
+.white-strip {
+  width: 1480px;
+}
+
+.panel {
+  background-image: url('../images/acc_background.png');
+  background-size: cover;
+  height: 480px;
+  text-align: left;
+  padding: 20px;
+  color: #F4F4F4;
+}
+
+.panel h1 {
+  font-family: Chonburi, arial;
+  font-size: 50pt;
+  text-align: left;
+  color: #F4F4F4;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.panel p {
+  margin-left: 30px;
+  margin-top: -10px;
+  font-family: Helvetica Neue, arial;
+}
+
+.panel-settings-5 {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  margin-left: 50px;
+  margin-top: 170px;
+  border-radius: 5px;
+  height: 150px;
+}
+
+.panel-settings-5 a {
+  text-decoration: none;
+  color: #F4F4F4;
+  transition: background-color 0.3s ease;
+}
+
+.panel-settings-5 a:hover {
+  color: #F4F4F4;
+}
+
+.panel-settings-5 .active-button {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.panel-settings-5 button {
+  background: none;
+  border: 1px solid #F4F4F4;
+  border-radius: 5px;
+  width: 200px;
+  height: 55px;
+  margin-left: 15px;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.panel-settings-5 button:hover {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.panel-settings-5 svg {
+  width: 30px;
+}
+
+.referral {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.referral-info {
+    width: 50%;
+    margin-left: 200px;
+}
+
+.referral-info-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.referral-info ol {
+    counter-reset: li;
+    list-style-type: none;
+    padding-left: 0;
+    text-align: left;
+    width: 500px;
+}
+
+.referral-info ol li {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.referral-info ol li::before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -1.5em;
+    color: #A94802;
+}
+
+.total-reward {
+    background-color: #E6E9E3;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.total-reward h5 {
+    font-size: 12pt;
+}
+
+.total-reward p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.referral-info .total-reward {
+    margin: 10px 0;
+}
+
+.referral-info .total-reward h5 {
+    margin: 0;
+}
+
+.referral-info .total-reward p {
+    margin: 0;
+    font-size: 20pt;
+}
+
+.referral-info p {
+    font-size: 14px;
+    color: #040606;
+    font-family: Helvetica Neue, arial;
+}
+
+.share-link {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 300px;
+    margin-left: -800px;
+}
+
+.share-link h5 {
+    margin-bottom: 10px;
+}
+
+.share-link .link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.share-link .link a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.share-link button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.socials-item {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 300px;
+}
+
+.payment-part {
+    margin-top: 400px;
+    margin-left: -800px;
+}

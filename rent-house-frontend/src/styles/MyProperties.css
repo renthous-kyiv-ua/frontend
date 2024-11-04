@@ -1,0 +1,270 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica Neue, arial;
+}
+
+.my-properties {
+  text-align: center;
+}
+
+.properties-header {
+  background-color: #1F2C13;
+  background-size: cover;
+  color: #F4F4F4;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 24px;
+  justify-content: center;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.nav-list a {
+  color: #F4F4F4;
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.nav-list li:hover {
+  background-color: #A94802;
+}
+
+.currency-lang {
+  display: flex;
+  gap: 10px;
+}
+
+.lan-account {
+  background: transparent;
+  border: none;
+  margin-right: 50px;
+  cursor: pointer;
+  position: relative;
+}
+
+.landlord-account-combobox {
+  position: absolute;
+  top: 88px;
+  right: 55px;
+  width: 400px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid #F4F4F4;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.landlord-account-combobox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.landlord-account-combobox li {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.landlord-account-combobox svg {
+  color: #F4F4F4;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  height: 45px;
+}
+
+.settings svg {
+  width: 30px;
+  height: 30px;
+}
+
+.white-line, .white-line-2 {
+  background-color: #F4F4F4;
+  height: 2px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.white-line-2 {
+  margin-top: 15px;
+}
+
+.white-strip {
+  width: 1480px;
+}
+
+.lan-panel {
+  background-image: url('../images/lan_background.jpg');
+  background-size: cover;
+  height: 600px;
+  text-align: left;
+  padding: 20px;
+  color: #F4F4F4;
+}
+
+.lan-panel h1 {
+  font-family: Chonburi, arial;
+  font-size: 50pt;
+  text-align: left;
+  color: #F4F4F4;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.lan-panel p {
+  margin-left: 30px;
+  margin-top: -20px;
+}
+
+.edit-account-2 {
+  display: flex;
+  text-align: right;
+  justify-content: end;
+  margin-right: 20px;
+  margin-top: 80px;
+}
+
+.edit-account-2 p {
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.lan-panel-settings-2 {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  margin-left: 50px;
+  margin-top: 135px;
+  border-radius: 5px;
+  height: 150px;
+}
+
+.lan-panel-settings-2 .active-button {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.lan-panel-settings-2 button {
+  background: none;
+  border: 1px solid #F4F4F4;
+  border-radius: 5px;
+  width: 200px;
+  height: 55px;
+  margin-left: 15px;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.lan-panel-settings-2 button:hover {
+  background-color: #A94802;
+  color: #F4F4F4;
+}
+
+.lan-panel-settings-2 svg {
+  width: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.properties-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.property-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover {
+  transform: scale(1.05);
+}
+
+.property-image-wrapper {
+  height: 150px;
+  overflow: hidden;
+}
+
+.property-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.property-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.property-location, .property-price {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.label {
+  font-weight: bold;
+}
